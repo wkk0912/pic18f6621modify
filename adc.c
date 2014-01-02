@@ -1,4 +1,3 @@
-
 #include<pic18.h>
 #include<pic18fxx22.h>
 #include"adc.h"
@@ -64,21 +63,21 @@ void adc_init(void)
     
     ADFM = 1;//AD Right justified
 
-    ACQT0 = 1;//²ÉÑù±£³ÖÊ±¼äÎª20tad
+    ACQT0 = 1;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îª20tad
     ACQT1 = 1;
     ACQT2 = 1;
 
-    ADCS0 = 0;//20mhz Ê±¼äÉèÖÃÎª3.2us
+    ADCS0 = 0;//20mhz Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª3.2us
     ADCS1 = 1;
     ADCS2 = 1;
 
-    ADON = 1;//¿ªÆôadÄ£¿é
+    ADON = 1;//ï¿½ï¿½ï¿½ï¿½adÄ£ï¿½ï¿½
     
-    TRISA2 = 0;//µçÁ÷¼ì²âÊ¹ÄÜ
-    TRISF1 = 0;//µçÑ¹¼ì²âÊ¹ÄÜ
+    TRISA2 = 0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
+    TRISF1 = 0;//ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
     
-    TRISF2 = 0;//µçÁ÷µçÑ¹¼ì²â µØÖ·Ïß 0
-    TRISF3 = 0;//µçÁ÷µçÑ¹¼ì²â µØÖ·Ïß 1
+    TRISF2 = 0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö·ï¿½ï¿½ 0
+    TRISF3 = 0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö·ï¿½ï¿½ 1
 
 	
     
@@ -98,12 +97,12 @@ void capture_init(void)
     //1:1 Prescale value
     T3CON = 0xc9;
     
-    //RG3 ÊäÈë
+    //RG3 ï¿½ï¿½ï¿½ï¿½
     TRISG3 = 1;
     TRISG4 = 1;
 
-    CCP4CON = 0x04;//0x04ÏÂ½µÑØ²¶×½0x05ÉÏÉýÑØ²¶×½RG3
-    CCP5CON = 0X05;//0x04ÏÂ½µÑØ²¶×½0x05ÉÏÉýÑØ²¶×½RG4
+    CCP4CON = 0x04;//0x04ï¿½Â½ï¿½ï¿½Ø²ï¿½×½0x05ï¿½ï¿½ï¿½ï¿½ï¿½Ø²ï¿½×½RG3
+    CCP5CON = 0X05;//0x04ï¿½Â½ï¿½ï¿½Ø²ï¿½×½0x05ï¿½ï¿½ï¿½ï¿½ï¿½Ø²ï¿½×½RG4
 
     CCP4IE = 1;
     CCP5IE = 1;   
@@ -133,7 +132,7 @@ void ad_sequence_sample(void)
     switch(adm.status)
     {
     
-    case 0:						/*ÇÐ»»Í¨µÀ*/        
+    case 0:						/*ï¿½Ð»ï¿½Í¨ï¿½ï¿½*/        
 
    
     	if(adm.channle == 0)     
@@ -175,7 +174,7 @@ void ad_sequence_sample(void)
 		adm.status = 1;
 		break;
 
-    case 1:		/*ÓÉ²¶×½´¥·¢ ÔÚ²¶×½ÖÐ¶ÏÖÐ´¦Àí£¬ÕâÀï²»ÓÃ´¦Àí*/		
+    case 1:		/*ï¿½É²ï¿½×½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú²ï¿½×½ï¿½Ð¶ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï²»ï¿½Ã´ï¿½ï¿½ï¿½*/		
         adm.idle_time++;			 
         if(adm.idle_time == 3)   
         {
@@ -199,7 +198,7 @@ void ad_sequence_sample(void)
         }    
         break;
     
-    case 2:/*ÓÉtime1µÄ5ms¶¨Ê±ÖÐ¶Ï´¦Àí£¬ÕâÀï²»ÓÃ´¦Àí*/	
+    case 2:/*ï¿½ï¿½time1ï¿½ï¿½5msï¿½ï¿½Ê±ï¿½Ð¶Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï²»ï¿½Ã´ï¿½ï¿½ï¿½*/	
     	adm.idle_time=0;           
         break;
     
@@ -228,44 +227,6 @@ long root(long source)
 }
 
 
-void pd_val(unsigned int uav,unsigned int v1,unsigned int v2,unsigned int v3,unsigned char nerr)
-{
-			if((nerr == 4)||(nerr == 0))
-			{
-				if(uav > v1)nerr = 3;
-            	else if((uav <= v1)&&(uav > v2))nerr = 2;
-            	else if((uav <= v2)&&(uav > v3))nerr = 1;
-            	else if((uav <= v3)&&(uav >  0))nerr = 0;
-            	else if(uav == 0)nerr = 4;
-			}
-			else if(nerr == 3)
-			{
-				if(uav > v1)nerr = 3;
-            	else if((uav <= v1-TH_CHANG_VAL)&&(uav > v2))nerr = 2;
-            	else if((uav <= v2)&&(uav > v3))nerr = 1;
-            	else if((uav <= v3)&&(uav>0))nerr = 0;
-            	else if(uav == 0)nerr = 4;
-			}
-			else if(nerr == 2)
-			{
-				if(uav > v1)nerr = 3;
-            	else if((uav <= v1)&&(uav > v2))nerr = 2;
-            	else if((uav <= v2-TH_CHANG_VAL)&&(uav > v3))nerr = 1;
-            	else if((uav <= v3)&&(uav>0))nerr = 0;
-            	else if(uav == 0)nerr = 4;
-			}
-			else if(nerr == 1)
-			{
-				if(uav > v1)nerr = 3;
-            	else if((uav <= v1)&&(uav > v2))nerr = 2;
-            	else if((uav <= v2)&&(uav > v3))nerr = 1;
-            	else if((uav <= v3-TH_CHANG_VAL)&&(uav>0))nerr = 0;
-            	else if(uav == 0)nerr = 4;
-				
-			} 
-			
-	
-}
 void cal_channle_val(void)
 {
     unsigned long d1,d2,d3,d,temp;
@@ -278,7 +239,7 @@ void cal_channle_val(void)
     
     d3 = d1*d1 + d2*d2;    
     d  = root(d3);
-	/*Ã¿Ò»Í¨µÀ²ÉÑù·åÖµÀÛ¼Ó5´Î£¬È¥µô×î´óÖµ£¬×îÐ¡Öµ£¬Æ½¾ù£¬ÅÐ¶Ï*/
+	/*Ã¿Ò»Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Û¼ï¿½5ï¿½Î£ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ð¡Öµï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½*/
     
     if(adm.sam_count == 0)
     {
@@ -288,7 +249,7 @@ void cal_channle_val(void)
     }
     else
     {
-        adm.sum_val = adm.sum_val + d;//ÀÛ¼Ó    
+        adm.sum_val = adm.sum_val + d;//ï¿½Û¼ï¿½    
         if(d > adm.max_val)adm.max_val = d;       
         if(d < adm.min_val)adm.min_val = d;
         
@@ -302,7 +263,7 @@ void cal_channle_val(void)
 		temp= adm.sum_val;
 		
         temp= temp / 8;
-        temp = temp * 500;/*²Î¿¼µçÑ¹Îª5*/
+        temp = temp * 500;/*ï¿½Î¿ï¿½ï¿½ï¿½Ñ¹Îª5*/
         temp = temp / 1024;
        
         switch(adm.channle)
@@ -452,7 +413,7 @@ void cal_channle_val(void)
             adm.channle = 3;
             break;
 
-        case 3:/*µçÁ÷ÏµÊý*/
+        case 3:/*ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½*/
 			
             temp = temp *11;
             sys.iav = temp;
