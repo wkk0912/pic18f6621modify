@@ -1,0 +1,1079 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-88888                           Thu Jan  2 10:12:18 2014
+
+Licensed to: ONE TWO
+     1                           	processor	18F6622
+     2                           	opt	pw 80
+     3                           	psect	__Z88888RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	const,global,class=CODE,delta=1
+     6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97                           
+    98                           	psect	__Z88888RS_
+    99  000004                     
+   100  000004                     
+   101                           
+   102                           	psect	text
+   103  0088DE                     _uart_init:
+   104  000000                     
+   105                           ;uart.c: 81: SPBRGH1 = 0;
+   106  0088DE  6A7F               	clrf	3967,c
+   107                           ;uart.c: 82: SPBRG1 = 25;
+   108  0088E0  0E19               	movlw	25
+   109  0088E2  6EAF               	movwf	4015,c
+   110                           ;uart.c: 84: TXSTA1= 0X20;
+   111  0088E4  0E20               	movlw	32
+   112  0088E6  6EAC               	movwf	4012,c	;volatile
+   113                           ;uart.c: 85: RCSTA1= 0X90;
+   114  0088E8  0E90               	movlw	144
+   115  0088EA  6EAB               	movwf	4011,c	;volatile
+   116                           ;uart.c: 86: TRISC6 = 0;
+   117  0088EC  9C94               	bcf	3988,6,c	;volatile
+   118                           ;uart.c: 87: TRISC7 = 1;
+   119  0088EE  8E94               	bsf	3988,7,c	;volatile
+   120                           ;uart.c: 88: TRISC0 = 0;
+   121  0088F0  9094               	bcf	3988,0,c	;volatile
+   122                           ;uart.c: 89: RC1IE = 1;
+   123  0088F2  8A9D               	bsf	3997,5,c
+   124                           ;uart.c: 90: RC1IP = 1;
+   125  0088F4  8A9F               	bsf	3999,5,c
+   126                           ;uart.c: 91: RC0=1;
+   127  0088F6  8082               	bsf	3970,0,c	;volatile
+   128                           ;uart.c: 92: }
+   129  0088F8  0012               	return	
+   130  0088FA                     _set_uart_brg:
+   131  000000                     
+   132                           ;uart.c: 101: SPBRGH1 = uart_brg_word[sys.brg][0
+      +                          ];
+   133  0088FA  EE01  F01E         	lfsr	0,_sys+12
+   134  0088FE  CFEE F000          	movff	postinc0,btemp
+   135  008902  CFED F001          	movff	postdec0,btemp+1
+   136  008906  90D8               	bcf	status,0,c
+   137  008908  3400               	rlcf	btemp,w
+   138  00890A  6E02               	movwf	btemp+2
+   139  00890C  3401               	rlcf	btemp+1,w
+   140  00890E  6E03               	movwf	btemp+3
+   141  008910  5002               	movf	btemp+2,w
+   142  008912  0F07               	addlw	low _uart_brg_word
+   143  008914  6EF6               	movwf	tblptrl,c
+   144  008916  5003               	movf	btemp+3,w
+   145  008918  6EF7               	movwf	tblptrh,c
+   146  00891A  0E14               	movlw	high _uart_brg_word
+   147  00891C  22F7               	addwfc	tblptrh,f,c
+   148  00891E  0008               	tblrd		*
+   149  008920  50F5               	movf	tablat,w,c
+   150  008922  6E7F               	movwf	3967,c
+   151                           ;uart.c: 102: SPBRG1 = uart_brg_word[sys.brg][1]
+      +                          ;
+   152  008924  EE01  F01E         	lfsr	0,_sys+12
+   153  008928  CFEE F000          	movff	postinc0,btemp
+   154  00892C  CFED F001          	movff	postdec0,btemp+1
+   155  008930  90D8               	bcf	status,0,c
+   156  008932  3400               	rlcf	btemp,w
+   157  008934  6E02               	movwf	btemp+2
+   158  008936  3401               	rlcf	btemp+1,w
+   159  008938  6E03               	movwf	btemp+3
+   160  00893A  5002               	movf	btemp+2,w
+   161  00893C  0F07               	addlw	low _uart_brg_word
+   162  00893E  6EF6               	movwf	tblptrl,c
+   163  008940  5003               	movf	btemp+3,w
+   164  008942  6EF7               	movwf	tblptrh,c
+   165  008944  0E14               	movlw	high _uart_brg_word
+   166  008946  22F7               	addwfc	tblptrh,f,c
+   167  008948  2AF6               	incf	tblptrl,f,c
+   168  00894A  0E00               	movlw	0
+   169  00894C  22F7               	addwfc	tblptrh,f,c
+   170  00894E  0008               	tblrd		*
+   171  008950  50F5               	movf	tablat,w,c
+   172  008952  6EAF               	movwf	4015,c
+   173                           ;uart.c: 104: }
+   174  008954  0012               	return	
+   175  008956                     _send_a_char:
+   176  000000                     
+   177                           ;uart.c: 112: while(!TRMT)continue;
+   178  008956                     l10:
+   179  008956  A2AC               	btfss	4012,1,c	;volatile
+   180  008958  D7FE               	goto	l10
+   181                           ;uart.c: 113: TXREG1 = byte;
+   182  00895A  6EAD               	movwf	4013,c	;volatile
+   183                           ;uart.c: 114: }
+   184  00895C  0012               	return	
+   185                           ;uart.c: 116: void send_array(void)
+   186                           ;uart.c: 117: {
+   187  00895E                     _send_array:
+   188  000000                     
+   189                           ;uart.c: 118: unsigned char i;
+   190  00895E  C181  FFE8         	movff	_uart+22,wreg
+   191  008962  0F02               	addlw	2
+   192  008964  6ED9               	movwf	fsr2l,c
+   193                           ;uart.c: 122: RC0=0;
+   194  008966  9082               	bcf	3970,0,c	;volatile
+   195                           ;uart.c: 123: for(i=0;i<t;t++)
+   196  008968  6AE1               	clrf	fsr1l,c
+   197  00896A                     l16:
+   198  00896A  50D9               	movf	fsr2l,w,c
+   199  00896C  5CE1               	subwf	fsr1l,w,c
+   200  00896E  B0D8               	btfsc	status,0,c
+   201  008970  D00A               	goto	u20
+   202                           ;uart.c: 124: {
+   203                           ;uart.c: 125: send_a_char(uart.s_buf[i]);
+   204  008972  50E1               	movf	fsr1l,w,c
+   205  008974  EE01  F07F         	lfsr	0,_uart+20
+   206  008978  26E9               	addwf	fsr0l,f,c
+   207  00897A  0E00               	movlw	0
+   208  00897C  22EA               	addwfc	fsr0h,f,c
+   209  00897E  50EF               	movf	indf0,w,c
+   210  008980  DFEA               	call	_send_a_char
+   211                           ;uart.c: 126: }
+   212  008982  2AD9               	incf	fsr2l,f,c
+   213  008984  D7F2               	goto	l16
+   214  008986                     u20:
+   215                           ;uart.c: 127: RC0=1;
+   216  008986  8082               	bsf	3970,0,c	;volatile
+   217                           ;uart.c: 128: }
+   218  008988  0012               	return	
+   219                           ;uart.c: 130: void uart_receive_deal(void)
+   220                           ;uart.c: 131: {
+   221  00898A                     _uart_receive_deal:
+   222  000000                     
+   223                           ;uart.c: 132: unsigned char temp = 0,i;
+   224  00898A  6AD9               	clrf	fsr2l,c
+   225                           ;uart.c: 133: if(uart.r_buf[0]!= 0xfe)return;
+   226  00898C  C16B  FFE8         	movff	_uart,wreg
+   227  008990  0AFE               	xorlw	-2
+   228  008992  A4D8               	btfss	status,2,c
+   229  008994  0012               	return	
+   230                           ;uart.c: 134: if(uart.r_buf[1]!= 0xfe)return;
+   231  008996  C16C  FFE8         	movff	_uart+1,wreg
+   232  00899A  0AFE               	xorlw	-2
+   233  00899C  A4D8               	btfss	status,2,c
+   234  00899E  0012               	return	
+   235                           ;uart.c: 135: if(uart.r_buf[3]!= sys.addr)return
+      +                          ;
+   236  0089A0  C16E  FFE8         	movff	_uart+3,wreg
+   237  0089A4  0101               	movlb	(_sys+16) shr (0+8)
+   238  0089A6  1922               	xorwf	(_sys+16)& (0+255),w,b
+   239  0089A8  A4D8               	btfss	status,2,c
+   240  0089AA  0012               	return	
+   241                           ;uart.c: 137: if(uart.r_buf[2] > 20) return;
+   242  0089AC  0E14               	movlw	20
+   243  0089AE  0101               	movlb	(_uart+2) shr (0+8)
+   244  0089B0  656D               	cpfsgt	(_uart+2)& (0+255),b
+   245  0089B2  D001               	goto	l21
+   246  0089B4  0012               	return	
+   247  0089B6                     l21:
+   248                           ;uart.c: 139: for(i=0;i<uart.r_buf[2];i++)
+   249  0089B6  6AE1               	clrf	fsr1l,c
+   250  0089B8                     l25:
+   251  0089B8  C16D  FFE8         	movff	_uart+2,wreg
+   252  0089BC  5CE1               	subwf	fsr1l,w,c
+   253  0089BE  B0D8               	btfsc	status,0,c
+   254  0089C0  D00A               	goto	u70
+   255                           ;uart.c: 140: {
+   256                           ;uart.c: 141: temp = temp + uart.r_buf[2+i];
+   257  0089C2  50E1               	movf	fsr1l,w,c
+   258  0089C4  EE01  F06D         	lfsr	0,_uart+2
+   259  0089C8  26E9               	addwf	fsr0l,f,c
+   260  0089CA  0E00               	movlw	0
+   261  0089CC  22EA               	addwfc	fsr0h,f,c
+   262  0089CE  50EF               	movf	indf0,w,c
+   263  0089D0  26D9               	addwf	fsr2l,f,c
+   264                           ;uart.c: 142: }
+   265  0089D2  2AE1               	incf	fsr1l,f,c
+   266  0089D4  D7F1               	goto	l25
+   267  0089D6                     u70:
+   268                           ;uart.c: 144: temp = 0xff - temp +1;
+   269  0089D6  50D9               	movf	fsr2l,w,c
+   270  0089D8  08FF               	sublw	-1
+   271  0089DA  6E00               	movwf	btemp
+   272  0089DC  2800               	incf	btemp,w
+   273  0089DE  6ED9               	movwf	fsr2l,c
+   274                           ;uart.c: 146: if(temp != uart.r_buf[2+uart.r_buf
+      +                          [2]])return;
+   275  0089E0  C16D  FFE8         	movff	_uart+2,wreg
+   276  0089E4  EE01  F06D         	lfsr	0,_uart+2
+   277  0089E8  26E9               	addwf	fsr0l,f,c
+   278  0089EA  0E00               	movlw	0
+   279  0089EC  22EA               	addwfc	fsr0h,f,c
+   280  0089EE  50EF               	movf	indf0,w,c
+   281  0089F0  18D9               	xorwf	fsr2l,w,c
+   282  0089F2  A4D8               	btfss	status,2,c
+   283  0089F4  0012               	return	
+   284                           ;uart.c: 148: uart.s_buf[0] = 0xfe;
+   285  0089F6  0EFE               	movlw	-2
+   286  0089F8  CFE8 F17F          	movff	wreg,_uart+20
+   287                           ;uart.c: 149: uart.s_buf[1] = 0xfe;
+   288  0089FC  CFE8 F180          	movff	wreg,_uart+21
+   289                           ;uart.c: 150: uart.s_buf[3] = sys.addr;
+   290  008A00  C122  F182         	movff	_sys+16,_uart+23
+   291                           ;uart.c: 151: uart.s_buf[4] = uart.r_buf[4];
+   292  008A04  C16F  F183         	movff	_uart+4,_uart+24
+   293                           ;uart.c: 153: if(((uart.r_buf[4]=0)||(uart.r_buf
+      +                          [4]>0))&&(uart.r_buf[4]<14))
+   294  008A08  EE01  F06F         	lfsr	0,_uart+4
+   295  008A0C  0E00               	movlw	0
+   296  008A0E  6EEF               	movwf	indf0,c
+   297  008A10  50EF               	movf	indf0,w,c
+   298  008A12  A4D8               	btfss	status,2,c
+   299  008A14  D005               	goto	u110
+   300  008A16  EE01  F06F         	lfsr	0,_uart+4
+   301  008A1A  50EF               	movf	indf0,w,c
+   302  008A1C  B4D8               	btfsc	status,2,c
+   303  008A1E  D121               	goto	l27
+   304  008A20                     u110:
+   305  008A20  0E0E               	movlw	14
+   306  008A22  0101               	movlb	(_uart+4) shr (0+8)
+   307  008A24  616F               	cpfslt	(_uart+4)& (0+255),b
+   308  008A26  D11D               	goto	l27
+   309                           ;uart.c: 154: {
+   310  008A28  0E06               	movlw	6
+   311  008A2A  CFE8 F181          	movff	wreg,_uart+22
+   312                           ;uart.c: 156: uart.s_buf[5] = 0x11;
+   313  008A2E  0E11               	movlw	17
+   314  008A30  CFE8 F184          	movff	wreg,_uart+25
+   315                           ;uart.c: 157: switch(uart.s_buf[4])
+   316  008A34  D0D4               	goto	l29
+   317  008A36                     l30:
+   318                           ;uart.c: 158: {
+   319                           ;uart.c: 160: uart.s_buf[6]=0;
+   320  008A36  0101               	movlb	(_uart+26) shr (0+8)
+   321  008A38  6B85               	clrf	(_uart+26)& (0+255),b
+   322                           ;uart.c: 161: uart.s_buf[7]=sys.addr;
+   323  008A3A  C122  F186         	movff	_sys+16,_uart+27
+   324                           ;uart.c: 162: break;
+   325  008A3E  D0F6               	goto	l28
+   326  008A40                     l31:
+   327                           ;uart.c: 163: case 1:
+   328                           ;uart.c: 164: uart.s_buf[6]=0;
+   329  008A40  0101               	movlb	(_uart+26) shr (0+8)
+   330  008A42  6B85               	clrf	(_uart+26)& (0+255),b
+   331                           ;uart.c: 165: uart.s_buf[7]=sys.brg;
+   332  008A44  C11E  F186         	movff	_sys+12,_uart+27
+   333                           ;uart.c: 166: break;
+   334  008A48  D0F1               	goto	l28
+   335  008A4A                     l32:
+   336                           ;uart.c: 167: case 2:
+   337                           ;uart.c: 168: uart.s_buf[6]=(sys.uav & 0xff00)>>
+      +                          8;
+   338  008A4A  C112  F000         	movff	_sys,btemp
+   339  008A4E  C113  F001         	movff	_sys+1,btemp+1
+   340  008A52  6A02               	clrf	btemp+2
+   341  008A54  5001               	movf	btemp+1,w
+   342  008A56  6E03               	movwf	btemp+3
+   343  008A58  C003  F002         	movff	btemp+3,btemp+2
+   344  008A5C  6A03               	clrf	btemp+3
+   345  008A5E  C002  F185         	movff	btemp+2,_uart+26
+   346                           ;uart.c: 169: uart.s_buf[7]=(sys.uav & 0x00ff);
+   347  008A62  C112  F186         	movff	_sys,_uart+27
+   348                           ;uart.c: 170: break;
+   349  008A66  D0E2               	goto	l28
+   350  008A68                     l33:
+   351                           ;uart.c: 171: case 3:
+   352                           ;uart.c: 172: uart.s_buf[6]=(sys.ubv & 0xff00)>>
+      +                          8;
+   353  008A68  EE01  F014         	lfsr	0,_sys+2
+   354  008A6C  CFEE F000          	movff	postinc0,btemp
+   355  008A70  CFED F001          	movff	postdec0,btemp+1
+   356  008A74  6A02               	clrf	btemp+2
+   357  008A76  5001               	movf	btemp+1,w
+   358  008A78  6E03               	movwf	btemp+3
+   359  008A7A  C003  F002         	movff	btemp+3,btemp+2
+   360  008A7E  6A03               	clrf	btemp+3
+   361  008A80  C002  F185         	movff	btemp+2,_uart+26
+   362                           ;uart.c: 173: uart.s_buf[7]=(sys.ubv & 0x00ff);
+   363  008A84  C114  F186         	movff	_sys+2,_uart+27
+   364                           ;uart.c: 174: break;
+   365  008A88  D0D1               	goto	l28
+   366  008A8A                     l34:
+   367                           ;uart.c: 175: case 4:
+   368                           ;uart.c: 176: uart.s_buf[6]=(sys.ucv & 0xff00)>>
+      +                          8;
+   369  008A8A  EE01  F016         	lfsr	0,_sys+4
+   370  008A8E  CFEE F000          	movff	postinc0,btemp
+   371  008A92  CFED F001          	movff	postdec0,btemp+1
+   372  008A96  6A02               	clrf	btemp+2
+   373  008A98  5001               	movf	btemp+1,w
+   374  008A9A  6E03               	movwf	btemp+3
+   375  008A9C  C003  F002         	movff	btemp+3,btemp+2
+   376  008AA0  6A03               	clrf	btemp+3
+   377  008AA2  C002  F185         	movff	btemp+2,_uart+26
+   378                           ;uart.c: 177: uart.s_buf[7]=(sys.ucv & 0x00ff);
+   379  008AA6  C116  F186         	movff	_sys+4,_uart+27
+   380                           ;uart.c: 178: break;
+   381  008AAA  D0C0               	goto	l28
+   382  008AAC                     l35:
+   383                           ;uart.c: 179: case 5:
+   384                           ;uart.c: 180: uart.s_buf[6]=(sys.iav & 0xff00)>>
+      +                          8;
+   385  008AAC  EE01  F018         	lfsr	0,_sys+6
+   386  008AB0  CFEE F000          	movff	postinc0,btemp
+   387  008AB4  CFED F001          	movff	postdec0,btemp+1
+   388  008AB8  6A02               	clrf	btemp+2
+   389  008ABA  5001               	movf	btemp+1,w
+   390  008ABC  6E03               	movwf	btemp+3
+   391  008ABE  C003  F002         	movff	btemp+3,btemp+2
+   392  008AC2  6A03               	clrf	btemp+3
+   393  008AC4  C002  F185         	movff	btemp+2,_uart+26
+   394                           ;uart.c: 181: uart.s_buf[7]=(sys.iav & 0x00ff);
+   395  008AC8  C118  F186         	movff	_sys+6,_uart+27
+   396                           ;uart.c: 182: break;
+   397  008ACC  D0AF               	goto	l28
+   398  008ACE                     l36:
+   399                           ;uart.c: 183: case 6:
+   400                           ;uart.c: 184: uart.s_buf[6]=(sys.ibv & 0xff00)>>
+      +                          8;
+   401  008ACE  EE01  F01A         	lfsr	0,_sys+8
+   402  008AD2  CFEE F000          	movff	postinc0,btemp
+   403  008AD6  CFED F001          	movff	postdec0,btemp+1
+   404  008ADA  6A02               	clrf	btemp+2
+   405  008ADC  5001               	movf	btemp+1,w
+   406  008ADE  6E03               	movwf	btemp+3
+   407  008AE0  C003  F002         	movff	btemp+3,btemp+2
+   408  008AE4  6A03               	clrf	btemp+3
+   409  008AE6  C002  F185         	movff	btemp+2,_uart+26
+   410                           ;uart.c: 185: uart.s_buf[7]=(sys.ibv & 0x00ff);
+   411  008AEA  C11A  F186         	movff	_sys+8,_uart+27
+   412                           ;uart.c: 186: break;
+   413  008AEE  D09E               	goto	l28
+   414  008AF0                     l37:
+   415                           ;uart.c: 187: case 7:
+   416                           ;uart.c: 188: uart.s_buf[6]=(sys.icv & 0xff00)>>
+      +                          8;
+   417  008AF0  EE01  F01C         	lfsr	0,_sys+10
+   418  008AF4  CFEE F000          	movff	postinc0,btemp
+   419  008AF8  CFED F001          	movff	postdec0,btemp+1
+   420  008AFC  6A02               	clrf	btemp+2
+   421  008AFE  5001               	movf	btemp+1,w
+   422  008B00  6E03               	movwf	btemp+3
+   423  008B02  C003  F002         	movff	btemp+3,btemp+2
+   424  008B06  6A03               	clrf	btemp+3
+   425  008B08  C002  F185         	movff	btemp+2,_uart+26
+   426                           ;uart.c: 189: uart.s_buf[7]=(sys.icv & 0x00ff);
+   427  008B0C  C11C  F186         	movff	_sys+10,_uart+27
+   428                           ;uart.c: 190: break;
+   429  008B10  D08D               	goto	l28
+   430  008B12                     l38:
+   431                           ;uart.c: 191: case 8:
+   432                           ;uart.c: 192: uart.s_buf[6]=(sys.v1 & 0xff00)>>8
+      +                          ;
+   433  008B12  EE01  F04C         	lfsr	0,_sys+58
+   434  008B16  CFEE F000          	movff	postinc0,btemp
+   435  008B1A  CFED F001          	movff	postdec0,btemp+1
+   436  008B1E  6A02               	clrf	btemp+2
+   437  008B20  5001               	movf	btemp+1,w
+   438  008B22  6E03               	movwf	btemp+3
+   439  008B24  C003  F002         	movff	btemp+3,btemp+2
+   440  008B28  6A03               	clrf	btemp+3
+   441  008B2A  C002  F185         	movff	btemp+2,_uart+26
+   442                           ;uart.c: 193: uart.s_buf[7]=(sys.v1 & 0x00ff);
+   443  008B2E  C14C  F186         	movff	_sys+58,_uart+27
+   444                           ;uart.c: 194: break;
+   445  008B32  D07C               	goto	l28
+   446  008B34                     l39:
+   447                           ;uart.c: 195: case 9:
+   448                           ;uart.c: 196: uart.s_buf[6]=(sys.v2 & 0xff00)>>8
+      +                          ;
+   449  008B34  EE01  F04E         	lfsr	0,_sys+60
+   450  008B38  CFEE F000          	movff	postinc0,btemp
+   451  008B3C  CFED F001          	movff	postdec0,btemp+1
+   452  008B40  6A02               	clrf	btemp+2
+   453  008B42  5001               	movf	btemp+1,w
+   454  008B44  6E03               	movwf	btemp+3
+   455  008B46  C003  F002         	movff	btemp+3,btemp+2
+   456  008B4A  6A03               	clrf	btemp+3
+   457  008B4C  C002  F185         	movff	btemp+2,_uart+26
+   458                           ;uart.c: 197: uart.s_buf[7]=(sys.v2 & 0x00ff);
+   459  008B50  C14E  F186         	movff	_sys+60,_uart+27
+   460                           ;uart.c: 198: break;
+   461  008B54  D06B               	goto	l28
+   462  008B56                     l40:
+   463                           ;uart.c: 199: case 10:
+   464                           ;uart.c: 200: uart.s_buf[6]=(sys.v3 & 0xff00)>>8
+      +                          ;
+   465  008B56  EE01  F050         	lfsr	0,_sys+62
+   466  008B5A  CFEE F000          	movff	postinc0,btemp
+   467  008B5E  CFED F001          	movff	postdec0,btemp+1
+   468  008B62  6A02               	clrf	btemp+2
+   469  008B64  5001               	movf	btemp+1,w
+   470  008B66  6E03               	movwf	btemp+3
+   471  008B68  C003  F002         	movff	btemp+3,btemp+2
+   472  008B6C  6A03               	clrf	btemp+3
+   473  008B6E  C002  F185         	movff	btemp+2,_uart+26
+   474                           ;uart.c: 201: uart.s_buf[7]=(sys.v3 & 0x00ff);
+   475  008B72  C150  F186         	movff	_sys+62,_uart+27
+   476                           ;uart.c: 202: break;
+   477  008B76  D05A               	goto	l28
+   478  008B78                     l41:
+   479                           ;uart.c: 203: case 11:
+   480                           ;uart.c: 204: uart.s_buf[6]=(sys.c1 & 0xff00)>>8
+      +                          ;
+   481  008B78  EE01  F056         	lfsr	0,_sys+68
+   482  008B7C  CFEE F000          	movff	postinc0,btemp
+   483  008B80  CFED F001          	movff	postdec0,btemp+1
+   484  008B84  6A02               	clrf	btemp+2
+   485  008B86  5001               	movf	btemp+1,w
+   486  008B88  6E03               	movwf	btemp+3
+   487  008B8A  C003  F002         	movff	btemp+3,btemp+2
+   488  008B8E  6A03               	clrf	btemp+3
+   489  008B90  C002  F185         	movff	btemp+2,_uart+26
+   490                           ;uart.c: 205: uart.s_buf[7]=(sys.c1 & 0x00ff);
+   491  008B94  C156  F186         	movff	_sys+68,_uart+27
+   492                           ;uart.c: 206: break;
+   493  008B98  D049               	goto	l28
+   494  008B9A                     l42:
+   495                           ;uart.c: 207: case 12:
+   496                           ;uart.c: 208: uart.s_buf[6]=(sys.c2 & 0xff00)>>8
+      +                          ;
+   497  008B9A  EE01  F058         	lfsr	0,_sys+70
+   498  008B9E  CFEE F000          	movff	postinc0,btemp
+   499  008BA2  CFED F001          	movff	postdec0,btemp+1
+   500  008BA6  6A02               	clrf	btemp+2
+   501  008BA8  5001               	movf	btemp+1,w
+   502  008BAA  6E03               	movwf	btemp+3
+   503  008BAC  C003  F002         	movff	btemp+3,btemp+2
+   504  008BB0  6A03               	clrf	btemp+3
+   505  008BB2  C002  F185         	movff	btemp+2,_uart+26
+   506                           ;uart.c: 209: uart.s_buf[7]=(sys.c2 & 0x00ff);
+   507  008BB6  C158  F186         	movff	_sys+70,_uart+27
+   508                           ;uart.c: 210: break;
+   509  008BBA  D038               	goto	l28
+   510  008BBC                     l43:
+   511                           ;uart.c: 211: case 13:
+   512                           ;uart.c: 212: uart.s_buf[6]=(sys.c3 & 0xff00)>>8
+      +                          ;
+   513  008BBC  EE01  F05A         	lfsr	0,_sys+72
+   514  008BC0  CFEE F000          	movff	postinc0,btemp
+   515  008BC4  CFED F001          	movff	postdec0,btemp+1
+   516  008BC8  6A02               	clrf	btemp+2
+   517  008BCA  5001               	movf	btemp+1,w
+   518  008BCC  6E03               	movwf	btemp+3
+   519  008BCE  C003  F002         	movff	btemp+3,btemp+2
+   520  008BD2  6A03               	clrf	btemp+3
+   521  008BD4  C002  F185         	movff	btemp+2,_uart+26
+   522                           ;uart.c: 213: uart.s_buf[7]=(sys.c3 & 0x00ff);
+   523  008BD8  C15A  F186         	movff	_sys+72,_uart+27
+   524                           ;uart.c: 214: break;
+   525  008BDC  D027               	goto	l28
+   526  008BDE                     l29:
+   527  008BDE  C183  FFE8         	movff	_uart+24,wreg
+   528  008BE2  0A00               	xorlw	0
+   529  008BE4  E101 D727          	bz	l30
+   530  008BE8  0A01               	xorlw	1
+   531  008BEA  E101 D729          	bz	l31
+   532  008BEE  0A03               	xorlw	3
+   533  008BF0  E101 D72B          	bz	l32
+   534  008BF4  0A01               	xorlw	1
+   535  008BF6  E101 D737          	bz	l33
+   536  008BFA  0A07               	xorlw	7
+   537  008BFC  E101 D745          	bz	l34
+   538  008C00  0A01               	xorlw	1
+   539  008C02  E101 D753          	bz	l35
+   540  008C06  0A03               	xorlw	3
+   541  008C08  E101 D761          	bz	l36
+   542  008C0C  0A01               	xorlw	1
+   543  008C0E  E101 D76F          	bz	l37
+   544  008C12  0A0F               	xorlw	15
+   545  008C14  E101 D77D          	bz	l38
+   546  008C18  0A01               	xorlw	1
+   547  008C1A  E08C               	bz	l39
+   548  008C1C  0A03               	xorlw	3
+   549  008C1E  E09B               	bz	l40
+   550  008C20  0A01               	xorlw	1
+   551  008C22  E0AA               	bz	l41
+   552  008C24  0A07               	xorlw	7
+   553  008C26  E0B9               	bz	l42
+   554  008C28  0A01               	xorlw	1
+   555  008C2A  E0C8               	bz	l43
+   556  008C2C                     l28:
+   557                           ;uart.c: 217: temp = 0;
+   558  008C2C  6AD9               	clrf	fsr2l,c
+   559                           ;uart.c: 218: temp += uart.s_buf[2];
+   560  008C2E  C181  FFE8         	movff	_uart+22,wreg
+   561  008C32  26D9               	addwf	fsr2l,f,c
+   562                           ;uart.c: 219: temp += uart.s_buf[3];
+   563  008C34  C182  FFE8         	movff	_uart+23,wreg
+   564  008C38  26D9               	addwf	fsr2l,f,c
+   565                           ;uart.c: 220: temp += uart.s_buf[4];
+   566  008C3A  C183  FFE8         	movff	_uart+24,wreg
+   567  008C3E  26D9               	addwf	fsr2l,f,c
+   568                           ;uart.c: 221: temp += uart.s_buf[5];
+   569  008C40  C184  FFE8         	movff	_uart+25,wreg
+   570  008C44  26D9               	addwf	fsr2l,f,c
+   571                           ;uart.c: 222: temp += uart.s_buf[6];
+   572  008C46  C185  FFE8         	movff	_uart+26,wreg
+   573  008C4A  26D9               	addwf	fsr2l,f,c
+   574                           ;uart.c: 223: temp += uart.s_buf[7];
+   575  008C4C  C186  FFE8         	movff	_uart+27,wreg
+   576  008C50  26D9               	addwf	fsr2l,f,c
+   577                           ;uart.c: 224: temp = 0xff-temp+1;
+   578  008C52  50D9               	movf	fsr2l,w,c
+   579  008C54  08FF               	sublw	-1
+   580  008C56  6E00               	movwf	btemp
+   581  008C58  2800               	incf	btemp,w
+   582  008C5A  6ED9               	movwf	fsr2l,c
+   583                           ;uart.c: 225: uart.s_buf[8] = temp;
+   584  008C5C  CFD9 F187          	movff	fsr2l,_uart+28
+   585                           ;uart.c: 230: }
+   586  008C60  D67E               	goto	_send_array
+   587  008C62                     l27:
+   588  008C62  0E0D               	movlw	13
+   589  008C64  0101               	movlb	(_uart+4) shr (0+8)
+   590  008C66  656F               	cpfsgt	(_uart+4)& (0+255),b
+   591  008C68  D67A               	goto	_send_array
+   592  008C6A  0E15               	movlw	21
+   593  008C6C  616F               	cpfslt	(_uart+4)& (0+255),b
+   594  008C6E  D677               	goto	_send_array
+   595                           ;uart.c: 235: {
+   596  008C70  0E05               	movlw	5
+   597  008C72  CFE8 F181          	movff	wreg,_uart+22
+   598                           ;uart.c: 237: uart.s_buf[5] = 0x33;
+   599  008C76  0E33               	movlw	51
+   600  008C78  CFE8 F184          	movff	wreg,_uart+25
+   601                           ;uart.c: 238: switch(uart.s_buf[4])
+   602  008C7C  D142               	goto	l47
+   603  008C7E                     l48:
+   604                           ;uart.c: 239: {
+   605                           ;uart.c: 241: if(uart.r_buf[6] > 0){uart.s_buf[6
+      +                          ] = 0x55;}
+   606  008C7E  EE01  F071         	lfsr	0,_uart+6
+   607  008C82  50EF               	movf	indf0,w,c
+   608  008C84  A4D8               	btfss	status,2,c
+   609  008C86  D00F               	goto	u200
+   610                           ;uart.c: 242: else
+   611                           ;uart.c: 243: {
+   612  008C88  0EAA               	movlw	-86
+   613  008C8A  CFE8 F185          	movff	wreg,_uart+26
+   614                           ;uart.c: 245: sys.addr = uart.r_buf[7];
+   615  008C8E  C172  F122         	movff	_uart+7,_sys+16
+   616                           ;uart.c: 247: }
+   617                           ;uart.c: 248: break;
+   618  008C92  D14F               	goto	l46
+   619  008C94                     l51:
+   620                           ;uart.c: 249: case 15:
+   621                           ;uart.c: 250: if((uart.r_buf[6] > 0)||(uart.r_bu
+      +                          f[7]>2))
+   622  008C94  EE01  F071         	lfsr	0,_uart+6
+   623  008C98  50EF               	movf	indf0,w,c
+   624  008C9A  A4D8               	btfss	status,2,c
+   625  008C9C  D004               	goto	u200
+   626  008C9E  0E02               	movlw	2
+   627  008CA0  0101               	movlb	(_uart+7) shr (0+8)
+   628  008CA2  6572               	cpfsgt	(_uart+7)& (0+255),b
+   629  008CA4  D004               	goto	l52
+   630  008CA6                     u200:
+   631                           ;uart.c: 251: {
+   632  008CA6  0E55               	movlw	85
+   633  008CA8  CFE8 F185          	movff	wreg,_uart+26
+   634                           ;uart.c: 253: }
+   635  008CAC  D142               	goto	l46
+   636  008CAE                     l52:
+   637                           ;uart.c: 255: {
+   638  008CAE  0EAA               	movlw	-86
+   639  008CB0  CFE8 F185          	movff	wreg,_uart+26
+   640                           ;uart.c: 257: sys.brg = uart.r_buf[7];
+   641  008CB4  0101               	movlb	(_sys+12) shr (0+8)
+   642  008CB6  C172  F11E         	movff	_uart+7,_sys+12
+   643  008CBA  6B1F               	clrf	(_sys+13)& (0+255),b
+   644                           ;uart.c: 258: write_data_to_eeprom(2,sys.brg);
+   645  008CBC  0E02               	movlw	2
+   646  008CBE  0100               	movlb	__Lparam shr (0+8)
+   647  008CC0  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   648  008CC2  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   649  008CC4  C11E  F02D         	movff	_sys+12,?_write_data_to_eeprom+2
+   650  008CC8  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   651                           ;uart.c: 259: }
+   652                           ;uart.c: 260: break;
+   653  008CCC  D132               	goto	l46
+   654  008CCE                     l54:
+   655                           ;uart.c: 261: case 16:
+   656                           ;uart.c: 262: uart.s_buf[6] = 0xaa;
+   657  008CCE  0EAA               	movlw	-86
+   658  008CD0  CFE8 F185          	movff	wreg,_uart+26
+   659                           ;uart.c: 263: write_data_to_eeprom(9,uart.r_buf[
+      +                          6]);
+   660  008CD4  0E09               	movlw	9
+   661  008CD6  0100               	movlb	__Lparam shr (0+8)
+   662  008CD8  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   663  008CDA  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   664  008CDC  C171  F02D         	movff	_uart+6,?_write_data_to_eeprom+2
+   665  008CE0  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   666                           ;uart.c: 264: write_data_to_eeprom(10,uart.r_buf
+      +                          [7]);
+   667  008CE4  0E0A               	movlw	10
+   668  008CE6  0100               	movlb	__Lparam shr (0+8)
+   669  008CE8  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   670  008CEA  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   671  008CEC  C172  F02D         	movff	_uart+7,?_write_data_to_eeprom+2
+   672  008CF0  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   673                           ;uart.c: 265: sys.v1 = uart.r_buf[6];
+   674  008CF4  0101               	movlb	(_sys+58) shr (0+8)
+   675  008CF6  C171  F14C         	movff	_uart+6,_sys+58
+   676  008CFA  6B4D               	clrf	(_sys+59)& (0+255),b
+   677                           ;uart.c: 266: sys.v1 = sys.v1 << 8;
+   678  008CFC  514C               	movf	(_sys+58)& (0+255),w,b
+   679  008CFE  6E01               	movwf	btemp+1
+   680  008D00  6A00               	clrf	btemp
+   681  008D02  C000  F14C         	movff	btemp,_sys+58
+   682  008D06  C001  F14D         	movff	btemp+1,_sys+59
+   683                           ;uart.c: 267: sys.v1 = sys.v1 + uart.r_buf[7];
+   684  008D0A  EE01  F04C         	lfsr	0,_sys+58
+   685  008D0E  CFEE F000          	movff	postinc0,btemp
+   686  008D12  CFED F001          	movff	postdec0,btemp+1
+   687  008D16  C172  F002         	movff	_uart+7,btemp+2
+   688  008D1A  5000               	movf	btemp,w
+   689  008D1C  2402               	addwf	btemp+2,w
+   690  008D1E  CFE8 F14C          	movff	wreg,_sys+58
+   691  008D22  0E00               	movlw	0
+   692  008D24  2001               	addwfc	btemp+1,w
+   693  008D26  CFE8 F14D          	movff	wreg,_sys+59
+   694                           ;uart.c: 268: break;
+   695  008D2A  D103               	goto	l46
+   696  008D2C                     l55:
+   697                           ;uart.c: 269: case 17:
+   698                           ;uart.c: 270: uart.s_buf[6] = 0xaa;
+   699  008D2C  0EAA               	movlw	-86
+   700  008D2E  CFE8 F185          	movff	wreg,_uart+26
+   701                           ;uart.c: 271: write_data_to_eeprom(11,uart.r_buf
+      +                          [6]);
+   702  008D32  0E0B               	movlw	11
+   703  008D34  0100               	movlb	__Lparam shr (0+8)
+   704  008D36  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   705  008D38  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   706  008D3A  C171  F02D         	movff	_uart+6,?_write_data_to_eeprom+2
+   707  008D3E  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   708                           ;uart.c: 272: write_data_to_eeprom(12,uart.r_buf
+      +                          [7]);
+   709  008D42  0E0C               	movlw	12
+   710  008D44  0100               	movlb	__Lparam shr (0+8)
+   711  008D46  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   712  008D48  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   713  008D4A  C172  F02D         	movff	_uart+7,?_write_data_to_eeprom+2
+   714  008D4E  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   715                           ;uart.c: 273: sys.v2 = uart.r_buf[6];
+   716  008D52  0101               	movlb	(_sys+60) shr (0+8)
+   717  008D54  C171  F14E         	movff	_uart+6,_sys+60
+   718  008D58  6B4F               	clrf	(_sys+61)& (0+255),b
+   719                           ;uart.c: 274: sys.v2 = sys.v2 << 8;
+   720  008D5A  514E               	movf	(_sys+60)& (0+255),w,b
+   721  008D5C  6E01               	movwf	btemp+1
+   722  008D5E  6A00               	clrf	btemp
+   723  008D60  C000  F14E         	movff	btemp,_sys+60
+   724  008D64  C001  F14F         	movff	btemp+1,_sys+61
+   725                           ;uart.c: 275: sys.v2 = sys.v2 + uart.r_buf[7];
+   726  008D68  EE01  F04E         	lfsr	0,_sys+60
+   727  008D6C  CFEE F000          	movff	postinc0,btemp
+   728  008D70  CFED F001          	movff	postdec0,btemp+1
+   729  008D74  C172  F002         	movff	_uart+7,btemp+2
+   730  008D78  5000               	movf	btemp,w
+   731  008D7A  2402               	addwf	btemp+2,w
+   732  008D7C  CFE8 F14E          	movff	wreg,_sys+60
+   733  008D80  0E00               	movlw	0
+   734  008D82  2001               	addwfc	btemp+1,w
+   735  008D84  CFE8 F14F          	movff	wreg,_sys+61
+   736                           ;uart.c: 277: break;
+   737  008D88  D0D4               	goto	l46
+   738  008D8A                     l56:
+   739                           ;uart.c: 278: case 18:
+   740                           ;uart.c: 279: uart.s_buf[6] = 0xaa;
+   741  008D8A  0EAA               	movlw	-86
+   742  008D8C  CFE8 F185          	movff	wreg,_uart+26
+   743                           ;uart.c: 280: write_data_to_eeprom(13,uart.r_buf
+      +                          [6]);
+   744  008D90  0E0D               	movlw	13
+   745  008D92  0100               	movlb	__Lparam shr (0+8)
+   746  008D94  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   747  008D96  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   748  008D98  C171  F02D         	movff	_uart+6,?_write_data_to_eeprom+2
+   749  008D9C  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   750                           ;uart.c: 281: write_data_to_eeprom(14,uart.r_buf
+      +                          [7]);
+   751  008DA0  0E0E               	movlw	14
+   752  008DA2  0100               	movlb	__Lparam shr (0+8)
+   753  008DA4  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   754  008DA6  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   755  008DA8  C172  F02D         	movff	_uart+7,?_write_data_to_eeprom+2
+   756  008DAC  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   757                           ;uart.c: 282: sys.v3 = uart.r_buf[6];
+   758  008DB0  0101               	movlb	(_sys+62) shr (0+8)
+   759  008DB2  C171  F150         	movff	_uart+6,_sys+62
+   760  008DB6  6B51               	clrf	(_sys+63)& (0+255),b
+   761                           ;uart.c: 283: sys.v3 = sys.v3 << 8;
+   762  008DB8  5150               	movf	(_sys+62)& (0+255),w,b
+   763  008DBA  6E01               	movwf	btemp+1
+   764  008DBC  6A00               	clrf	btemp
+   765  008DBE  C000  F150         	movff	btemp,_sys+62
+   766  008DC2  C001  F151         	movff	btemp+1,_sys+63
+   767                           ;uart.c: 284: sys.v3 = sys.v3 + uart.r_buf[7];
+   768  008DC6  EE01  F050         	lfsr	0,_sys+62
+   769  008DCA  CFEE F000          	movff	postinc0,btemp
+   770  008DCE  CFED F001          	movff	postdec0,btemp+1
+   771  008DD2  C172  F002         	movff	_uart+7,btemp+2
+   772  008DD6  5000               	movf	btemp,w
+   773  008DD8  2402               	addwf	btemp+2,w
+   774  008DDA  CFE8 F150          	movff	wreg,_sys+62
+   775  008DDE  0E00               	movlw	0
+   776  008DE0  2001               	addwfc	btemp+1,w
+   777  008DE2  CFE8 F151          	movff	wreg,_sys+63
+   778                           ;uart.c: 286: break;
+   779  008DE6  D0A5               	goto	l46
+   780  008DE8                     l57:
+   781                           ;uart.c: 287: case 19:
+   782                           ;uart.c: 288: uart.s_buf[6] = 0xaa;
+   783  008DE8  0EAA               	movlw	-86
+   784  008DEA  CFE8 F185          	movff	wreg,_uart+26
+   785                           ;uart.c: 289: write_data_to_eeprom(15,uart.r_buf
+      +                          [6]);
+   786  008DEE  0E0F               	movlw	15
+   787  008DF0  0100               	movlb	__Lparam shr (0+8)
+   788  008DF2  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   789  008DF4  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   790  008DF6  C171  F02D         	movff	_uart+6,?_write_data_to_eeprom+2
+   791  008DFA  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   792                           ;uart.c: 290: write_data_to_eeprom(16,uart.r_buf
+      +                          [7]);
+   793  008DFE  0E10               	movlw	16
+   794  008E00  0100               	movlb	__Lparam shr (0+8)
+   795  008E02  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   796  008E04  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   797  008E06  C172  F02D         	movff	_uart+7,?_write_data_to_eeprom+2
+   798  008E0A  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   799                           ;uart.c: 291: sys.c1 = uart.r_buf[6];
+   800  008E0E  0101               	movlb	(_sys+68) shr (0+8)
+   801  008E10  C171  F156         	movff	_uart+6,_sys+68
+   802  008E14  6B57               	clrf	(_sys+69)& (0+255),b
+   803                           ;uart.c: 292: sys.c1 = sys.c1 << 8;
+   804  008E16  5156               	movf	(_sys+68)& (0+255),w,b
+   805  008E18  6E01               	movwf	btemp+1
+   806  008E1A  6A00               	clrf	btemp
+   807  008E1C  C000  F156         	movff	btemp,_sys+68
+   808  008E20  C001  F157         	movff	btemp+1,_sys+69
+   809                           ;uart.c: 293: sys.c1 = sys.c1 + uart.r_buf[7];
+   810  008E24  EE01  F056         	lfsr	0,_sys+68
+   811  008E28  CFEE F000          	movff	postinc0,btemp
+   812  008E2C  CFED F001          	movff	postdec0,btemp+1
+   813  008E30  C172  F002         	movff	_uart+7,btemp+2
+   814  008E34  5000               	movf	btemp,w
+   815  008E36  2402               	addwf	btemp+2,w
+   816  008E38  CFE8 F156          	movff	wreg,_sys+68
+   817  008E3C  0E00               	movlw	0
+   818  008E3E  2001               	addwfc	btemp+1,w
+   819  008E40  CFE8 F157          	movff	wreg,_sys+69
+   820                           ;uart.c: 295: break;
+   821  008E44  D076               	goto	l46
+   822  008E46                     l58:
+   823                           ;uart.c: 296: case 20:
+   824                           ;uart.c: 297: uart.s_buf[6] = 0xaa;
+   825  008E46  0EAA               	movlw	-86
+   826  008E48  CFE8 F185          	movff	wreg,_uart+26
+   827                           ;uart.c: 298: write_data_to_eeprom(17,uart.r_buf
+      +                          [6]);
+   828  008E4C  0E11               	movlw	17
+   829  008E4E  0100               	movlb	__Lparam shr (0+8)
+   830  008E50  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   831  008E52  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   832  008E54  C171  F02D         	movff	_uart+6,?_write_data_to_eeprom+2
+   833  008E58  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   834                           ;uart.c: 299: write_data_to_eeprom(18,uart.r_buf
+      +                          [7]);
+   835  008E5C  0E12               	movlw	18
+   836  008E5E  0100               	movlb	__Lparam shr (0+8)
+   837  008E60  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   838  008E62  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   839  008E64  C172  F02D         	movff	_uart+7,?_write_data_to_eeprom+2
+   840  008E68  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   841                           ;uart.c: 300: sys.c2 = uart.r_buf[6];
+   842  008E6C  0101               	movlb	(_sys+70) shr (0+8)
+   843  008E6E  C171  F158         	movff	_uart+6,_sys+70
+   844  008E72  6B59               	clrf	(_sys+71)& (0+255),b
+   845                           ;uart.c: 301: sys.c2 = sys.c2 << 8;
+   846  008E74  5158               	movf	(_sys+70)& (0+255),w,b
+   847  008E76  6E01               	movwf	btemp+1
+   848  008E78  6A00               	clrf	btemp
+   849  008E7A  C000  F158         	movff	btemp,_sys+70
+   850  008E7E  C001  F159         	movff	btemp+1,_sys+71
+   851                           ;uart.c: 302: sys.c2 = sys.c2 + uart.r_buf[7];
+   852  008E82  EE01  F058         	lfsr	0,_sys+70
+   853  008E86  CFEE F000          	movff	postinc0,btemp
+   854  008E8A  CFED F001          	movff	postdec0,btemp+1
+   855  008E8E  C172  F002         	movff	_uart+7,btemp+2
+   856  008E92  5000               	movf	btemp,w
+   857  008E94  2402               	addwf	btemp+2,w
+   858  008E96  CFE8 F158          	movff	wreg,_sys+70
+   859  008E9A  0E00               	movlw	0
+   860  008E9C  2001               	addwfc	btemp+1,w
+   861  008E9E  CFE8 F159          	movff	wreg,_sys+71
+   862                           ;uart.c: 304: break;
+   863  008EA2  D047               	goto	l46
+   864  008EA4                     l59:
+   865                           ;uart.c: 305: case 21:
+   866                           ;uart.c: 306: uart.s_buf[6] = 0xaa;
+   867  008EA4  0EAA               	movlw	-86
+   868  008EA6  CFE8 F185          	movff	wreg,_uart+26
+   869                           ;uart.c: 307: write_data_to_eeprom(19,uart.r_buf
+      +                          [6]);
+   870  008EAA  0E13               	movlw	19
+   871  008EAC  0100               	movlb	__Lparam shr (0+8)
+   872  008EAE  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   873  008EB0  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   874  008EB2  C171  F02D         	movff	_uart+6,?_write_data_to_eeprom+2
+   875  008EB6  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   876                           ;uart.c: 308: write_data_to_eeprom(20,uart.r_buf
+      +                          [7]);
+   877  008EBA  0E14               	movlw	20
+   878  008EBC  0100               	movlb	__Lparam shr (0+8)
+   879  008EBE  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   880  008EC0  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   881  008EC2  C172  F02D         	movff	_uart+7,?_write_data_to_eeprom+2
+   882  008EC6  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   883                           ;uart.c: 309: sys.c3 = uart.r_buf[6];
+   884  008ECA  0101               	movlb	(_sys+72) shr (0+8)
+   885  008ECC  C171  F15A         	movff	_uart+6,_sys+72
+   886  008ED0  6B5B               	clrf	(_sys+73)& (0+255),b
+   887                           ;uart.c: 310: sys.c3 = sys.c3 << 8;
+   888  008ED2  515A               	movf	(_sys+72)& (0+255),w,b
+   889  008ED4  6E01               	movwf	btemp+1
+   890  008ED6  6A00               	clrf	btemp
+   891  008ED8  C000  F15A         	movff	btemp,_sys+72
+   892  008EDC  C001  F15B         	movff	btemp+1,_sys+73
+   893                           ;uart.c: 311: sys.c3 = sys.c3 + uart.r_buf[7];
+   894  008EE0  EE01  F05A         	lfsr	0,_sys+72
+   895  008EE4  CFEE F000          	movff	postinc0,btemp
+   896  008EE8  CFED F001          	movff	postdec0,btemp+1
+   897  008EEC  C172  F002         	movff	_uart+7,btemp+2
+   898  008EF0  5000               	movf	btemp,w
+   899  008EF2  2402               	addwf	btemp+2,w
+   900  008EF4  CFE8 F15A          	movff	wreg,_sys+72
+   901  008EF8  0E00               	movlw	0
+   902  008EFA  2001               	addwfc	btemp+1,w
+   903  008EFC  CFE8 F15B          	movff	wreg,_sys+73
+   904                           ;uart.c: 312: break;
+   905  008F00  D018               	goto	l46
+   906  008F02                     l47:
+   907  008F02  C183  FFE8         	movff	_uart+24,wreg
+   908  008F06  0A0E               	xorlw	14
+   909  008F08  E101 D6B9          	bz	l48
+   910  008F0C  0A01               	xorlw	1
+   911  008F0E  E101 D6C1          	bz	l51
+   912  008F12  0A1F               	xorlw	31
+   913  008F14  E101 D6DB          	bz	l54
+   914  008F18  0A01               	xorlw	1
+   915  008F1A  E101 D707          	bz	l55
+   916  008F1E  0A03               	xorlw	3
+   917  008F20  E101 D733          	bz	l56
+   918  008F24  0A01               	xorlw	1
+   919  008F26  E101 D75F          	bz	l57
+   920  008F2A  0A07               	xorlw	7
+   921  008F2C  E08C               	bz	l58
+   922  008F2E  0A01               	xorlw	1
+   923  008F30  E0B9               	bz	l59
+   924  008F32                     l46:
+   925                           ;uart.c: 315: temp = 0;
+   926  008F32  6AD9               	clrf	fsr2l,c
+   927                           ;uart.c: 316: temp += uart.s_buf[2];
+   928  008F34  C181  FFE8         	movff	_uart+22,wreg
+   929  008F38  26D9               	addwf	fsr2l,f,c
+   930                           ;uart.c: 317: temp += uart.s_buf[3];
+   931  008F3A  C182  FFE8         	movff	_uart+23,wreg
+   932  008F3E  26D9               	addwf	fsr2l,f,c
+   933                           ;uart.c: 318: temp += uart.s_buf[4];
+   934  008F40  C183  FFE8         	movff	_uart+24,wreg
+   935  008F44  26D9               	addwf	fsr2l,f,c
+   936                           ;uart.c: 319: temp += uart.s_buf[5];
+   937  008F46  C184  FFE8         	movff	_uart+25,wreg
+   938  008F4A  26D9               	addwf	fsr2l,f,c
+   939                           ;uart.c: 320: temp += uart.s_buf[6];
+   940  008F4C  C185  FFE8         	movff	_uart+26,wreg
+   941  008F50  26D9               	addwf	fsr2l,f,c
+   942                           ;uart.c: 321: temp = 0xff-temp+1;
+   943  008F52  50D9               	movf	fsr2l,w,c
+   944  008F54  08FF               	sublw	-1
+   945  008F56  6E00               	movwf	btemp
+   946  008F58  2800               	incf	btemp,w
+   947  008F5A  6ED9               	movwf	fsr2l,c
+   948                           ;uart.c: 322: uart.s_buf[7] = temp;
+   949  008F5C  CFD9 F186          	movff	fsr2l,_uart+27
+   950                           ;uart.c: 324: }
+   951  008F60  D4FE               	goto	_send_array	;wreg free
+   952                           
+   953                           	psect	const
+   954  001407                     _uart_brg_word:
+   955  001407  00                 	db	0
+   956  001408  33                 	db	51
+   957  001409  00                 	db	0
+   958  00140A  19                 	db	25
+   959  00140B  00                 	db	0
+   960  00140C  01                 	db	1
+   961                           
+   962                           	psect	temp
+   963  000000                     btemp:
+   964  000000                     	ds	4
+   965                           tblptrh	equ	0xFF7
+   966                           tblptrl	equ	0xFF6
+   967                           tablat	equ	0xFF5
+   968                           indf0	equ	0xFEF
+   969                           postinc0	equ	0xFEE
+   970                           postdec0	equ	0xFED
+   971                           fsr0h	equ	0xFEA
+   972                           fsr0l	equ	0xFE9
+   973                           wreg	equ	0xFE8
+   974                           fsr1l	equ	0xFE1
+   975                           fsr2l	equ	0xFD9
+   976                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Thu Jan  2 10:12:18 2014
+
+    _uart_receive_deal 898A                     l10 8956  
+                   l21 89B6                     l30 8A36  
+                   l31 8A40                     l40 8B56  
+                   l32 8A4A                     l16 896A  
+                   l41 8B78                     l33 8A68  
+                   l25 89B8                     l42 8B9A  
+                   l34 8A8A                     l51 8C94  
+                   l43 8BBC                     l35 8AAC  
+                   l27 8C62                     l52 8CAE  
+                   l36 8ACE                     l28 8C2C  
+                   l37 8AF0                     l29 8BDE  
+                   l54 8CCE                     l46 8F32  
+                   l38 8B12                     l55 8D2C  
+                   l47 8F02                     l39 8B34  
+                   l56 8D8A                     l48 8C7E  
+                   l57 8DE8                     l58 8E46  
+                   l59 8EA4                     u20 8986  
+                   u70 89D6             _send_array 895E  
+          _send_a_char 8956                    u110 8A20  
+                  u200 8CA6                    _sys 0112  
+                  wreg 000FE8          _uart_brg_word 1407  
+                 _uart 016B                   fsr0h 000FEA  
+                 indf0 000FEF                   fsr0l 000FE9  
+                 fsr1l 000FE1                   fsr2l 000FD9  
+                 btemp 0000   _write_data_to_eeprom 09E4  
+?_write_data_to_eeprom 002B             used_btemp0 0001  
+           used_btemp1 0001             used_btemp2 0001  
+           used_btemp3 0001                  tablat 000FF5  
+                status 000FD8           _set_uart_brg 88FA  
+              __Lparam 0029                __ramtop 0F00  
+            _uart_init 88DE                postdec0 000FED  
+              postinc0 000FEE                 tblptrh 000FF7  
+               tblptrl 000FF6  

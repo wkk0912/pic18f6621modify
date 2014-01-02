@@ -1,0 +1,3 @@
+Warning[000] D:\pic18f6621modify\lcd.c 198 : illegal conversion of integer to pointer
+Warning[000] D:\pic18f6621modify\lcd.c 338 : illegal conversion of pointer to integer
+Warning[000] D:\pic18f6621modify\lcd.c 338 : illegal conversion of integer to pointer

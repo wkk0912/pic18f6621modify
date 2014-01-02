@@ -1,0 +1,1595 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-88888                           Thu Jan  2 10:12:16 2014
+
+Licensed to: ONE TWO
+     1                           	processor	18F6622
+     2                           	opt	pw 80
+     3                           	psect	__Z88888RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	bigdata,global,class=BIGRAM,space=1,delta
+      +                          =1
+     6                           	psect	ibigdata,global,class=CODE,delta=1
+     7                           	psect	const,global,class=CODE,delta=1
+     8                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     9                           	psect	bss,global,class=RAM,space=1,delta=1
+    10                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+    11                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98  000000                     
+    99  000000                     
+   100  000000                     
+   101                           
+   102                           	psect	__Z88888RS_
+   103  000004                     
+   104                           ;       param _data assigned to ?_write_data_to_
+      +                          eeprom+2
+   105  000000                     _write_data_to_eeprom$data	set	?_write_data_to_e
+      +                          eprom+2
+   106                           ;stdlib.h: 122: extern int atexit(void (*)(void)
+      +                          );
+   107                           ;stdlib.h: 126: extern void qsort(void *, size_t
+      +                          , size_t, int (*)(const void *, const void *));
+   108                           ;stdlib.h: 127: extern void * bsearch(const void
+      +                           *, void *, size_t, size_t, int(*)(const void *,
+      +                           const void *));
+   109                           ;       param _addr assigned to ?_write_data_to_
+      +                          eeprom+0
+   110  000000                     _write_data_to_eeprom$addr	set	?_write_data_to_e
+      +                          eprom
+   111  000004                     
+   112                           
+   113                           	psect	text
+   114  0009E2  002B               	dw	?_write_data_to_eeprom
+   115                           ;eeprom.c: 35: unsigned char read_data_from_eepr
+      +                          om(unsigned int addr)
+   116                           ;eeprom.c: 36: {
+   117                           ;       param _addr assigned to ?_read_data_from
+      +                          _eeprom+0
+   118  000000                     _read_data_from_eeprom$addr	set	?_read_data_from
+      +                          _eeprom
+   119  0009E4                     _write_data_to_eeprom:
+   120  000000                     
+   121                           ;eeprom.c: 17: EEADRH = 0X03&(addr>>8);
+   122  0009E4  0100               	movlb	__Lparam shr (0+8)
+   123  0009E6  512C               	movf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280)),w
+   124  0009E8  0B03               	andlw	3
+   125  0009EA  6EAA               	movwf	4010,c
+   126                           ;eeprom.c: 18: EEADR = 0x00ff&addr;
+   127  0009EC  512B               	movf	?_write_data_to_eeprom^(__Lparam& (0+65280
+      +                          )),w
+   128  0009EE  6EA9               	movwf	4009,c
+   129                           ;eeprom.c: 19: EEDATA = data;
+   130  0009F0  512D               	movf	(?_write_data_to_eeprom+2)^(__Lparam& (0+6
+      +                          5280)),w
+   131  0009F2  6EA8               	movwf	4008,c	;volatile
+   132                           ;eeprom.c: 20: EEPGD = 0;
+   133  0009F4  9EA6               	bcf	4006,7,c
+   134                           ;eeprom.c: 21: CFGS = 0;
+   135  0009F6  9CA6               	bcf	4006,6,c
+   136                           ;eeprom.c: 22: WREN = 1;
+   137  0009F8  84A6               	bsf	4006,2,c
+   138                           ;eeprom.c: 23: GIE = 0;
+   139  0009FA  9EF2               	bcf	intcon,7,c
+   140                           ;eeprom.c: 24: EECON2 = 0X55;
+   141  0009FC  0E55               	movlw	85
+   142  0009FE  6EA7               	movwf	4007,c	;volatile
+   143                           ;eeprom.c: 25: EECON2 = 0XAA;
+   144  000A00  0EAA               	movlw	170
+   145  000A02  6EA7               	movwf	4007,c	;volatile
+   146                           ;eeprom.c: 26: WR = 1;
+   147  000A04  82A6               	bsf	4006,1,c	;volatile
+   148                           ;eeprom.c: 27: while(!EEIF);
+   149  000A06                     l13:
+   150  000A06  A8A1               	btfss	4001,4,c	;volatile
+   151  000A08  D7FE               	goto	l13
+   152                           ;eeprom.c: 28: EEIF = 0;
+   153  000A0A  98A1               	bcf	4001,4,c	;volatile
+   154                           ;eeprom.c: 29: GIE = 1;
+   155  000A0C  8EF2               	bsf	intcon,7,c
+   156                           ;eeprom.c: 30: WREN = 0;
+   157  000A0E  94A6               	bcf	4006,2,c
+   158                           ;eeprom.c: 32: }
+   159  000A10  0012               	return	
+   160  000A12  002F               	dw	?_read_data_from_eeprom
+   161  000A14                     _read_data_from_eeprom:
+   162  000000                     
+   163                           ;eeprom.c: 37: EEADRH = 0X03&(addr>>8);
+   164  000A14  0100               	movlb	__Lparam shr (0+8)
+   165  000A16  5130               	movf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280)),w
+   166  000A18  0B03               	andlw	3
+   167  000A1A  6EAA               	movwf	4010,c
+   168                           ;eeprom.c: 38: EEADR = 0x00ff&addr;
+   169  000A1C  512F               	movf	?_read_data_from_eeprom^(__Lparam& (0+6528
+      +                          0)),w
+   170  000A1E  6EA9               	movwf	4009,c
+   171                           ;eeprom.c: 39: EEPGD = 0;
+   172  000A20  9EA6               	bcf	4006,7,c
+   173                           ;eeprom.c: 40: CFGS = 0;
+   174  000A22  9CA6               	bcf	4006,6,c
+   175                           ;eeprom.c: 41: RD = 1;
+   176  000A24  80A6               	bsf	4006,0,c	;volatile
+   177                           ;eeprom.c: 42: return EEDATA;
+   178  000A26  50A8               	movf	4008,w,c	;volatile
+   179  000A28  0012               	return	
+   180                           ;eeprom.c: 43: }
+   181                           ;eeprom.c: 45: void record_a_err(unsigned char e
+      +                          rr_style)
+   182                           ;eeprom.c: 46: {
+   183  000A2A                     _record_a_err:
+   184  000000                     
+   185                           ; _err_style loaded to fsr2l
+   186  000A2A  6ED9               	movwf	fsr2l,c
+   187                           ;eeprom.c: 47: write_data_to_eeprom(24+sys.err_r
+      +                          ecord_index*7+0,err_style);
+   188  000A2C  0E07               	movlw	7
+   189  000A2E  6E02               	movwf	btemp+2
+   190  000A30  6A03               	clrf	btemp+3
+   191  000A32  EE01  F03F         	lfsr	0,_sys+45
+   192  000A36  CFEE F000          	movff	postinc0,btemp
+   193  000A3A  CFED F001          	movff	postdec0,btemp+1
+   194  000A3E  ECEF  F051         	call	lwmul
+   195  000A42  0E18               	movlw	24
+   196  000A44  2404               	addwf	btemp+4,w
+   197  000A46  0100               	movlb	__Lparam shr (0+8)
+   198  000A48  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   199  000A4A  0E00               	movlw	0
+   200  000A4C  2005               	addwfc	btemp+5,w
+   201  000A4E  6F2C               	movwf	(?_write_data_to_eeprom^(__Lparam& (0+652
+      +                          80))+1)
+   202  000A50  50D9               	movf	fsr2l,w,c
+   203  000A52  6F2D               	movwf	(?_write_data_to_eeprom+2)^(__Lparam& (0+
+      +                          65280))
+   204  000A54  DFC7               	call	_write_data_to_eeprom	;wreg free
+   205                           ;eeprom.c: 48: write_data_to_eeprom(24+sys.err_r
+      +                          ecord_index*7+1,rtc.year);
+   206  000A56  0E07               	movlw	7
+   207  000A58  6E02               	movwf	btemp+2
+   208  000A5A  6A03               	clrf	btemp+3
+   209  000A5C  EE01  F03F         	lfsr	0,_sys+45
+   210  000A60  CFEE F000          	movff	postinc0,btemp
+   211  000A64  CFED F001          	movff	postdec0,btemp+1
+   212  000A68  ECEF  F051         	call	lwmul
+   213  000A6C  0E19               	movlw	25
+   214  000A6E  2404               	addwf	btemp+4,w
+   215  000A70  0100               	movlb	__Lparam shr (0+8)
+   216  000A72  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   217  000A74  0E00               	movlw	0
+   218  000A76  2005               	addwfc	btemp+5,w
+   219  000A78  6F2C               	movwf	(?_write_data_to_eeprom^(__Lparam& (0+652
+      +                          80))+1)
+   220  000A7A  C1A1  F02D         	movff	_rtc+10,?_write_data_to_eeprom+2
+   221  000A7E  DFB2               	call	_write_data_to_eeprom	;wreg free
+   222                           ;eeprom.c: 49: write_data_to_eeprom(24+sys.err_r
+      +                          ecord_index*7+2,rtc.month);
+   223  000A80  0E07               	movlw	7
+   224  000A82  6E02               	movwf	btemp+2
+   225  000A84  6A03               	clrf	btemp+3
+   226  000A86  EE01  F03F         	lfsr	0,_sys+45
+   227  000A8A  CFEE F000          	movff	postinc0,btemp
+   228  000A8E  CFED F001          	movff	postdec0,btemp+1
+   229  000A92  ECEF  F051         	call	lwmul
+   230  000A96  0E1A               	movlw	26
+   231  000A98  2404               	addwf	btemp+4,w
+   232  000A9A  0100               	movlb	__Lparam shr (0+8)
+   233  000A9C  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   234  000A9E  0E00               	movlw	0
+   235  000AA0  2005               	addwfc	btemp+5,w
+   236  000AA2  6F2C               	movwf	(?_write_data_to_eeprom^(__Lparam& (0+652
+      +                          80))+1)
+   237  000AA4  C19F  F02D         	movff	_rtc+8,?_write_data_to_eeprom+2
+   238  000AA8  DF9D               	call	_write_data_to_eeprom	;wreg free
+   239                           ;eeprom.c: 50: write_data_to_eeprom(24+sys.err_r
+      +                          ecord_index*7+3,rtc.date);
+   240  000AAA  0E07               	movlw	7
+   241  000AAC  6E02               	movwf	btemp+2
+   242  000AAE  6A03               	clrf	btemp+3
+   243  000AB0  EE01  F03F         	lfsr	0,_sys+45
+   244  000AB4  CFEE F000          	movff	postinc0,btemp
+   245  000AB8  CFED F001          	movff	postdec0,btemp+1
+   246  000ABC  ECEF  F051         	call	lwmul
+   247  000AC0  0E1B               	movlw	27
+   248  000AC2  2404               	addwf	btemp+4,w
+   249  000AC4  0100               	movlb	__Lparam shr (0+8)
+   250  000AC6  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   251  000AC8  0E00               	movlw	0
+   252  000ACA  2005               	addwfc	btemp+5,w
+   253  000ACC  6F2C               	movwf	(?_write_data_to_eeprom^(__Lparam& (0+652
+      +                          80))+1)
+   254  000ACE  C19D  F02D         	movff	_rtc+6,?_write_data_to_eeprom+2
+   255  000AD2  DF88               	call	_write_data_to_eeprom	;wreg free
+   256                           ;eeprom.c: 51: write_data_to_eeprom(24+sys.err_r
+      +                          ecord_index*7+4,rtc.hour);
+   257  000AD4  0E07               	movlw	7
+   258  000AD6  6E02               	movwf	btemp+2
+   259  000AD8  6A03               	clrf	btemp+3
+   260  000ADA  EE01  F03F         	lfsr	0,_sys+45
+   261  000ADE  CFEE F000          	movff	postinc0,btemp
+   262  000AE2  CFED F001          	movff	postdec0,btemp+1
+   263  000AE6  ECEF  F051         	call	lwmul
+   264  000AEA  0E1C               	movlw	28
+   265  000AEC  2404               	addwf	btemp+4,w
+   266  000AEE  0100               	movlb	__Lparam shr (0+8)
+   267  000AF0  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   268  000AF2  0E00               	movlw	0
+   269  000AF4  2005               	addwfc	btemp+5,w
+   270  000AF6  6F2C               	movwf	(?_write_data_to_eeprom^(__Lparam& (0+652
+      +                          80))+1)
+   271  000AF8  C19B  F02D         	movff	_rtc+4,?_write_data_to_eeprom+2
+   272  000AFC  DF73               	call	_write_data_to_eeprom	;wreg free
+   273                           ;eeprom.c: 52: write_data_to_eeprom(24+sys.err_r
+      +                          ecord_index*7+5,rtc.minute);
+   274  000AFE  0E07               	movlw	7
+   275  000B00  6E02               	movwf	btemp+2
+   276  000B02  6A03               	clrf	btemp+3
+   277  000B04  EE01  F03F         	lfsr	0,_sys+45
+   278  000B08  CFEE F000          	movff	postinc0,btemp
+   279  000B0C  CFED F001          	movff	postdec0,btemp+1
+   280  000B10  ECEF  F051         	call	lwmul
+   281  000B14  0E1D               	movlw	29
+   282  000B16  2404               	addwf	btemp+4,w
+   283  000B18  0100               	movlb	__Lparam shr (0+8)
+   284  000B1A  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   285  000B1C  0E00               	movlw	0
+   286  000B1E  2005               	addwfc	btemp+5,w
+   287  000B20  6F2C               	movwf	(?_write_data_to_eeprom^(__Lparam& (0+652
+      +                          80))+1)
+   288  000B22  C199  F02D         	movff	_rtc+2,?_write_data_to_eeprom+2
+   289  000B26  DF5E               	call	_write_data_to_eeprom	;wreg free
+   290                           ;eeprom.c: 53: write_data_to_eeprom(24+sys.err_r
+      +                          ecord_index*7+6,rtc.second);
+   291  000B28  0E07               	movlw	7
+   292  000B2A  6E02               	movwf	btemp+2
+   293  000B2C  6A03               	clrf	btemp+3
+   294  000B2E  EE01  F03F         	lfsr	0,_sys+45
+   295  000B32  CFEE F000          	movff	postinc0,btemp
+   296  000B36  CFED F001          	movff	postdec0,btemp+1
+   297  000B3A  ECEF  F051         	call	lwmul
+   298  000B3E  0E1E               	movlw	30
+   299  000B40  2404               	addwf	btemp+4,w
+   300  000B42  0100               	movlb	__Lparam shr (0+8)
+   301  000B44  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   302  000B46  0E00               	movlw	0
+   303  000B48  2005               	addwfc	btemp+5,w
+   304  000B4A  6F2C               	movwf	(?_write_data_to_eeprom^(__Lparam& (0+652
+      +                          80))+1)
+   305  000B4C  C197  F02D         	movff	_rtc,?_write_data_to_eeprom+2
+   306  000B50  DF49               	call	_write_data_to_eeprom	;wreg free
+   307                           ;eeprom.c: 55: sys.err_total_number++;
+   308  000B52  0101               	movlb	(_sys+42) shr (0+8)
+   309  000B54  2B3C               	incf	(_sys+42)& (0+255),f,b
+   310                           ;eeprom.c: 56: if(sys.err_total_number>100)sys.e
+      +                          rr_total_number=100;
+   311  000B56  0E64               	movlw	100
+   312  000B58  653C               	cpfsgt	(_sys+42)& (0+255),b
+   313  000B5A  D002               	goto	l18
+   314  000B5C  CFE8 F13C          	movff	wreg,_sys+42
+   315  000B60                     l18:
+   316                           ;eeprom.c: 57: write_data_to_eeprom(22,sys.err_t
+      +                          otal_number);
+   317  000B60  0E16               	movlw	22
+   318  000B62  0100               	movlb	__Lparam shr (0+8)
+   319  000B64  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   320  000B66  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   321  000B68  C13C  F02D         	movff	_sys+42,?_write_data_to_eeprom+2
+   322  000B6C  DF3B               	call	_write_data_to_eeprom	;wreg free
+   323                           ;eeprom.c: 59: sys.err_record_index++;
+   324  000B6E  0101               	movlb	(_sys+45) shr (0+8)
+   325  000B70  2B3F               	incf	(_sys+45)& (0+255),f,b
+   326  000B72  0E00               	movlw	0
+   327  000B74  2340               	addwfc	(_sys+46)& (0+255),f,b
+   328                           ;eeprom.c: 60: if(sys.err_record_index>100)sys.e
+      +                          rr_record_index=0;
+   329  000B76  5140               	movf	(_sys+46)& (0+255),w,b
+   330  000B78  0A80               	xorlw	128
+   331  000B7A  0F80               	addlw	128
+   332  000B7C  0E65               	movlw	101
+   333  000B7E  B4D8               	btfsc	status,2,c
+   334  000B80  5D3F               	subwf	(_sys+45)& (0+255),w,b
+   335  000B82  A0D8               	btfss	status,0,c
+   336  000B84  D003               	goto	l19
+   337  000B86  0101               	movlb	(_sys+45) shr (0+8)
+   338  000B88  6B3F               	clrf	(_sys+45)& (0+255),b
+   339  000B8A  6B40               	clrf	(_sys+46)& (0+255),b
+   340  000B8C                     l19:
+   341                           ;eeprom.c: 61: write_data_to_eeprom(23,sys.err_r
+      +                          ecord_index);
+   342  000B8C  0E17               	movlw	23
+   343  000B8E  0100               	movlb	__Lparam shr (0+8)
+   344  000B90  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   345  000B92  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   346  000B94  C13F  F02D         	movff	_sys+45,?_write_data_to_eeprom+2
+   347  000B98  D725               	goto	_write_data_to_eeprom	;wreg free
+   348                           ;eeprom.c: 62: }
+   349                           ;eeprom.c: 64: void read_a_err(void)
+   350                           ;eeprom.c: 65: {
+   351  000B9A                     _read_a_err:
+   352  000000                     
+   353                           ;eeprom.c: 66: int map_index;
+   354  000B9A  C13C  FFE8         	movff	_sys+42,wreg
+   355  000B9E  0A64               	xorlw	100
+   356  000BA0  A4D8               	btfss	status,2,c
+   357  000BA2  D018               	goto	l21
+   358                           ;eeprom.c: 69: {
+   359  000BA4  EE01  F03F         	lfsr	0,_sys+45
+   360  000BA8  CFEE F000          	movff	postinc0,btemp
+   361  000BAC  CFED F001          	movff	postdec0,btemp+1
+   362  000BB0  0EFF               	movlw	255
+   363  000BB2  0600               	decf	btemp,f
+   364  000BB4  2201               	addwfc	btemp+1,f
+   365  000BB6  C13D  FFE8         	movff	_sys+43,wreg
+   366  000BBA  5C00               	subwf	btemp,w
+   367  000BBC  6EF3               	movwf	prodl,c
+   368  000BBE  C13E  FFE8         	movff	_sys+44,wreg
+   369  000BC2  5801               	subwfb	btemp+1,w
+   370  000BC4  6EF4               	movwf	prodh,c
+   371                           ;eeprom.c: 71: if(map_index < 0)
+   372  000BC6  AEF4               	btfss	prodh,7,c
+   373  000BC8  D01A               	goto	l23
+   374                           ;eeprom.c: 72: {
+   375  000BCA  0E64               	movlw	100
+   376  000BCC  26F3               	addwf	prodl,f,c
+   377  000BCE  0E00               	movlw	0
+   378  000BD0  22F4               	addwfc	prodh,f,c
+   379                           ;eeprom.c: 74: }
+   380                           ;eeprom.c: 76: else if(sys.err_total_number<100)
+   381  000BD2  D015               	goto	l23
+   382  000BD4                     l21:
+   383  000BD4  0E64               	movlw	100
+   384  000BD6  0101               	movlb	(_sys+42) shr (0+8)
+   385  000BD8  613C               	cpfslt	(_sys+42)& (0+255),b
+   386  000BDA  D011               	goto	l23
+   387                           ;eeprom.c: 77: {
+   388  000BDC  EE01  F03F         	lfsr	0,_sys+45
+   389  000BE0  CFEE F000          	movff	postinc0,btemp
+   390  000BE4  CFED F001          	movff	postdec0,btemp+1
+   391  000BE8  0EFF               	movlw	255
+   392  000BEA  0600               	decf	btemp,f
+   393  000BEC  2201               	addwfc	btemp+1,f
+   394  000BEE  C13F  FFE8         	movff	_sys+45,wreg
+   395  000BF2  5C00               	subwf	btemp,w
+   396  000BF4  6EF3               	movwf	prodl,c
+   397  000BF6  C140  FFE8         	movff	_sys+46,wreg
+   398  000BFA  5801               	subwfb	btemp+1,w
+   399  000BFC  6EF4               	movwf	prodh,c
+   400                           ;eeprom.c: 79: }
+   401  000BFE                     l23:
+   402  000BFE  CFF3 F02F          	movff	prodl,?_read_data_from_eeprom
+   403  000C02  CFF4 F030          	movff	prodh,?_read_data_from_eeprom+1
+   404  000C06  DF06               	call	_read_data_from_eeprom	;wreg free
+   405  000C08  CFE8 F141          	movff	wreg,_sys+47
+   406                           ;eeprom.c: 82: sys.err_buf[1]=read_data_from_eep
+      +                          rom(map_index+1);
+   407  000C0C  28F3               	incf	prodl,w,c
+   408  000C0E  0100               	movlb	__Lparam shr (0+8)
+   409  000C10  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   410  000C12  0E00               	movlw	0
+   411  000C14  20F4               	addwfc	prodh,w,c
+   412  000C16  6F30               	movwf	(?_read_data_from_eeprom^(__Lparam& (0+65
+      +                          280))+1)
+   413  000C18  DEFD               	call	_read_data_from_eeprom	;wreg free
+   414  000C1A  CFE8 F142          	movff	wreg,_sys+48
+   415                           ;eeprom.c: 83: sys.err_buf[2]=read_data_from_eep
+      +                          rom(map_index+2);
+   416  000C1E  0E02               	movlw	2
+   417  000C20  24F3               	addwf	prodl,w,c
+   418  000C22  0100               	movlb	__Lparam shr (0+8)
+   419  000C24  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   420  000C26  0E00               	movlw	0
+   421  000C28  20F4               	addwfc	prodh,w,c
+   422  000C2A  6F30               	movwf	(?_read_data_from_eeprom^(__Lparam& (0+65
+      +                          280))+1)
+   423  000C2C  DEF3               	call	_read_data_from_eeprom	;wreg free
+   424  000C2E  CFE8 F143          	movff	wreg,_sys+49
+   425                           ;eeprom.c: 84: sys.err_buf[3]=read_data_from_eep
+      +                          rom(map_index+3);
+   426  000C32  0E03               	movlw	3
+   427  000C34  24F3               	addwf	prodl,w,c
+   428  000C36  0100               	movlb	__Lparam shr (0+8)
+   429  000C38  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   430  000C3A  0E00               	movlw	0
+   431  000C3C  20F4               	addwfc	prodh,w,c
+   432  000C3E  6F30               	movwf	(?_read_data_from_eeprom^(__Lparam& (0+65
+      +                          280))+1)
+   433  000C40  DEE9               	call	_read_data_from_eeprom	;wreg free
+   434  000C42  CFE8 F144          	movff	wreg,_sys+50
+   435                           ;eeprom.c: 85: sys.err_buf[4]=read_data_from_eep
+      +                          rom(map_index+4);
+   436  000C46  0E04               	movlw	4
+   437  000C48  24F3               	addwf	prodl,w,c
+   438  000C4A  0100               	movlb	__Lparam shr (0+8)
+   439  000C4C  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   440  000C4E  0E00               	movlw	0
+   441  000C50  20F4               	addwfc	prodh,w,c
+   442  000C52  6F30               	movwf	(?_read_data_from_eeprom^(__Lparam& (0+65
+      +                          280))+1)
+   443  000C54  DEDF               	call	_read_data_from_eeprom	;wreg free
+   444  000C56  CFE8 F145          	movff	wreg,_sys+51
+   445                           ;eeprom.c: 86: sys.err_buf[5]=read_data_from_eep
+      +                          rom(map_index+5);
+   446  000C5A  0E05               	movlw	5
+   447  000C5C  24F3               	addwf	prodl,w,c
+   448  000C5E  0100               	movlb	__Lparam shr (0+8)
+   449  000C60  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   450  000C62  0E00               	movlw	0
+   451  000C64  20F4               	addwfc	prodh,w,c
+   452  000C66  6F30               	movwf	(?_read_data_from_eeprom^(__Lparam& (0+65
+      +                          280))+1)
+   453  000C68  DED5               	call	_read_data_from_eeprom	;wreg free
+   454  000C6A  CFE8 F146          	movff	wreg,_sys+52
+   455                           ;eeprom.c: 87: sys.err_buf[6]=read_data_from_eep
+      +                          rom(map_index+6);
+   456  000C6E  0E06               	movlw	6
+   457  000C70  24F3               	addwf	prodl,w,c
+   458  000C72  0100               	movlb	__Lparam shr (0+8)
+   459  000C74  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   460  000C76  0E00               	movlw	0
+   461  000C78  20F4               	addwfc	prodh,w,c
+   462  000C7A  6F30               	movwf	(?_read_data_from_eeprom^(__Lparam& (0+65
+      +                          280))+1)
+   463  000C7C  DECB               	call	_read_data_from_eeprom	;wreg free
+   464  000C7E  CFE8 F147          	movff	wreg,_sys+53
+   465                           ;eeprom.c: 88: }
+   466  000C82  0012               	return	
+   467                           ;eeprom.c: 99: void testeeprom(void)
+   468                           ;eeprom.c: 100: {
+   469  000C84                     _testeeprom:
+   470  000000                     
+   471                           ;eeprom.c: 101: if(testf == 2)
+   472  000C84  CE7D  FFE8         	movff	_testf,wreg
+   473  000C88  0A02               	xorlw	2
+   474  000C8A  A4D8               	btfss	status,2,c
+   475  000C8C  D014               	goto	l26
+   476                           ;eeprom.c: 102: {
+   477  000C8E  0E02               	movlw	2
+   478  000C90  0100               	movlb	__Lparam shr (0+8)
+   479  000C92  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   480  000C94  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   481  000C96  DEBE               	call	_read_data_from_eeprom	;wreg free
+   482  000C98  6E00               	movwf	btemp
+   483  000C9A  0100               	movlb	_eread shr (0+8)
+   484  000C9C  C000  F014         	movff	btemp,_eread
+   485  000CA0  6B15               	clrf	(_eread+1)& (0+255),b
+   486                           ;eeprom.c: 104: if(eread == 0xff)testf=0;
+   487  000CA2  1D14               	comf	_eread& (0+255),w,b
+   488  000CA4  1115               	iorwf	(_eread+1)& (0+255),w,b
+   489  000CA6  A4D8               	btfss	status,2,c
+   490  000CA8  D003               	goto	l27
+   491  000CAA  010E               	movlb	_testf shr (0+8)
+   492  000CAC  6B7D               	clrf	_testf& (0+255),b
+   493                           ;eeprom.c: 105: else testf=1;
+   494  000CAE  D003               	goto	l26
+   495  000CB0                     l27:
+   496  000CB0  0E01               	movlw	1
+   497  000CB2  CFE8 FE7D          	movff	wreg,_testf
+   498  000CB6                     l26:
+   499                           ;eeprom.c: 106: }
+   500  000CB6  010E               	movlb	_testf shr (0+8)
+   501  000CB8  537D               	movf	_testf& (0+255),f,b
+   502  000CBA  A4D8               	btfss	status,2,c
+   503  000CBC  D047               	goto	l29
+   504                           ;eeprom.c: 109: {
+   505  000CBE  0100               	movlb	_eaddr shr (0+8)
+   506  000CC0  2B12               	incf	_eaddr& (0+255),f,b
+   507  000CC2  0E00               	movlw	0
+   508  000CC4  2313               	addwfc	(_eaddr+1)& (0+255),f,b
+   509                           ;eeprom.c: 112: if(eaddr>500)
+   510  000CC6  0E01               	movlw	1
+   511  000CC8  5D13               	subwf	(_eaddr+1)& (0+255),w,b
+   512  000CCA  0EF5               	movlw	245
+   513  000CCC  B4D8               	btfsc	status,2,c
+   514  000CCE  5D12               	subwf	_eaddr& (0+255),w,b
+   515  000CD0  A0D8               	btfss	status,0,c
+   516  000CD2  D006               	goto	l30
+   517                           ;eeprom.c: 113: {
+   518  000CD4  0E01               	movlw	1
+   519  000CD6  CFE8 FE7D          	movff	wreg,_testf
+   520                           ;eeprom.c: 115: eaddr = 0;
+   521  000CDA  6B12               	clrf	_eaddr& (0+255),b
+   522  000CDC  6B13               	clrf	(_eaddr+1)& (0+255),b
+   523                           ;eeprom.c: 116: return;
+   524  000CDE  0012               	return	
+   525  000CE0                     l30:
+   526                           ;eeprom.c: 117: }
+   527  000CE0  010E               	movlb	_edata shr (0+8)
+   528  000CE2  2B92               	incf	_edata& (0+255),f,b
+   529                           ;eeprom.c: 119: write_data_to_eeprom(eaddr,edata
+      +                          );
+   530  000CE4  C012  F02B         	movff	_eaddr,?_write_data_to_eeprom
+   531  000CE8  C013  F02C         	movff	_eaddr+1,?_write_data_to_eeprom+1
+   532  000CEC  CE92  F02D         	movff	_edata,?_write_data_to_eeprom+2
+   533  000CF0  DE79               	call	_write_data_to_eeprom	;wreg free
+   534                           ;eeprom.c: 120: memset(bufb,'\0',sizeof(bufb));
+   535  000CF2  0100               	movlb	__Lparam shr (0+8)
+   536  000CF4  0E94               	movlw	low _bufb
+   537  000CF6  6F35               	movwf	?_memset^(__Lparam& (0+65280))
+   538  000CF8  0E0E               	movlw	high _bufb
+   539  000CFA  6F36               	movwf	(?_memset+1)^(__Lparam& (0+65280))
+   540  000CFC  6B37               	clrf	(?_memset+2)^(__Lparam& (0+65280))
+   541  000CFE  6B38               	clrf	(?_memset+3)^(__Lparam& (0+65280))
+   542  000D00  0E64               	movlw	100
+   543  000D02  6F39               	movwf	(?_memset+4)^(__Lparam& (0+65280))
+   544  000D04  6B3A               	clrf	(?_memset+5)^(__Lparam& (0+65280))
+   545  000D06  EC9A  F051         	call	_memset	;wreg free
+   546                           ;eeprom.c: 121: sprintf( bufb,"e_addr:%4d  ",ead
+      +                          dr);
+   547  000D0A  0100               	movlb	__Lparam shr (0+8)
+   548  000D0C  0E94               	movlw	low _bufb
+   549  000D0E  6F37               	movwf	(?_sprintf+2)^(__Lparam& (0+65280))
+   550  000D10  0E0E               	movlw	high _bufb
+   551  000D12  6F38               	movwf	(?_sprintf+3)^(__Lparam& (0+65280))
+   552  000D14  0E22               	movlw	low u19
+   553  000D16  6F39               	movwf	(?_sprintf+4)^(__Lparam& (0+65280))
+   554  000D18  0E0F               	movlw	high u19
+   555  000D1A  6F3A               	movwf	(?_sprintf+5)^(__Lparam& (0+65280))
+   556  000D1C  C012  F029         	movff	_eaddr,?a_testeeprom
+   557  000D20  C013  F02A         	movff	_eaddr+1,?a_testeeprom+1
+   558  000D24  0E29               	movlw	low ?a_testeeprom
+   559  000D26  CFE8 F035          	movff	wreg,?_sprintf
+   560  000D2A  0E00               	movlw	high ?a_testeeprom
+   561  000D2C  CFE8 F036          	movff	wreg,?_sprintf+1
+   562  000D30  ECA6  F04A         	call	_sprintf	;wreg free
+   563                           ;eeprom.c: 122: xprint(0,0,0,bufb);
+   564  000D34  0100               	movlb	__Lparam shr (0+8)
+   565  000D36  6B35               	clrf	?_xprint^(__Lparam& (0+65280))
+   566  000D38  6B36               	clrf	(?_xprint+1)^(__Lparam& (0+65280))
+   567  000D3A  6B37               	clrf	(?_xprint+2)^(__Lparam& (0+65280))
+   568  000D3C  6B38               	clrf	(?_xprint+3)^(__Lparam& (0+65280))
+   569  000D3E  6B39               	clrf	(?_xprint+4)^(__Lparam& (0+65280))
+   570  000D40  0E94               	movlw	low _bufb
+   571  000D42  6F3A               	movwf	(?_xprint+5)^(__Lparam& (0+65280))
+   572  000D44  0E0E               	movlw	high _bufb
+   573  000D46  6F3B               	movwf	(?_xprint+6)^(__Lparam& (0+65280))
+   574  000D48  EC64  F049         	call	_xprint	;wreg free
+   575  000D4C                     l29:
+   576                           ;eeprom.c: 123: }
+   577  000D4C  CE7D  F000         	movff	_testf,btemp
+   578  000D50  0400               	decf	btemp,w
+   579  000D52  A4D8               	btfss	status,2,c
+   580  000D54  0012               	return	
+   581                           ;eeprom.c: 126: {
+   582  000D56  C012  F02F         	movff	_eaddr,?_read_data_from_eeprom
+   583  000D5A  C013  F030         	movff	_eaddr+1,?_read_data_from_eeprom+1
+   584  000D5E  DE5A               	call	_read_data_from_eeprom	;wreg free
+   585  000D60  CFE8 FE92          	movff	wreg,_edata
+   586                           ;eeprom.c: 128: eaddr++;
+   587  000D64  0100               	movlb	_eaddr shr (0+8)
+   588  000D66  2B12               	incf	_eaddr& (0+255),f,b
+   589  000D68  0E00               	movlw	0
+   590  000D6A  2313               	addwfc	(_eaddr+1)& (0+255),f,b
+   591                           ;eeprom.c: 129: if(eaddr >500)
+   592  000D6C  0E01               	movlw	1
+   593  000D6E  5D13               	subwf	(_eaddr+1)& (0+255),w,b
+   594  000D70  0EF5               	movlw	245
+   595  000D72  B4D8               	btfsc	status,2,c
+   596  000D74  5D12               	subwf	_eaddr& (0+255),w,b
+   597  000D76  A0D8               	btfss	status,0,c
+   598  000D78  D005               	goto	l32
+   599                           ;eeprom.c: 130: {
+   600  000D7A  0E02               	movlw	2
+   601  000D7C  CFE8 FE7D          	movff	wreg,_testf
+   602                           ;eeprom.c: 132: eaddr = 0;
+   603  000D80  6B12               	clrf	_eaddr& (0+255),b
+   604  000D82  6B13               	clrf	(_eaddr+1)& (0+255),b
+   605  000D84                     l32:
+   606                           ;eeprom.c: 133: }
+   607  000D84  0100               	movlb	__Lparam shr (0+8)
+   608  000D86  0E94               	movlw	low _bufb
+   609  000D88  6F35               	movwf	?_memset^(__Lparam& (0+65280))
+   610  000D8A  0E0E               	movlw	high _bufb
+   611  000D8C  6F36               	movwf	(?_memset+1)^(__Lparam& (0+65280))
+   612  000D8E  6B37               	clrf	(?_memset+2)^(__Lparam& (0+65280))
+   613  000D90  6B38               	clrf	(?_memset+3)^(__Lparam& (0+65280))
+   614  000D92  0E64               	movlw	100
+   615  000D94  6F39               	movwf	(?_memset+4)^(__Lparam& (0+65280))
+   616  000D96  6B3A               	clrf	(?_memset+5)^(__Lparam& (0+65280))
+   617  000D98  EC9A  F051         	call	_memset	;wreg free
+   618                           ;eeprom.c: 136: sprintf( bufb,"e_data:%4d  ",eda
+      +                          ta);
+   619  000D9C  0100               	movlb	__Lparam shr (0+8)
+   620  000D9E  0E94               	movlw	low _bufb
+   621  000DA0  6F37               	movwf	(?_sprintf+2)^(__Lparam& (0+65280))
+   622  000DA2  0E0E               	movlw	high _bufb
+   623  000DA4  6F38               	movwf	(?_sprintf+3)^(__Lparam& (0+65280))
+   624  000DA6  0E2F               	movlw	low u29
+   625  000DA8  6F39               	movwf	(?_sprintf+4)^(__Lparam& (0+65280))
+   626  000DAA  0E0F               	movlw	high u29
+   627  000DAC  6F3A               	movwf	(?_sprintf+5)^(__Lparam& (0+65280))
+   628  000DAE  CE92  F029         	movff	_edata,?a_testeeprom
+   629  000DB2  6B2A               	clrf	(?a_testeeprom+1)& (0+255),b
+   630  000DB4  0E29               	movlw	low ?a_testeeprom
+   631  000DB6  CFE8 F035          	movff	wreg,?_sprintf
+   632  000DBA  0E00               	movlw	high ?a_testeeprom
+   633  000DBC  CFE8 F036          	movff	wreg,?_sprintf+1
+   634  000DC0  ECA6  F04A         	call	_sprintf	;wreg free
+   635                           ;eeprom.c: 137: xprint(2,0,0,bufb);
+   636  000DC4  0E02               	movlw	2
+   637  000DC6  0100               	movlb	__Lparam shr (0+8)
+   638  000DC8  6F35               	movwf	?_xprint^(__Lparam& (0+65280))
+   639  000DCA  6B36               	clrf	(?_xprint+1)^(__Lparam& (0+65280))
+   640  000DCC  6B37               	clrf	(?_xprint+2)^(__Lparam& (0+65280))
+   641  000DCE  6B38               	clrf	(?_xprint+3)^(__Lparam& (0+65280))
+   642  000DD0  6B39               	clrf	(?_xprint+4)^(__Lparam& (0+65280))
+   643  000DD2  0E94               	movlw	low _bufb
+   644  000DD4  6F3A               	movwf	(?_xprint+5)^(__Lparam& (0+65280))
+   645  000DD6  0E0E               	movlw	high _bufb
+   646  000DD8  6F3B               	movwf	(?_xprint+6)^(__Lparam& (0+65280))
+   647  000DDA  EC64  F049         	call	_xprint	;wreg free
+   648                           ;eeprom.c: 138: memset(bufb,'\0',sizeof(bufb));
+   649  000DDE  0100               	movlb	__Lparam shr (0+8)
+   650  000DE0  0E94               	movlw	low _bufb
+   651  000DE2  6F35               	movwf	?_memset^(__Lparam& (0+65280))
+   652  000DE4  0E0E               	movlw	high _bufb
+   653  000DE6  6F36               	movwf	(?_memset+1)^(__Lparam& (0+65280))
+   654  000DE8  6B37               	clrf	(?_memset+2)^(__Lparam& (0+65280))
+   655  000DEA  6B38               	clrf	(?_memset+3)^(__Lparam& (0+65280))
+   656  000DEC  0E64               	movlw	100
+   657  000DEE  6F39               	movwf	(?_memset+4)^(__Lparam& (0+65280))
+   658  000DF0  6B3A               	clrf	(?_memset+5)^(__Lparam& (0+65280))
+   659  000DF2  EC9A  F051         	call	_memset	;wreg free
+   660                           ;eeprom.c: 139: sprintf( bufb,"e_addr:%4d  ",ead
+      +                          dr);
+   661  000DF6  0100               	movlb	__Lparam shr (0+8)
+   662  000DF8  0E94               	movlw	low _bufb
+   663  000DFA  6F37               	movwf	(?_sprintf+2)^(__Lparam& (0+65280))
+   664  000DFC  0E0E               	movlw	high _bufb
+   665  000DFE  6F38               	movwf	(?_sprintf+3)^(__Lparam& (0+65280))
+   666  000E00  0E22               	movlw	low u39
+   667  000E02  6F39               	movwf	(?_sprintf+4)^(__Lparam& (0+65280))
+   668  000E04  0E0F               	movlw	high u39
+   669  000E06  6F3A               	movwf	(?_sprintf+5)^(__Lparam& (0+65280))
+   670  000E08  C012  F029         	movff	_eaddr,?a_testeeprom
+   671  000E0C  C013  F02A         	movff	_eaddr+1,?a_testeeprom+1
+   672  000E10  0E29               	movlw	low ?a_testeeprom
+   673  000E12  CFE8 F035          	movff	wreg,?_sprintf
+   674  000E16  0E00               	movlw	high ?a_testeeprom
+   675  000E18  CFE8 F036          	movff	wreg,?_sprintf+1
+   676  000E1C  ECA6  F04A         	call	_sprintf	;wreg free
+   677                           ;eeprom.c: 140: xprint(4,0,0,bufb);
+   678  000E20  0E04               	movlw	4
+   679  000E22  0100               	movlb	__Lparam shr (0+8)
+   680  000E24  6F35               	movwf	?_xprint^(__Lparam& (0+65280))
+   681  000E26  6B36               	clrf	(?_xprint+1)^(__Lparam& (0+65280))
+   682  000E28  6B37               	clrf	(?_xprint+2)^(__Lparam& (0+65280))
+   683  000E2A  6B38               	clrf	(?_xprint+3)^(__Lparam& (0+65280))
+   684  000E2C  6B39               	clrf	(?_xprint+4)^(__Lparam& (0+65280))
+   685  000E2E  0E94               	movlw	low _bufb
+   686  000E30  6F3A               	movwf	(?_xprint+5)^(__Lparam& (0+65280))
+   687  000E32  0E0E               	movlw	high _bufb
+   688  000E34  6F3B               	movwf	(?_xprint+6)^(__Lparam& (0+65280))
+   689  000E36  EF64  F049         	goto	_xprint	;wreg free
+   690                           
+   691                           	psect	bigdata
+   692                           ;eeprom.c: 94: unsigned int eaddr=0;
+   693                           ;eeprom.c: 95: unsigned char edata=0;
+   694                           ;eeprom.c: 96: unsigned int eread;
+   695                           ;eeprom.c: 97: unsigned int coo;
+   696                           ;eeprom.c: 98: unsigned char testf = 1;
+   697  000E7D                     _testf:
+   698  000E7D                     	ds	1
+   699                           
+   700                           	psect	ibigdata
+   701  000007  01                 	db	1
+   702                           
+   703                           	psect	const
+   704  000F22                     u39:
+   705  000F22                     u19:
+   706  000F22  65                 	db	101	;'e'
+   707  000F23  5F                 	db	95	;'_'
+   708  000F24  61                 	db	97	;'a'
+   709  000F25  64                 	db	100	;'d'
+   710  000F26  64                 	db	100	;'d'
+   711  000F27  72                 	db	114	;'r'
+   712  000F28  3A                 	db	58	;':'
+   713  000F29  25                 	db	37
+   714  000F2A  34                 	db	52	;'4'
+   715  000F2B  64                 	db	100	;'d'
+   716  000F2C  20                 	db	32
+   717  000F2D  20                 	db	32
+   718  000F2E  00                 	db	0
+   719  000F2F                     u29:
+   720  000F2F  65                 	db	101	;'e'
+   721  000F30  5F                 	db	95	;'_'
+   722  000F31  64                 	db	100	;'d'
+   723  000F32  61                 	db	97	;'a'
+   724  000F33  74                 	db	116	;'t'
+   725  000F34  61                 	db	97	;'a'
+   726  000F35  3A                 	db	58	;':'
+   727  000F36  25                 	db	37
+   728  000F37  34                 	db	52	;'4'
+   729  000F38  64                 	db	100	;'d'
+   730  000F39  20                 	db	32
+   731  000F3A  20                 	db	32
+   732  000F3B  00                 	db	0
+   733  000000                     
+   734  000000                     
+   735  000000                     
+   736  000000                     
+   737  000000                     
+   738  000000                     
+   739  000000                     
+   740  000000                     
+   741  000000                     
+   742  000000                     
+   743  000000                     
+   744  000000                     
+   745  000000                     
+   746  000000                     
+   747  000000                     
+   748  000000                     
+   749  000000                     
+   750  000000                     
+   751  000000                     
+   752  000000                     
+   753  000000                     
+   754  000000                     
+   755  000000                     
+   756  000000                     
+   757  000000                     
+   758  000000                     
+   759  000000                     
+   760  000000                     
+   761  000000                     
+   762  000000                     
+   763  000000                     
+   764  000000                     
+   765  000000                     
+   766  000000                     
+   767  000000                     
+   768  000000                     
+   769  000000                     
+   770  000000                     
+   771  000000                     
+   772  000000                     
+   773  000000                     
+   774  000000                     
+   775  000000                     
+   776  000000                     
+   777  000000                     
+   778  000000                     
+   779  000000                     
+   780  000000                     
+   781  000000                     
+   782  000000                     
+   783  000000                     
+   784  000000                     
+   785  000000                     
+   786  000000                     
+   787  000000                     
+   788  000000                     
+   789  000000                     
+   790  000000                     
+   791  000000                     
+   792  000000                     
+   793  000000                     
+   794  000000                     
+   795  000000                     
+   796  000000                     
+   797  000000                     
+   798  000000                     
+   799  000000                     
+   800  000000                     
+   801  000000                     
+   802  000000                     
+   803  000000                     
+   804  000000                     
+   805  000000                     
+   806  000000                     
+   807  000000                     
+   808  000000                     
+   809  000000                     
+   810  000000                     
+   811  000000                     
+   812  000000                     
+   813  000000                     
+   814  000000                     
+   815  000000                     
+   816  000000                     
+   817  000000                     
+   818  000000                     
+   819  000000                     
+   820  000000                     
+   821  000000                     
+   822  000000                     
+   823  000000                     
+   824  000000                     
+   825  000000                     
+   826  000000                     
+   827  000000                     
+   828  000000                     
+   829  000000                     
+   830  000000                     
+   831  000000                     
+   832  000000                     
+   833  000000                     
+   834  000000                     
+   835  000000                     
+   836  000000                     
+   837  000000                     
+   838  000000                     
+   839  000000                     
+   840  000000                     
+   841  000000                     
+   842  000000                     
+   843  000000                     
+   844  000000                     
+   845  000000                     
+   846  000000                     
+   847  000000                     
+   848  000000                     
+   849  000000                     
+   850  000000                     
+   851  000000                     
+   852  000000                     
+   853  000000                     
+   854  000000                     
+   855  000000                     
+   856  000000                     
+   857  000000                     
+   858  000000                     
+   859  000000                     
+   860  000000                     
+   861  000000                     
+   862  000000                     
+   863  000000                     
+   864  000000                     
+   865  000000                     
+   866  000000                     
+   867  000000                     
+   868  000000                     
+   869  000000                     
+   870  000000                     
+   871  000000                     
+   872  000000                     
+   873  000000                     
+   874  000000                     
+   875  000000                     
+   876  000000                     
+   877  000000                     
+   878  000000                     
+   879  000000                     
+   880  000000                     
+   881  000000                     
+   882  000000                     
+   883  000000                     
+   884  000000                     
+   885  000000                     
+   886  000000                     
+   887  000000                     
+   888  000000                     
+   889  000000                     
+   890  000000                     
+   891  000000                     
+   892  000000                     
+   893  000000                     
+   894  000000                     
+   895  000000                     
+   896  000000                     
+   897  000000                     
+   898  000000                     
+   899  000000                     
+   900  000000                     
+   901  000000                     
+   902  000000                     
+   903  000000                     
+   904  000000                     
+   905  000000                     
+   906  000000                     
+   907  000000                     
+   908  000000                     
+   909  000000                     
+   910  000000                     
+   911  000000                     
+   912  000000                     
+   913  000000                     
+   914  000000                     
+   915  000000                     
+   916  000000                     
+   917  000000                     
+   918  000000                     
+   919  000000                     
+   920  000000                     
+   921  000000                     
+   922  000000                     
+   923  000000                     
+   924  000000                     
+   925  000000                     
+   926  000000                     
+   927  000000                     
+   928  000000                     
+   929  000000                     
+   930  000000                     
+   931  000000                     
+   932  000000                     
+   933  000000                     
+   934  000000                     
+   935  000000                     
+   936  000000                     
+   937  000000                     
+   938  000000                     
+   939  000000                     
+   940  000000                     
+   941  000000                     
+   942  000000                     
+   943  000000                     
+   944  000000                     
+   945  000000                     
+   946  000000                     
+   947  000000                     
+   948  000000                     
+   949  000000                     
+   950  000000                     
+   951  000000                     
+   952  000000                     
+   953  000000                     
+   954  000000                     
+   955  000000                     
+   956  000000                     
+   957  000000                     
+   958  000000                     
+   959  000000                     
+   960  000000                     
+   961  000000                     
+   962  000000                     
+   963  000000                     
+   964  000000                     
+   965  000000                     
+   966  000000                     
+   967  000000                     
+   968  000000                     
+   969  000000                     
+   970  000000                     
+   971  000000                     
+   972  000000                     
+   973  000000                     
+   974  000000                     
+   975  000000                     
+   976  000000                     
+   977  000000                     
+   978  000000                     
+   979  000000                     
+   980  000000                     
+   981  000000                     
+   982  000000                     
+   983  000000                     
+   984  000000                     
+   985  000000                     
+   986  000000                     
+   987  000000                     
+   988  000000                     
+   989  000000                     
+   990  000000                     
+   991  000000                     
+   992  000000                     
+   993  000000                     
+   994  000000                     
+   995  000000                     
+   996  000000                     
+   997  000000                     
+   998  000000                     
+   999  000000                     
+  1000  000000                     
+  1001  000000                     
+  1002  000000                     
+  1003  000000                     
+  1004  000000                     
+  1005  000000                     
+  1006  000000                     
+  1007  000000                     
+  1008  000000                     
+  1009  000000                     
+  1010  000000                     
+  1011  000000                     
+  1012  000000                     
+  1013  000000                     
+  1014  000000                     
+  1015  000000                     
+  1016  000000                     
+  1017  000000                     
+  1018  000000                     
+  1019  000000                     
+  1020  000000                     
+  1021  000000                     
+  1022  000000                     
+  1023  000000                     
+  1024  000000                     
+  1025  000000                     
+  1026  000000                     
+  1027  000000                     
+  1028  000000                     
+  1029  000000                     
+  1030  000000                     
+  1031  000000                     
+  1032  000000                     
+  1033  000000                     
+  1034  000000                     
+  1035  000000                     
+  1036  000000                     
+  1037  000000                     
+  1038  000000                     
+  1039  000000                     
+  1040  000000                     
+  1041  000000                     
+  1042  000000                     
+  1043  000000                     
+  1044  000000                     
+  1045  000000                     
+  1046  000000                     
+  1047  000000                     
+  1048  000000                     
+  1049  000000                     
+  1050  000000                     
+  1051  000000                     
+  1052  000000                     
+  1053  000000                     
+  1054  000000                     
+  1055  000000                     
+  1056  000000                     
+  1057  000000                     
+  1058  000000                     
+  1059  000000                     
+  1060  000000                     
+  1061  000000                     
+  1062  000000                     
+  1063  000000                     
+  1064  000000                     
+  1065  000000                     
+  1066  000000                     
+  1067  000000                     
+  1068  000000                     
+  1069  000000                     
+  1070  000000                     
+  1071  000000                     
+  1072  000000                     
+  1073  000000                     
+  1074  000000                     
+  1075  000000                     
+  1076  000000                     
+  1077  000000                     
+  1078  000000                     
+  1079  000000                     
+  1080  000000                     
+  1081  000000                     
+  1082  000000                     
+  1083  000000                     
+  1084  000000                     
+  1085  000000                     
+  1086  000000                     
+  1087  000000                     
+  1088  000000                     
+  1089  000000                     
+  1090  000000                     
+  1091  000000                     
+  1092  000000                     
+  1093  000000                     
+  1094  000000                     
+  1095  000000                     
+  1096  000000                     
+  1097  000000                     
+  1098  000000                     
+  1099  000000                     
+  1100  000000                     
+  1101  000000                     
+  1102  000000                     
+  1103  000000                     
+  1104  000000                     
+  1105  000000                     
+  1106  000000                     
+  1107  000000                     
+  1108  000000                     
+  1109  000000                     
+  1110  000000                     
+  1111  000000                     
+  1112  000000                     
+  1113  000000                     
+  1114  000000                     
+  1115  000000                     
+  1116  000000                     
+  1117  000000                     
+  1118  000000                     
+  1119  000000                     
+  1120  000000                     
+  1121  000000                     
+  1122  000000                     
+  1123  000000                     
+  1124  000000                     
+  1125  000000                     
+  1126  000000                     
+  1127  000000                     
+  1128  000000                     
+  1129  000000                     
+  1130  000000                     
+  1131  000000                     
+  1132  000000                     
+  1133  000000                     
+  1134  000000                     
+  1135  000000                     
+  1136  000000                     
+  1137  000000                     
+  1138  000000                     
+  1139  000000                     
+  1140  000000                     
+  1141  000000                     
+  1142  000000                     
+  1143  000000                     
+  1144  000000                     
+  1145  000000                     
+  1146  000000                     
+  1147  000000                     
+  1148  000000                     
+  1149  000000                     
+  1150  000000                     
+  1151  000000                     
+  1152  000000                     
+  1153  000000                     
+  1154  000000                     
+  1155  000000                     
+  1156  000000                     
+  1157  000000                     
+  1158  000000                     
+  1159  000000                     
+  1160  000000                     
+  1161  000000                     
+  1162  000000                     
+  1163  000000                     
+  1164  000000                     
+  1165  000000                     
+  1166  000000                     
+  1167  000000                     
+  1168  000000                     
+  1169  000000                     
+  1170  000000                     
+  1171  000000                     
+  1172  000000                     
+  1173  000000                     
+  1174  000000                     
+  1175  000000                     
+  1176  000000                     
+  1177  000000                     
+  1178  000000                     
+  1179  000000                     
+  1180  000000                     
+  1181  000000                     
+  1182  000000                     
+  1183  000000                     
+  1184  000000                     
+  1185  000000                     
+  1186  000000                     
+  1187  000000                     
+  1188  000000                     
+  1189  000000                     
+  1190  000000                     
+  1191  000000                     
+  1192  000000                     
+  1193  000000                     
+  1194  000000                     
+  1195  000000                     
+  1196  000000                     
+  1197  000000                     
+  1198  000000                     
+  1199  000000                     
+  1200  000000                     
+  1201  000000                     
+  1202  000000                     
+  1203  000000                     
+  1204  000000                     
+  1205  000000                     
+  1206  000000                     
+  1207  000000                     
+  1208  000000                     
+  1209  000000                     
+  1210  000000                     
+  1211  000000                     
+  1212  000000                     
+  1213  000000                     
+  1214  000000                     
+  1215  000000                     
+  1216  000000                     
+  1217  000000                     
+  1218  000000                     
+  1219  000000                     
+  1220  000000                     
+  1221  000000                     
+  1222  000000                     
+  1223  000000                     
+  1224  000000                     
+  1225  000000                     
+  1226  000000                     
+  1227  000000                     
+  1228  000000                     
+  1229  000000                     
+  1230  000000                     
+  1231  000000                     
+  1232  000000                     
+  1233  000000                     
+  1234  000000                     
+  1235  000000                     
+  1236  000000                     
+  1237  000000                     
+  1238  000000                     
+  1239  000000                     
+  1240  000000                     
+  1241  000000                     
+  1242  000000                     
+  1243  000000                     
+  1244  000000                     
+  1245  000000                     
+  1246  000000                     
+  1247  000000                     
+  1248  000000                     
+  1249  000000                     
+  1250  000000                     
+  1251  000000                     
+  1252  000000                     
+  1253  000000                     
+  1254  000000                     
+  1255  000000                     
+  1256  000000                     
+  1257  000000                     
+  1258  000000                     
+  1259  000000                     
+  1260  000000                     
+  1261  000000                     
+  1262  000000                     
+  1263  000000                     
+  1264  000000                     
+  1265  000000                     
+  1266  000000                     
+  1267  000000                     
+  1268  000000                     
+  1269  000000                     
+  1270  000000                     
+  1271  000000                     
+  1272  000000                     
+  1273  000000                     
+  1274  000000                     
+  1275  000000                     
+  1276  000000                     
+  1277  000000                     
+  1278  000000                     
+  1279  000000                     
+  1280  000000                     
+  1281  000000                     
+  1282  000000                     
+  1283  000000                     
+  1284  000000                     
+  1285  000000                     
+  1286  000000                     
+  1287  000000                     
+  1288  000000                     
+  1289  000000                     
+  1290  000000                     
+  1291  000000                     
+  1292  000000                     
+  1293  000000                     
+  1294  000000                     
+  1295  000000                     
+  1296  000000                     
+  1297  000000                     
+  1298  000000                     
+  1299  000000                     
+  1300  000000                     
+  1301  000000                     
+  1302  000000                     
+  1303  000000                     
+  1304  000000                     
+  1305  000000                     
+  1306  000000                     
+  1307  000000                     
+  1308  000000                     
+  1309  000000                     
+  1310  000000                     
+  1311  000000                     
+  1312  000000                     
+  1313  000000                     
+  1314  000000                     
+  1315  000000                     
+  1316  000000                     
+  1317  000000                     
+  1318  000000                     
+  1319  000000                     
+  1320  000000                     
+  1321  000000                     
+  1322  000000                     
+  1323  000000                     
+  1324  000000                     
+  1325  000000                     
+  1326  000000                     
+  1327  000000                     
+  1328  000000                     
+  1329  000000                     
+  1330  000000                     
+  1331  000000                     
+  1332  000000                     
+  1333  000000                     
+  1334  000000                     
+  1335  000000                     
+  1336  000000                     
+  1337  000000                     
+  1338  000000                     
+  1339  000000                     
+  1340  000000                     
+  1341  000000                     
+  1342  000000                     
+  1343  000000                     
+  1344  000000                     
+  1345  000000                     
+  1346  000000                     
+  1347  000000                     
+  1348  000000                     
+  1349  000000                     
+  1350  000000                     
+  1351  000000                     
+  1352  000000                     
+  1353  000000                     
+  1354  000000                     
+  1355  000000                     
+  1356  000000                     
+  1357  000000                     
+  1358  000000                     
+  1359  000000                     
+  1360  000000                     
+  1361  000000                     
+  1362  000000                     
+  1363  000000                     
+  1364  000000                     
+  1365  000000                     
+  1366  000000                     
+  1367  000000                     
+  1368  000000                     
+  1369  000000                     
+  1370  000000                     
+  1371  000000                     
+  1372  000000                     
+  1373  000000                     
+  1374  000000                     
+  1375  000000                     
+  1376  000000                     
+  1377  000000                     
+  1378  000000                     
+  1379  000000                     
+  1380  000000                     
+  1381  000000                     
+  1382  000000                     
+  1383  000000                     
+  1384  000000                     
+  1385  000000                     
+  1386  000000                     
+  1387  000000                     
+  1388  000000                     
+  1389  000000                     
+  1390  000000                     
+  1391  000000                     
+  1392  000000                     
+  1393  000000                     
+  1394  000000                     
+  1395  000000                     
+  1396  000000                     
+  1397  000000                     
+  1398  000000                     
+  1399  000000                     
+  1400  000000                     
+  1401  000000                     
+  1402  000000                     
+  1403  000000                     
+  1404  000000                     
+  1405  000000                     
+  1406  000000                     
+  1407  000000                     
+  1408  000000                     
+  1409  000000                     
+  1410  000000                     
+  1411  000000                     
+  1412  000000                     
+  1413  000000                     
+  1414  000000                     
+  1415  000000                     
+  1416  000000                     
+  1417  000000                     
+  1418  000000                     
+  1419  000000                     
+  1420  000000                     
+  1421  000000                     
+  1422  000000                     
+  1423  000000                     
+  1424  000000                     
+  1425  000000                     
+  1426  000000                     
+  1427  000000                     
+  1428  000000                     
+  1429  000000                     
+  1430  000000                     
+  1431  000000                     
+  1432  000000                     
+  1433  000000                     
+  1434  000000                     
+  1435  000000                     
+  1436  000000                     
+  1437  000000                     
+  1438  000000                     
+  1439  000000                     
+  1440  000000                     
+  1441  000000                     
+  1442  000000                     
+  1443  000000                     
+  1444  000000                     
+  1445  000000                     
+  1446  000000                     
+  1447  000000                     
+  1448                           
+  1449                           	psect	bigbss
+  1450  000E92                     _edata:
+  1451  000E92                     	ds	1
+  1452  000000                     
+  1453  000000                     
+  1454  000000                     
+  1455  000000                     
+  1456  000000                     
+  1457  000000                     
+  1458  000000                     
+  1459  000000                     
+  1460  000000                     
+  1461  000000                     
+  1462                           
+  1463                           	psect	bss
+  1464  000010                     _coo:
+  1465  000010                     	ds	2
+  1466  000010                     _eaddr:
+  1467  000010                     	ds	2
+  1468  000010                     _eread:
+  1469  000010                     	ds	2
+  1470                           
+  1471                           	psect	temp
+  1472  000000                     btemp:
+  1473  000000                     	ds	6
+  1474                           prodh	equ	0xFF4
+  1475                           prodl	equ	0xFF3
+  1476                           intcon	equ	0xFF2
+  1477                           postinc0	equ	0xFEE
+  1478                           postdec0	equ	0xFED
+  1479                           wreg	equ	0xFE8
+  1480                           fsr2l	equ	0xFD9
+  1481                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Thu Jan  2 10:12:16 2014
+
+              _record_a_err 0A2A                          l21 0BD4  
+                        l13 0A06                          l30 0CE0  
+                        l23 0BFE                          l32 0D84  
+                        l26 0CB6                          l18 0B60  
+                        l27 0CB0                          l19 0B8C  
+                        l29 0D4C                          u19 0F22  
+                        u29 0F2F                          u39 0F22  
+                       _coo 0010                         _rtc 0197  
+                       _sys 0112                         wreg 000FE8  
+                      f7373 002B                        _bufb 0E94  
+                _testeeprom 0C84                        fsr2l 000FD9  
+                      btemp 0000                        prodl 000FF3  
+                      lwmul A3DE                    clear_big 0018  
+                  clear_bss 0024                     ?_memset 0035  
+      _write_data_to_eeprom 09E4       ?_write_data_to_eeprom 002B  
+                   ?_xprint 0035                  used_btemp0 0001  
+                used_btemp1 0001                  used_btemp2 0001  
+                used_btemp3 0001                  used_btemp4 0001  
+                used_btemp5 0001                       _eaddr 0012  
+                     _edata 0E92                       _eread 0014  
+                     _testf 0E7D                       status 000FD8  
+                   __Lparam 0029       _read_data_from_eeprom 0A14  
+                   __ramtop 0F00      ?_read_data_from_eeprom 002F  
+                   _sprintf 954C                    ?_sprintf 0035  
+                   copy_big 0030                ?a_testeeprom 0029  
+                   postdec0 000FED                     postinc0 000FEE  
+                    _memset A334                      _xprint 92C8  
+                _read_a_err 0B9A  

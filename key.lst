@@ -1,0 +1,318 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-88888                           Thu Jan  2 10:12:16 2014
+
+Licensed to: ONE TWO
+     1                           	processor	18F6622
+     2                           	opt	pw 80
+     3                           	psect	__Z88888RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	bss,global,class=RAM,space=1,delta=1
+     6                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     7  000000                     
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96                           
+    97                           	psect	__Z88888RS_
+    98  000004                     
+    99  000004                     
+   100                           
+   101                           	psect	text
+   102  00A084                     _key_pin_init:
+   103  000000                     
+   104                           ;key.c: 11: TRISB4 = 1;
+   105  00A084  8893               	bsf	3987,4,c	;volatile
+   106                           ;key.c: 12: TRISB5 = 1;
+   107  00A086  8A93               	bsf	3987,5,c	;volatile
+   108                           ;key.c: 13: TRISB6 = 1;
+   109  00A088  8C93               	bsf	3987,6,c	;volatile
+   110                           ;key.c: 14: TRISB7 = 1;
+   111  00A08A  8E93               	bsf	3987,7,c	;volatile
+   112                           ;key.c: 15: key.count=0;
+   113  00A08C  0101               	movlb	(_key+4) shr (0+8)
+   114  00A08E  6BA7               	clrf	(_key+4)& (0+255),b
+   115                           ;key.c: 16: key.num = 0;
+   116  00A090  6BA3               	clrf	_key& (0+255),b
+   117                           ;key.c: 17: key.num_n = 0;
+   118  00A092  6BA5               	clrf	(_key+2)& (0+255),b
+   119                           ;key.c: 18: key.num_p = 0;
+   120  00A094  6BA4               	clrf	(_key+1)& (0+255),b
+   121                           ;key.c: 19: key.state = 0;
+   122  00A096  6BA6               	clrf	(_key+3)& (0+255),b
+   123                           ;key.c: 21: }
+   124  00A098  0012               	return	
+   125  00A09A                     _key_scan:
+   126  000000                     
+   127                           ;key.c: 26: unsigned char temp = 0;
+   128  00A09A  6AD9               	clrf	fsr2l,c
+   129                           ;key.c: 28: if(RB4 == 0)temp = 2;
+   130  00A09C  B881               	btfsc	3969,4,c	;volatile
+   131  00A09E  D002               	goto	l8
+   132  00A0A0  0E02               	movlw	2
+   133  00A0A2  D00B               	goto	L3
+   134                           ;key.c: 29: else if(RB5 == 0)temp = 1;
+   135  00A0A4                     l8:
+   136  00A0A4  BA81               	btfsc	3969,5,c	;volatile
+   137  00A0A6  D002               	goto	l10
+   138  00A0A8  0E01               	movlw	1
+   139  00A0AA  D007               	goto	L3
+   140                           ;key.c: 30: else if(RB6 == 0)temp = 3;
+   141  00A0AC                     l10:
+   142  00A0AC  BC81               	btfsc	3969,6,c	;volatile
+   143  00A0AE  D002               	goto	l12
+   144  00A0B0  0E03               	movlw	3
+   145  00A0B2  D003               	goto	L3
+   146                           ;key.c: 31: else if(RB7 == 0)temp = 4;
+   147  00A0B4                     l12:
+   148  00A0B4  BE81               	btfsc	3969,7,c	;volatile
+   149  00A0B6  D003               	goto	l14
+   150  00A0B8  0E04               	movlw	4
+   151  00A0BA                     L3:
+   152  00A0BA  6ED9               	movwf	fsr2l,c
+   153                           ;key.c: 32: else temp = 0;
+   154  00A0BC  D030               	goto	l17
+   155  00A0BE                     l14:
+   156  00A0BE  6AD9               	clrf	fsr2l,c
+   157                           ;key.c: 37: switch(key.state)
+   158  00A0C0  D02E               	goto	l17
+   159  00A0C2                     l18:
+   160                           ;key.c: 38: {
+   161                           ;key.c: 40: if(temp!=0)
+   162  00A0C2  50D9               	movf	fsr2l,w,c
+   163  00A0C4  B4D8               	btfsc	status,2,c
+   164  00A0C6  0012               	return	
+   165                           ;key.c: 41: {
+   166  00A0C8  CFD9 F1A4          	movff	fsr2l,_key+1
+   167                           ;key.c: 43: key.state =1;
+   168  00A0CC  0E01               	movlw	1
+   169  00A0CE  CFE8 F1A6          	movff	wreg,_key+3
+   170                           ;key.c: 44: }
+   171  00A0D2  0012               	return	
+   172  00A0D4                     l20:
+   173                           ;key.c: 47: case 1:
+   174                           ;key.c: 49: key.num_n= temp;
+   175  00A0D4  CFD9 F1A5          	movff	fsr2l,_key+2
+   176                           ;key.c: 51: if(key.num_n!= key.num_p)
+   177  00A0D8  C1A5  FFE8         	movff	_key+2,wreg
+   178  00A0DC  0101               	movlb	(_key+1) shr (0+8)
+   179  00A0DE  19A4               	xorwf	(_key+1)& (0+255),w,b
+   180  00A0E0  B4D8               	btfsc	status,2,c
+   181  00A0E2  D005               	goto	l21
+   182                           ;key.c: 52: {
+   183  00A0E4  6BA7               	clrf	(_key+4)& (0+255),b
+   184                           ;key.c: 54: key.state =0;
+   185  00A0E6  6BA6               	clrf	(_key+3)& (0+255),b
+   186                           ;key.c: 55: key.num_n= 0;
+   187  00A0E8  6BA5               	clrf	(_key+2)& (0+255),b
+   188                           ;key.c: 56: key.num_p= 0;
+   189  00A0EA  6BA4               	clrf	(_key+1)& (0+255),b
+   190                           ;key.c: 57: }
+   191  00A0EC  0012               	return	
+   192  00A0EE                     l21:
+   193                           ;key.c: 59: {
+   194  00A0EE  0101               	movlb	(_key+4) shr (0+8)
+   195  00A0F0  2BA7               	incf	(_key+4)& (0+255),f,b
+   196                           ;key.c: 61: if(key.count >= 3)
+   197  00A0F2  0E02               	movlw	2
+   198  00A0F4  65A7               	cpfsgt	(_key+4)& (0+255),b
+   199  00A0F6  0012               	return	
+   200                           ;key.c: 62: {
+   201  00A0F8  6BA7               	clrf	(_key+4)& (0+255),b
+   202                           ;key.c: 64: key.state = 2;
+   203  00A0FA  0E02               	movlw	2
+   204  00A0FC  CFE8 F1A6          	movff	wreg,_key+3
+   205                           ;key.c: 65: key.num = key.num_n;
+   206  00A100  C1A5  F1A3         	movff	_key+2,_key
+   207                           ;key.c: 66: key.flag = 1;
+   208  00A104  0E01               	movlw	1
+   209  00A106  CFE8 F1A8          	movff	wreg,_key+5
+   210                           ;key.c: 67: }
+   211                           ;key.c: 69: break;
+   212  00A10A  0012               	return	
+   213  00A10C                     l24:
+   214                           ;key.c: 71: case 2:
+   215                           ;key.c: 73: if(temp == 0)
+   216  00A10C  50D9               	movf	fsr2l,w,c
+   217  00A10E  A4D8               	btfss	status,2,c
+   218  00A110  0012               	return	
+   219                           ;key.c: 74: {
+   220  00A112  0101               	movlb	(_key+4) shr (0+8)
+   221  00A114  6BA7               	clrf	(_key+4)& (0+255),b
+   222                           ;key.c: 76: key.num_n = 0;
+   223  00A116  6BA5               	clrf	(_key+2)& (0+255),b
+   224                           ;key.c: 77: key.num_p = 0;
+   225  00A118  6BA4               	clrf	(_key+1)& (0+255),b
+   226                           ;key.c: 78: key.state = 0;
+   227  00A11A  6BA6               	clrf	(_key+3)& (0+255),b
+   228                           ;key.c: 79: }
+   229                           ;key.c: 82: default:break;
+   230  00A11C  0012               	return	
+   231  00A11E                     l17:
+   232  00A11E  C1A6  FFE8         	movff	_key+3,wreg
+   233  00A122  0A00               	xorlw	0
+   234  00A124  E0CE               	bz	l18
+   235  00A126  0A01               	xorlw	1
+   236  00A128  E0D5               	bz	l20
+   237  00A12A  0A03               	xorlw	3
+   238  00A12C  E0EF               	bz	l24
+   239  00A12E  0012               	return	
+   240                           ;key.c: 86: }
+   241                           ;key.c: 88: void set_mode_pin_init(void)
+   242                           ;key.c: 89: {
+   243  00A130                     _set_mode_pin_init:
+   244  000000                     
+   245                           ;key.c: 90: TRISD0=1;
+   246  00A130  8095               	bsf	3989,0,c	;volatile
+   247                           ;key.c: 91: TRISF0=1;
+   248  00A132  8097               	bsf	3991,0,c	;volatile
+   249                           ;key.c: 92: TRISC1=1;
+   250  00A134  8294               	bsf	3988,1,c	;volatile
+   251                           ;key.c: 93: }
+   252  00A136  0012               	return	
+   253                           ;key.c: 95: void set_mode(void)
+   254                           ;key.c: 96: {
+   255  00A138                     _set_mode:
+   256  000000                     
+   257  00A138  0101               	movlb	(_sys+56) shr (0+8)
+   258                           ;key.c: 97: if(RD0 == 0){sys.set_mode |= 0x01;}
+   259  00A13A  B083               	btfsc	3971,0,c	;volatile
+   260  00A13C  D002               	goto	L4
+   261  00A13E  814A               	bsf	(_sys+56)& (0+255),0,b
+   262                           ;key.c: 98: else{sys.set_mode &= 0xfe;}
+   263  00A140  D001               	goto	l30
+   264  00A142                     L4:
+   265  00A142  914A               	bcf	(_sys+56)& (0+255),0,b
+   266  00A144                     l30:
+   267  00A144  0101               	movlb	(_sys+56) shr (0+8)
+   268                           ;key.c: 100: if(RF0 == 0){sys.set_mode |= 0x02;}
+   269  00A146  B085               	btfsc	3973,0,c	;volatile
+   270  00A148  D002               	goto	L5
+   271  00A14A  834A               	bsf	(_sys+56)& (0+255),1,b
+   272                           ;key.c: 101: else{sys.set_mode &= 0xfd;}
+   273  00A14C  D001               	goto	l32
+   274  00A14E                     L5:
+   275  00A14E  934A               	bcf	(_sys+56)& (0+255),1,b
+   276  00A150                     l32:
+   277  00A150  0101               	movlb	(_sys+56) shr (0+8)
+   278                           ;key.c: 103: if(RC1 == 0){sys.set_mode |= 0x04;}
+   279  00A152  B282               	btfsc	3970,1,c	;volatile
+   280  00A154  D002               	goto	L6
+   281  00A156  854A               	bsf	(_sys+56)& (0+255),2,b
+   282                           ;key.c: 104: else{sys.set_mode &= 0xfb;}
+   283  00A158  0012               	return	
+   284  00A15A                     L6:
+   285  00A15A  954A               	bcf	(_sys+56)& (0+255),2,b
+   286                           ;key.c: 105: }
+   287  00A15C  0012               	return	
+   288                           
+   289                           	psect	bss
+   290  0001A3                     _key:
+   291  0001A3                     	ds	6
+   292                           wreg	equ	0xFE8
+   293                           fsr2l	equ	0xFD9
+   294                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Thu Jan  2 10:12:16 2014
+
+                  l8 A0A4                   l10 A0AC  
+                 l20 A0D4                   l12 A0B4  
+                 l21 A0EE                   l30 A144  
+                 l14 A0BE                   l32 A150  
+                 l24 A10C                   l17 A11E  
+                 l18 A0C2                  _key 01A3  
+                _sys 0112                  wreg 000FE8  
+               fsr2l 000FD9             _key_scan A09A  
+           clear_bss 0024             _set_mode A138  
+  _set_mode_pin_init A130                status 000FD8  
+            __Lparam 0029              __ramtop 0F00  
+       _key_pin_init A084  

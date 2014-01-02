@@ -1,0 +1,12 @@
+[p GLOBOPT AUTOSTATIC LARGE_MODEL SMALL_DATA LFSROK FAST_INTS ]
+"4 D:\pic18f6621modify\ziku.c
+[v _ascii_8_16 `Cuc  0a e 0 0 ]
+"99
+[v _ascii_8_16 `Cuc  1520a e 1520 0 ]
+"102
+[v F5 `Cuc  34a t 34 ]
+[v _ziku `CF5  60a e 2040 0 ]
+"273
+[v _fxdz `Cuc  0a e 0 0 ]
+"337
+[v _fxdz `Cuc  1024a e 1024 0 ]

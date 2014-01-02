@@ -1,0 +1,561 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-88888                           Thu Jan  2 10:12:16 2014
+
+Licensed to: ONE TWO
+     1                           	processor	18F6622
+     2                           	opt	pw 80
+     3                           	psect	__Z88888RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     6                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+     7                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+     8  000000                     
+     9  000000                     
+    10  000000                     
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97                           
+    98                           	psect	__Z88888RS_
+    99  000004                     
+   100  000004                     
+   101                           
+   102                           	psect	text
+   103  009ED0                     _led_pin_init:
+   104  000000                     
+   105                           ;led.c: 9: TRISF5 = 0;
+   106  009ED0  9A97               	bcf	3991,5,c	;volatile
+   107                           ;led.c: 10: TRISF6 = 0;
+   108  009ED2  9C97               	bcf	3991,6,c	;volatile
+   109                           ;led.c: 11: TRISF7 = 0;
+   110  009ED4  9E97               	bcf	3991,7,c	;volatile
+   111                           ;led.c: 12: TRISB2 = 0;
+   112  009ED6  9493               	bcf	3987,2,c	;volatile
+   113                           ;led.c: 14: TRISA3 = 0;
+   114  009ED8  9692               	bcf	3986,3,c	;volatile
+   115                           ;led.c: 15: TRISA4 = 0;
+   116  009EDA  9892               	bcf	3986,4,c	;volatile
+   117                           ;led.c: 16: TRISA5 = 0;
+   118  009EDC  9A92               	bcf	3986,5,c	;volatile
+   119                           ;led.c: 18: RF5 = 1;
+   120  009EDE  8A85               	bsf	3973,5,c	;volatile
+   121                           ;led.c: 19: RF6 = 1;
+   122  009EE0  8C85               	bsf	3973,6,c	;volatile
+   123                           ;led.c: 20: RF7 = 1;
+   124  009EE2  8E85               	bsf	3973,7,c	;volatile
+   125                           ;led.c: 21: RB2 = 1;
+   126  009EE4  8481               	bsf	3969,2,c	;volatile
+   127                           ;led.c: 23: RA3 = 1;
+   128  009EE6  8680               	bsf	3968,3,c	;volatile
+   129                           ;led.c: 24: RA4 = 1;
+   130  009EE8  8880               	bsf	3968,4,c	;volatile
+   131                           ;led.c: 25: RA5 = 1;
+   132  009EEA  8A80               	bsf	3968,5,c	;volatile
+   133                           ;led.c: 26: }
+   134  009EEC  0012               	return	
+   135  009EEE                     _syswaring:
+   136  000000                     
+   137                           ;led.c: 40: static unsigned char last_err_code;
+   138  009EEE  C161  F000         	movff	_sys+79,btemp
+   139  009EF2  0400               	decf	btemp,w
+   140  009EF4  A4D8               	btfss	status,2,c
+   141  009EF6  D07E               	goto	l7
+   142                           ;led.c: 44: {
+   143  009EF8  0101               	movlb	(_sys+79) shr (0+8)
+   144  009EFA  6B61               	clrf	(_sys+79)& (0+255),b
+   145                           ;led.c: 47: if((ua_err==0)&&(ub_err == 0)&&(uc_e
+      +                          rr==0)&&(ia_err==0)&&(ib_err==0)&&(ic_err==0)){s
+      +                          ys.err_code = 0;}
+   146  009EFC  010E               	movlb	_ua_err shr (0+8)
+   147  009EFE  5387               	movf	_ua_err& (0+255),f,b
+   148  009F00  A4D8               	btfss	status,2,c
+   149  009F02  D017               	goto	l8
+   150  009F04  010E               	movlb	_ub_err shr (0+8)
+   151  009F06  5388               	movf	_ub_err& (0+255),f,b
+   152  009F08  A4D8               	btfss	status,2,c
+   153  009F0A  D013               	goto	l8
+   154  009F0C  010E               	movlb	_uc_err shr (0+8)
+   155  009F0E  5389               	movf	_uc_err& (0+255),f,b
+   156  009F10  A4D8               	btfss	status,2,c
+   157  009F12  D00F               	goto	l8
+   158  009F14  010E               	movlb	_ia_err shr (0+8)
+   159  009F16  5384               	movf	_ia_err& (0+255),f,b
+   160  009F18  A4D8               	btfss	status,2,c
+   161  009F1A  D00B               	goto	l8
+   162  009F1C  010E               	movlb	_ib_err shr (0+8)
+   163  009F1E  5385               	movf	_ib_err& (0+255),f,b
+   164  009F20  A4D8               	btfss	status,2,c
+   165  009F22  D007               	goto	l8
+   166  009F24  010E               	movlb	_ic_err shr (0+8)
+   167  009F26  5386               	movf	_ic_err& (0+255),f,b
+   168  009F28  A4D8               	btfss	status,2,c
+   169  009F2A  D003               	goto	l8
+   170  009F2C  0101               	movlb	(_sys+78) shr (0+8)
+   171  009F2E  6B60               	clrf	(_sys+78)& (0+255),b
+   172                           ;led.c: 48: else if((ua_err==3)||(ub_err == 3)||
+      +                          (uc_err==3)||(ia_err==3)||(ib_err==3)||(ic_err==
+      +                          3)){sys.err_code = 3;}
+   173  009F30  D061               	goto	l7
+   174  009F32                     l8:
+   175  009F32  CE87  FFE8         	movff	_ua_err,wreg
+   176  009F36  0A03               	xorlw	3
+   177  009F38  B4D8               	btfsc	status,2,c
+   178  009F3A  D019               	goto	u230
+   179  009F3C  CE88  FFE8         	movff	_ub_err,wreg
+   180  009F40  0A03               	xorlw	3
+   181  009F42  B4D8               	btfsc	status,2,c
+   182  009F44  D014               	goto	u230
+   183  009F46  CE89  FFE8         	movff	_uc_err,wreg
+   184  009F4A  0A03               	xorlw	3
+   185  009F4C  B4D8               	btfsc	status,2,c
+   186  009F4E  D00F               	goto	u230
+   187  009F50  CE84  FFE8         	movff	_ia_err,wreg
+   188  009F54  0A03               	xorlw	3
+   189  009F56  B4D8               	btfsc	status,2,c
+   190  009F58  D00A               	goto	u230
+   191  009F5A  CE85  FFE8         	movff	_ib_err,wreg
+   192  009F5E  0A03               	xorlw	3
+   193  009F60  B4D8               	btfsc	status,2,c
+   194  009F62  D005               	goto	u230
+   195  009F64  CE86  FFE8         	movff	_ic_err,wreg
+   196  009F68  0A03               	xorlw	3
+   197  009F6A  A4D8               	btfss	status,2,c
+   198  009F6C  D002               	goto	l10
+   199  009F6E                     u230:
+   200  009F6E  0E03               	movlw	3
+   201  009F70  D03F               	goto	L2
+   202                           ;led.c: 49: else if((ua_err==2)||(ub_err == 2)||
+      +                          (uc_err==2)||(ia_err==2)||(ib_err==2)||(ic_err==
+      +                          2)){sys.err_code = 2;}
+   203  009F72                     l10:
+   204  009F72  CE87  FFE8         	movff	_ua_err,wreg
+   205  009F76  0A02               	xorlw	2
+   206  009F78  B4D8               	btfsc	status,2,c
+   207  009F7A  D019               	goto	u340
+   208  009F7C  CE88  FFE8         	movff	_ub_err,wreg
+   209  009F80  0A02               	xorlw	2
+   210  009F82  B4D8               	btfsc	status,2,c
+   211  009F84  D014               	goto	u340
+   212  009F86  CE89  FFE8         	movff	_uc_err,wreg
+   213  009F8A  0A02               	xorlw	2
+   214  009F8C  B4D8               	btfsc	status,2,c
+   215  009F8E  D00F               	goto	u340
+   216  009F90  CE84  FFE8         	movff	_ia_err,wreg
+   217  009F94  0A02               	xorlw	2
+   218  009F96  B4D8               	btfsc	status,2,c
+   219  009F98  D00A               	goto	u340
+   220  009F9A  CE85  FFE8         	movff	_ib_err,wreg
+   221  009F9E  0A02               	xorlw	2
+   222  009FA0  B4D8               	btfsc	status,2,c
+   223  009FA2  D005               	goto	u340
+   224  009FA4  CE86  FFE8         	movff	_ic_err,wreg
+   225  009FA8  0A02               	xorlw	2
+   226  009FAA  A4D8               	btfss	status,2,c
+   227  009FAC  D002               	goto	l12
+   228  009FAE                     u340:
+   229  009FAE  0E02               	movlw	2
+   230  009FB0  D01F               	goto	L2
+   231                           ;led.c: 50: else if((ua_err==1)||(ub_err == 1)||
+      +                          (uc_err==1)||(ia_err==1)||(ib_err==1)||(ic_err==
+      +                          1)){sys.err_code = 1;}
+   232  009FB2                     l12:
+   233  009FB2  CE87  F000         	movff	_ua_err,btemp
+   234  009FB6  0400               	decf	btemp,w
+   235  009FB8  B4D8               	btfsc	status,2,c
+   236  009FBA  D019               	goto	u450
+   237  009FBC  CE88  F000         	movff	_ub_err,btemp
+   238  009FC0  0400               	decf	btemp,w
+   239  009FC2  B4D8               	btfsc	status,2,c
+   240  009FC4  D014               	goto	u450
+   241  009FC6  CE89  F000         	movff	_uc_err,btemp
+   242  009FCA  0400               	decf	btemp,w
+   243  009FCC  B4D8               	btfsc	status,2,c
+   244  009FCE  D00F               	goto	u450
+   245  009FD0  CE84  F000         	movff	_ia_err,btemp
+   246  009FD4  0400               	decf	btemp,w
+   247  009FD6  B4D8               	btfsc	status,2,c
+   248  009FD8  D00A               	goto	u450
+   249  009FDA  CE85  F000         	movff	_ib_err,btemp
+   250  009FDE  0400               	decf	btemp,w
+   251  009FE0  B4D8               	btfsc	status,2,c
+   252  009FE2  D005               	goto	u450
+   253  009FE4  CE86  F000         	movff	_ic_err,btemp
+   254  009FE8  0400               	decf	btemp,w
+   255  009FEA  A4D8               	btfss	status,2,c
+   256  009FEC  D003               	goto	l7
+   257  009FEE                     u450:
+   258  009FEE  0E01               	movlw	1
+   259  009FF0                     L2:
+   260  009FF0  CFE8 F160          	movff	wreg,_sys+78
+   261                           ;led.c: 52: }
+   262  009FF4                     l7:
+   263                           ;led.c: 53: if((sys.err_code !=0 && sys.err_code
+      +                           !=4))
+   264  009FF4  EE01  F060         	lfsr	0,_sys+78
+   265  009FF8  50EF               	movf	indf0,w,c
+   266  009FFA  B4D8               	btfsc	status,2,c
+   267  009FFC  D011               	goto	l15
+   268  009FFE  C160  FFE8         	movff	_sys+78,wreg
+   269  00A002  0A04               	xorlw	4
+   270  00A004  B4D8               	btfsc	status,2,c
+   271  00A006  D00C               	goto	l15
+   272                           ;led.c: 54: {
+   273  00A008  C160  FFE8         	movff	_sys+78,wreg
+   274  00A00C  010E               	movlb	F1552 shr (0+8)
+   275  00A00E  1983               	xorwf	F1552& (0+255),w,b
+   276  00A010  B4D8               	btfsc	status,2,c
+   277  00A012  D006               	goto	l15
+   278                           ;led.c: 56: {
+   279  00A014  C160  FE83         	movff	_sys+78,F1552
+   280                           ;led.c: 58: record_a_err(last_err_code);
+   281  00A018  CE83  FFE8         	movff	F1552,wreg
+   282  00A01C  EC15  F005         	call	_record_a_err
+   283                           ;led.c: 59: }
+   284  00A020                     l15:
+   285                           ;led.c: 61: if(sys.err_code == 3)
+   286  00A020  C160  FFE8         	movff	_sys+78,wreg
+   287  00A024  0A03               	xorlw	3
+   288  00A026  A4D8               	btfss	status,2,c
+   289  00A028  D005               	goto	l17
+   290                           ;led.c: 62: {
+   291  00A02A  9E85               	bcf	3973,7,c	;volatile
+   292                           ;led.c: 64: RF5=0;
+   293  00A02C  9A85               	bcf	3973,5,c	;volatile
+   294                           ;led.c: 65: RB2 = 0;
+   295  00A02E  9481               	bcf	3969,2,c	;volatile
+   296                           ;led.c: 66: RA3=0;
+   297  00A030  9680               	bcf	3968,3,c	;volatile
+   298                           ;led.c: 67: }
+   299  00A032  0012               	return	
+   300  00A034                     l17:
+   301  00A034  C160  FFE8         	movff	_sys+78,wreg
+   302  00A038  0A02               	xorlw	2
+   303  00A03A  A4D8               	btfss	status,2,c
+   304  00A03C  D005               	goto	l19
+   305                           ;led.c: 69: {
+   306  00A03E  9E85               	bcf	3973,7,c	;volatile
+   307                           ;led.c: 71: RF5=0;
+   308  00A040  9A85               	bcf	3973,5,c	;volatile
+   309                           ;led.c: 72: RB2 = 0;
+   310  00A042  9481               	bcf	3969,2,c	;volatile
+   311                           ;led.c: 73: RA3=1;
+   312  00A044  8680               	bsf	3968,3,c	;volatile
+   313                           ;led.c: 74: }
+   314  00A046  0012               	return	
+   315  00A048                     l19:
+   316  00A048  C160  F000         	movff	_sys+78,btemp
+   317  00A04C  0400               	decf	btemp,w
+   318  00A04E  A4D8               	btfss	status,2,c
+   319  00A050  D005               	goto	l21
+   320                           ;led.c: 76: {
+   321  00A052  9E85               	bcf	3973,7,c	;volatile
+   322                           ;led.c: 78: RF5=0;
+   323  00A054  9A85               	bcf	3973,5,c	;volatile
+   324                           ;led.c: 79: RB2 = 1;
+   325  00A056  8481               	bsf	3969,2,c	;volatile
+   326                           ;led.c: 80: RA3=1;
+   327  00A058  8680               	bsf	3968,3,c	;volatile
+   328                           ;led.c: 81: }
+   329  00A05A  0012               	return	
+   330  00A05C                     l21:
+   331  00A05C  EE01  F060         	lfsr	0,_sys+78
+   332  00A060  50EF               	movf	indf0,w,c
+   333  00A062  A4D8               	btfss	status,2,c
+   334  00A064  D005               	goto	l23
+   335                           ;led.c: 83: {
+   336  00A066  9E85               	bcf	3973,7,c	;volatile
+   337                           ;led.c: 85: RF5=1;
+   338  00A068  8A85               	bsf	3973,5,c	;volatile
+   339                           ;led.c: 86: RB2 = 1;
+   340  00A06A  8481               	bsf	3969,2,c	;volatile
+   341                           ;led.c: 87: RA3=1;
+   342  00A06C  8680               	bsf	3968,3,c	;volatile
+   343                           ;led.c: 88: }
+   344  00A06E  0012               	return	
+   345  00A070                     l23:
+   346  00A070  C160  FFE8         	movff	_sys+78,wreg
+   347  00A074  0A04               	xorlw	4
+   348  00A076  A4D8               	btfss	status,2,c
+   349  00A078  0012               	return	
+   350                           ;led.c: 90: {
+   351  00A07A  8E85               	bsf	3973,7,c	;volatile
+   352                           ;led.c: 92: RF5=1;
+   353  00A07C  8A85               	bsf	3973,5,c	;volatile
+   354                           ;led.c: 93: RB2 = 1;
+   355  00A07E  8481               	bsf	3969,2,c	;volatile
+   356                           ;led.c: 94: RA3=1;
+   357  00A080  8680               	bsf	3968,3,c	;volatile
+   358                           ;led.c: 95: }
+   359  00A082  0012               	return	
+   360                           
+   361                           	psect	bigbss
+   362  000E83                     F1552:
+   363  000E83                     	ds	1
+   364  000000                     
+   365  000000                     
+   366  000000                     
+   367  000000                     
+   368  000000                     
+   369  000000                     
+   370  000000                     
+   371  000000                     
+   372  000000                     
+   373  000000                     
+   374  000000                     
+   375  000000                     
+   376  000000                     
+   377  000000                     
+   378  000000                     
+   379  000000                     
+   380  000000                     
+   381  000000                     
+   382  000000                     
+   383  000000                     
+   384  000000                     
+   385  000000                     
+   386  000000                     
+   387  000000                     
+   388  000000                     
+   389  000000                     
+   390  000000                     
+   391  000000                     
+   392  000000                     
+   393  000000                     
+   394  000000                     
+   395  000000                     
+   396  000000                     
+   397  000000                     
+   398  000000                     
+   399  000000                     
+   400  000000                     
+   401  000000                     
+   402  000000                     
+   403  000000                     
+   404  000000                     
+   405  000000                     
+   406  000000                     
+   407  000000                     
+   408  000000                     
+   409  000000                     
+   410  000000                     
+   411  000000                     
+   412  000000                     
+   413  000000                     
+   414  000000                     
+   415  000000                     
+   416  000000                     
+   417  000000                     
+   418  000000                     
+   419  000000                     
+   420  000000                     
+   421  000000                     
+   422  000000                     
+   423  000000                     
+   424  000000                     
+   425  000000                     
+   426  000000                     
+   427  000000                     
+   428  000000                     
+   429  000000                     
+   430  000000                     
+   431  000000                     
+   432  000000                     
+   433  000000                     
+   434  000000                     
+   435  000000                     
+   436  000000                     
+   437  000000                     
+   438  000000                     
+   439  000000                     
+   440  000000                     
+   441  000000                     
+   442  000000                     
+   443  000000                     
+   444  000000                     
+   445  000000                     
+   446  000000                     
+   447  000000                     
+   448  000000                     
+   449  000000                     
+   450  000000                     
+   451  000000                     
+   452  000000                     
+   453  000000                     
+   454  000000                     
+   455  000000                     
+   456  000000                     
+   457  000000                     
+   458  000000                     
+   459  000000                     
+   460  000000                     
+   461  000000                     
+   462  000000                     
+   463  000000                     
+   464  000000                     
+   465  000000                     
+   466  000000                     
+   467  000000                     
+   468  000000                     
+   469  000000                     
+   470  000000                     
+   471  000000                     
+   472  000000                     
+   473  000000                     
+   474  000000                     
+   475  000000                     
+   476  000000                     
+   477  000000                     
+   478  000000                     
+   479  000000                     
+   480  000000                     
+   481  000000                     
+   482  000000                     
+   483  000000                     
+   484  000000                     
+   485  000000                     
+   486  000000                     
+   487  000000                     
+   488  000000                     
+   489  000000                     
+   490  000000                     
+   491  000000                     
+   492  000000                     
+   493  000000                     
+   494  000000                     
+   495  000000                     
+   496  000000                     
+   497  000000                     
+   498  000000                     
+   499  000000                     
+   500  000000                     
+   501  000000                     
+   502  000000                     
+   503  000000                     
+   504  000000                     
+   505  000000                     
+   506  000000                     
+   507  000000                     
+   508  000000                     
+   509  000000                     
+   510  000000                     
+   511  000000                     
+   512  000000                     
+   513  000000                     
+   514  000000                     
+   515  000000                     
+   516  000000                     
+   517  000000                     
+   518  000000                     
+   519  000000                     
+   520  000000                     
+   521                           
+   522                           	psect	temp
+   523  000000                     btemp:
+   524  000000                     	ds	1
+   525                           indf0	equ	0xFEF
+   526                           wreg	equ	0xFE8
+   527                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Thu Jan  2 10:12:16 2014
+
+  _record_a_err 0A2A               l7 9FF4               l8 9F32  
+            l10 9F72              l12 9FB2              l21 A05C  
+            l23 A070              l15 A020              l17 A034  
+            l19 A048    _led_pin_init 9ED0             u230 9F6E  
+           u340 9FAE             u450 9FEE             _sys 0112  
+           wreg 000FE8            F1552 0E83            indf0 000FEF  
+          btemp 0000        clear_big 0018      used_btemp0 0001  
+         status 000FD8         __Lparam 0029         __ramtop 0F00  
+     _syswaring 9EEE          _ia_err 0E84          _ib_err 0E85  
+        _ic_err 0E86          _ua_err 0E87          _ub_err 0E88  
+        _uc_err 0E89  

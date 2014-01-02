@@ -1,0 +1,1534 @@
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Serial number: HCPIC18-88888                           Thu Jan  2 10:12:15 2014
+
+Licensed to: ONE TWO
+     1                           	processor	18F6622
+     2                           	opt	pw 80
+     3                           	psect	__Z88888RS_,global,delta=1
+     4                           	psect	text,global,reloc=2,class=CODE,delta=1
+     5                           	psect	config,global,class=CONFIG,delta=1
+     6                           	psect	intcode,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bigbss,global,class=BIGRAM,space=1,delta=
+      +                          1
+     8                           	psect	bss,global,class=RAM,space=1,delta=1
+     9                           	psect	temp,global,ovrld,common,class=COMRAM,spa
+      +                          ce=1,delta=1
+    10                           	psect	intsave_regs,global,class=BIGRAM,space=1,
+      +                          delta=1
+    11  000000                     
+    12  000000                     
+    13  000000                     
+    14  000000                     
+    15  000000                     
+    16  000000                     
+    17  000000                     
+    18  000000                     
+    19  000000                     
+    20  000000                     
+    21  000000                     
+    22  000000                     
+    23  000000                     
+    24  000000                     
+    25  000000                     
+    26  000000                     
+    27  000000                     
+    28  000000                     
+    29  000000                     
+    30  000000                     
+    31  000000                     
+    32  000000                     
+    33  000000                     
+    34  000000                     
+    35  000000                     
+    36  000000                     
+    37  000000                     
+    38  000000                     
+    39  000000                     
+    40  000000                     
+    41  000000                     
+    42  000000                     
+    43  000000                     
+    44  000000                     
+    45  000000                     
+    46  000000                     
+    47  000000                     
+    48  000000                     
+    49  000000                     
+    50  000000                     
+    51  000000                     
+    52  000000                     
+    53  000000                     
+    54  000000                     
+    55  000000                     
+    56  000000                     
+    57  000000                     
+    58  000000                     
+    59  000000                     
+    60  000000                     
+    61  000000                     
+    62  000000                     
+    63  000000                     
+    64  000000                     
+    65  000000                     
+    66  000000                     
+    67  000000                     
+    68  000000                     
+    69  000000                     
+    70  000000                     
+    71  000000                     
+    72  000000                     
+    73  000000                     
+    74  000000                     
+    75  000000                     
+    76  000000                     
+    77  000000                     
+    78  000000                     
+    79  000000                     
+    80  000000                     
+    81  000000                     
+    82  000000                     
+    83  000000                     
+    84  000000                     
+    85  000000                     
+    86  000000                     
+    87  000000                     
+    88  000000                     
+    89  000000                     
+    90  000000                     
+    91  000000                     
+    92  000000                     
+    93  000000                     
+    94  000000                     
+    95  000000                     
+    96  000000                     
+    97  000000                     
+    98  000000                     
+    99  000000                     
+   100                           
+   101                           	psect	__Z88888RS_
+   102  000004                     
+   103  000004                     	;#
+   104                           
+   105                           	psect	text
+   106  000118                     _parament_init:
+   107  000000                     
+   108                           ;	_c assigned to ?a_parament_init+0
+   109  000000                     _parament_init$c	set	?a_parament_init
+   110                           ;main.c: 40: unsigned char c;
+   111  000118  0101               	movlb	(_uart+40) shr (0+8)
+   112  00011A  6B93               	clrf	(_uart+40)& (0+255),b
+   113                           ;main.c: 43: uart.flag = 0;
+   114  00011C  6B96               	clrf	(_uart+43)& (0+255),b
+   115                           ;main.c: 44: uart.time = 0;
+   116  00011E  6B94               	clrf	(_uart+41)& (0+255),b
+   117  000120  6B95               	clrf	(_uart+42)& (0+255),b
+   118                           ;main.c: 46: sys.menu_index =0;
+   119  000122  0101               	movlb	(_sys+18) shr (0+8)
+   120  000124  6B24               	clrf	(_sys+18)& (0+255),b
+   121                           ;main.c: 47: sys.main_menu_phase = 0;
+   122  000126  0101               	movlb	(_sys+19) shr (0+8)
+   123  000128  6B25               	clrf	(_sys+19)& (0+255),b
+   124  00012A  6B26               	clrf	(_sys+20)& (0+255),b
+   125                           ;main.c: 48: sys.time_set_phase = 0;
+   126  00012C  0101               	movlb	(_sys+21) shr (0+8)
+   127  00012E  6B27               	clrf	(_sys+21)& (0+255),b
+   128  000130  6B28               	clrf	(_sys+22)& (0+255),b
+   129                           ;main.c: 49: sys.pare_set_phase = 0;
+   130  000132  0101               	movlb	(_sys+54) shr (0+8)
+   131  000134  6B48               	clrf	(_sys+54)& (0+255),b
+   132  000136  6B49               	clrf	(_sys+55)& (0+255),b
+   133                           ;main.c: 50: sys.time_set_phase = 0;
+   134  000138  0101               	movlb	(_sys+21) shr (0+8)
+   135  00013A  6B27               	clrf	(_sys+21)& (0+255),b
+   136  00013C  6B28               	clrf	(_sys+22)& (0+255),b
+   137                           ;main.c: 51: sys.flag.byte = 0;
+   138  00013E  0101               	movlb	(_sys+86) shr (0+8)
+   139  000140  6B68               	clrf	(_sys+86)& (0+255),b
+   140                           ;main.c: 53: sys.lcd_fresh_time = 0;
+   141  000142  0101               	movlb	(_sys+80) shr (0+8)
+   142  000144  6B62               	clrf	(_sys+80)& (0+255),b
+   143  000146  6B63               	clrf	(_sys+81)& (0+255),b
+   144                           ;main.c: 54: sys.lcd_fresh_flag = 0;
+   145  000148  0101               	movlb	(_sys+82) shr (0+8)
+   146  00014A  6B64               	clrf	(_sys+82)& (0+255),b
+   147                           ;main.c: 56: sys.key_scand_time = 0;
+   148  00014C  0101               	movlb	(_sys+83) shr (0+8)
+   149  00014E  6B65               	clrf	(_sys+83)& (0+255),b
+   150  000150  6B66               	clrf	(_sys+84)& (0+255),b
+   151                           ;main.c: 57: sys.key_scand_flag = 0;
+   152  000152  0101               	movlb	(_sys+85) shr (0+8)
+   153  000154  6B67               	clrf	(_sys+85)& (0+255),b
+   154                           ;main.c: 59: c = read_data_from_eeprom(0);
+   155  000156  0100               	movlb	__Lparam shr (0+8)
+   156  000158  6B2F               	clrf	?_read_data_from_eeprom^(__Lparam& (0+6528
+      +                          0))
+   157  00015A  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   158  00015C  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   159  000160  0100               	movlb	__Lparam shr (0+8)
+   160  000162  6F29               	movwf	?a_parament_init^(__Lparam& (0+65280))
+   161                           ;main.c: 61: if(c == 0xbb)
+   162  000164  5129               	movf	?a_parament_init^(__Lparam& (0+65280)),w
+   163  000166  0ABB               	xorlw	-69
+   164                           ;main.c: 62: {
+   165  000168  0E01               	movlw	1
+   166  00016A  A4D8               	btfss	status,2,c
+   167  00016C  D174               	goto	L3
+   168  00016E  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   169  000170  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   170  000172  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   171  000176  CFE8 F122          	movff	wreg,_sys+16
+   172                           ;main.c: 64: sys.addr_buf = sys.addr;
+   173  00017A  C122  F123         	movff	_sys+16,_sys+17
+   174                           ;main.c: 66: sys.brg = read_data_from_eeprom(2);
+   175  00017E  0E02               	movlw	2
+   176  000180  0100               	movlb	__Lparam shr (0+8)
+   177  000182  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   178  000184  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   179  000186  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   180  00018A  6E00               	movwf	btemp
+   181  00018C  0101               	movlb	(_sys+12) shr (0+8)
+   182  00018E  C000  F11E         	movff	btemp,_sys+12
+   183  000192  6B1F               	clrf	(_sys+13)& (0+255),b
+   184                           ;main.c: 67: sys.brg_buf = sys.brg;
+   185  000194  C11E  F120         	movff	_sys+12,_sys+14
+   186  000198  C11F  F121         	movff	_sys+13,_sys+15
+   187                           ;main.c: 69: sys.password[0]=read_data_from_eepr
+      +                          om(3);
+   188  00019C  0E03               	movlw	3
+   189  00019E  0100               	movlb	__Lparam shr (0+8)
+   190  0001A0  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   191  0001A2  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   192  0001A4  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   193  0001A8  CFE8 F129          	movff	wreg,_sys+23
+   194                           ;main.c: 70: sys.password[1]=read_data_from_eepr
+      +                          om(4);
+   195  0001AC  0E04               	movlw	4
+   196  0001AE  0100               	movlb	__Lparam shr (0+8)
+   197  0001B0  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   198  0001B2  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   199  0001B4  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   200  0001B8  CFE8 F12A          	movff	wreg,_sys+24
+   201                           ;main.c: 71: sys.password[2]=read_data_from_eepr
+      +                          om(5);
+   202  0001BC  0E05               	movlw	5
+   203  0001BE  0100               	movlb	__Lparam shr (0+8)
+   204  0001C0  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   205  0001C2  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   206  0001C4  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   207  0001C8  CFE8 F12B          	movff	wreg,_sys+25
+   208                           ;main.c: 72: sys.password[3]=read_data_from_eepr
+      +                          om(6);
+   209  0001CC  0E06               	movlw	6
+   210  0001CE  0100               	movlb	__Lparam shr (0+8)
+   211  0001D0  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   212  0001D2  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   213  0001D4  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   214  0001D8  CFE8 F12C          	movff	wreg,_sys+26
+   215                           ;main.c: 73: sys.password[4]=read_data_from_eepr
+      +                          om(7);
+   216  0001DC  0E07               	movlw	7
+   217  0001DE  0100               	movlb	__Lparam shr (0+8)
+   218  0001E0  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   219  0001E2  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   220  0001E4  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   221  0001E8  CFE8 F12D          	movff	wreg,_sys+27
+   222                           ;main.c: 74: sys.password[5]=read_data_from_eepr
+      +                          om(8);
+   223  0001EC  0E08               	movlw	8
+   224  0001EE  0100               	movlb	__Lparam shr (0+8)
+   225  0001F0  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   226  0001F2  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   227  0001F4  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   228  0001F8  CFE8 F12E          	movff	wreg,_sys+28
+   229                           ;main.c: 76: sys.v1 = read_data_from_eeprom(9);
+   230  0001FC  0E09               	movlw	9
+   231  0001FE  0100               	movlb	__Lparam shr (0+8)
+   232  000200  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   233  000202  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   234  000204  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   235  000208  6E00               	movwf	btemp
+   236  00020A  0101               	movlb	(_sys+58) shr (0+8)
+   237  00020C  C000  F14C         	movff	btemp,_sys+58
+   238  000210  6B4D               	clrf	(_sys+59)& (0+255),b
+   239                           ;main.c: 77: sys.v1 = sys.v1<<8;
+   240  000212  514C               	movf	(_sys+58)& (0+255),w,b
+   241  000214  6E01               	movwf	btemp+1
+   242  000216  6A00               	clrf	btemp
+   243  000218  C000  F14C         	movff	btemp,_sys+58
+   244  00021C  C001  F14D         	movff	btemp+1,_sys+59
+   245                           ;main.c: 78: sys.v1 = sys.v1 + read_data_from_ee
+      +                          prom(10);
+   246  000220  0E0A               	movlw	10
+   247  000222  0100               	movlb	__Lparam shr (0+8)
+   248  000224  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   249  000226  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   250  000228  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   251  00022C  6E00               	movwf	btemp
+   252  00022E  C000  F002         	movff	btemp,btemp+2
+   253  000232  6A03               	clrf	btemp+3
+   254  000234  C14C  FFE8         	movff	_sys+58,wreg
+   255  000238  2402               	addwf	btemp+2,w
+   256  00023A  CFE8 F14C          	movff	wreg,_sys+58
+   257  00023E  C14D  FFE8         	movff	_sys+59,wreg
+   258  000242  2003               	addwfc	btemp+3,w
+   259  000244  CFE8 F14D          	movff	wreg,_sys+59
+   260                           ;main.c: 79: sys.v2 = read_data_from_eeprom(11);
+   261  000248  0E0B               	movlw	11
+   262  00024A  0100               	movlb	__Lparam shr (0+8)
+   263  00024C  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   264  00024E  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   265  000250  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   266  000254  6E00               	movwf	btemp
+   267  000256  0101               	movlb	(_sys+60) shr (0+8)
+   268  000258  C000  F14E         	movff	btemp,_sys+60
+   269  00025C  6B4F               	clrf	(_sys+61)& (0+255),b
+   270                           ;main.c: 80: sys.v2 = sys.v2<<8;
+   271  00025E  514E               	movf	(_sys+60)& (0+255),w,b
+   272  000260  6E01               	movwf	btemp+1
+   273  000262  6A00               	clrf	btemp
+   274  000264  C000  F14E         	movff	btemp,_sys+60
+   275  000268  C001  F14F         	movff	btemp+1,_sys+61
+   276                           ;main.c: 81: sys.v2 = sys.v2 + read_data_from_ee
+      +                          prom(12);
+   277  00026C  0E0C               	movlw	12
+   278  00026E  0100               	movlb	__Lparam shr (0+8)
+   279  000270  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   280  000272  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   281  000274  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   282  000278  6E00               	movwf	btemp
+   283  00027A  C000  F002         	movff	btemp,btemp+2
+   284  00027E  6A03               	clrf	btemp+3
+   285  000280  C14E  FFE8         	movff	_sys+60,wreg
+   286  000284  2402               	addwf	btemp+2,w
+   287  000286  CFE8 F14E          	movff	wreg,_sys+60
+   288  00028A  C14F  FFE8         	movff	_sys+61,wreg
+   289  00028E  2003               	addwfc	btemp+3,w
+   290  000290  CFE8 F14F          	movff	wreg,_sys+61
+   291                           ;main.c: 82: sys.v3 = read_data_from_eeprom(13);
+   292  000294  0E0D               	movlw	13
+   293  000296  0100               	movlb	__Lparam shr (0+8)
+   294  000298  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   295  00029A  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   296  00029C  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   297  0002A0  6E00               	movwf	btemp
+   298  0002A2  0101               	movlb	(_sys+62) shr (0+8)
+   299  0002A4  C000  F150         	movff	btemp,_sys+62
+   300  0002A8  6B51               	clrf	(_sys+63)& (0+255),b
+   301                           ;main.c: 83: sys.v3 = sys.v3<<8;
+   302  0002AA  5150               	movf	(_sys+62)& (0+255),w,b
+   303  0002AC  6E01               	movwf	btemp+1
+   304  0002AE  6A00               	clrf	btemp
+   305  0002B0  C000  F150         	movff	btemp,_sys+62
+   306  0002B4  C001  F151         	movff	btemp+1,_sys+63
+   307                           ;main.c: 84: sys.v3 = sys.v3 + read_data_from_ee
+      +                          prom(14);
+   308  0002B8  0E0E               	movlw	14
+   309  0002BA  0100               	movlb	__Lparam shr (0+8)
+   310  0002BC  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   311  0002BE  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   312  0002C0  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   313  0002C4  6E00               	movwf	btemp
+   314  0002C6  C000  F002         	movff	btemp,btemp+2
+   315  0002CA  6A03               	clrf	btemp+3
+   316  0002CC  C150  FFE8         	movff	_sys+62,wreg
+   317  0002D0  2402               	addwf	btemp+2,w
+   318  0002D2  CFE8 F150          	movff	wreg,_sys+62
+   319  0002D6  C151  FFE8         	movff	_sys+63,wreg
+   320  0002DA  2003               	addwfc	btemp+3,w
+   321  0002DC  CFE8 F151          	movff	wreg,_sys+63
+   322                           ;main.c: 85: sys.vbf = (sys.v1/1000)%10;
+   323  0002E0  0EE8               	movlw	232
+   324  0002E2  6E02               	movwf	btemp+2
+   325  0002E4  0E03               	movlw	3
+   326  0002E6  6E03               	movwf	btemp+3
+   327  0002E8  EE01  F04C         	lfsr	0,_sys+58
+   328  0002EC  CFEE F000          	movff	postinc0,btemp
+   329  0002F0  CFED F001          	movff	postdec0,btemp+1
+   330  0002F4  ECF2  F050         	call	lwdiv
+   331  0002F8  C004  F000         	movff	btemp+4,btemp
+   332  0002FC  C005  F001         	movff	btemp+5,btemp+1
+   333  000300  0E0A               	movlw	10
+   334  000302  6E02               	movwf	btemp+2
+   335  000304  6A03               	clrf	btemp+3
+   336  000306  ECF2  F050         	call	lwmod
+   337  00030A  C000  F152         	movff	btemp,_sys+64
+   338  00030E  C001  F153         	movff	btemp+1,_sys+65
+   339                           ;main.c: 87: sys.c1 = read_data_from_eeprom(15);
+   340  000312  0E0F               	movlw	15
+   341  000314  0100               	movlb	__Lparam shr (0+8)
+   342  000316  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   343  000318  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   344  00031A  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   345  00031E  6E00               	movwf	btemp
+   346  000320  0101               	movlb	(_sys+68) shr (0+8)
+   347  000322  C000  F156         	movff	btemp,_sys+68
+   348  000326  6B57               	clrf	(_sys+69)& (0+255),b
+   349                           ;main.c: 88: sys.c1 = sys.c1<<8;
+   350  000328  5156               	movf	(_sys+68)& (0+255),w,b
+   351  00032A  6E01               	movwf	btemp+1
+   352  00032C  6A00               	clrf	btemp
+   353  00032E  C000  F156         	movff	btemp,_sys+68
+   354  000332  C001  F157         	movff	btemp+1,_sys+69
+   355                           ;main.c: 89: sys.c1 = sys.c1 + read_data_from_ee
+      +                          prom(16);
+   356  000336  0E10               	movlw	16
+   357  000338  0100               	movlb	__Lparam shr (0+8)
+   358  00033A  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   359  00033C  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   360  00033E  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   361  000342  6E00               	movwf	btemp
+   362  000344  C000  F002         	movff	btemp,btemp+2
+   363  000348  6A03               	clrf	btemp+3
+   364  00034A  C156  FFE8         	movff	_sys+68,wreg
+   365  00034E  2402               	addwf	btemp+2,w
+   366  000350  CFE8 F156          	movff	wreg,_sys+68
+   367  000354  C157  FFE8         	movff	_sys+69,wreg
+   368  000358  2003               	addwfc	btemp+3,w
+   369  00035A  CFE8 F157          	movff	wreg,_sys+69
+   370                           ;main.c: 90: sys.c2 = read_data_from_eeprom(17);
+   371  00035E  0E11               	movlw	17
+   372  000360  0100               	movlb	__Lparam shr (0+8)
+   373  000362  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   374  000364  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   375  000366  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   376  00036A  6E00               	movwf	btemp
+   377  00036C  0101               	movlb	(_sys+70) shr (0+8)
+   378  00036E  C000  F158         	movff	btemp,_sys+70
+   379  000372  6B59               	clrf	(_sys+71)& (0+255),b
+   380                           ;main.c: 91: sys.c2 = sys.c2<<8;
+   381  000374  5158               	movf	(_sys+70)& (0+255),w,b
+   382  000376  6E01               	movwf	btemp+1
+   383  000378  6A00               	clrf	btemp
+   384  00037A  C000  F158         	movff	btemp,_sys+70
+   385  00037E  C001  F159         	movff	btemp+1,_sys+71
+   386                           ;main.c: 92: sys.c2 = sys.c2 + read_data_from_ee
+      +                          prom(18);
+   387  000382  0E12               	movlw	18
+   388  000384  0100               	movlb	__Lparam shr (0+8)
+   389  000386  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   390  000388  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   391  00038A  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   392  00038E  6E00               	movwf	btemp
+   393  000390  C000  F002         	movff	btemp,btemp+2
+   394  000394  6A03               	clrf	btemp+3
+   395  000396  C158  FFE8         	movff	_sys+70,wreg
+   396  00039A  2402               	addwf	btemp+2,w
+   397  00039C  CFE8 F158          	movff	wreg,_sys+70
+   398  0003A0  C159  FFE8         	movff	_sys+71,wreg
+   399  0003A4  2003               	addwfc	btemp+3,w
+   400  0003A6  CFE8 F159          	movff	wreg,_sys+71
+   401                           ;main.c: 93: sys.c3 = read_data_from_eeprom(19);
+   402  0003AA  0E13               	movlw	19
+   403  0003AC  0100               	movlb	__Lparam shr (0+8)
+   404  0003AE  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   405  0003B0  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   406  0003B2  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   407  0003B6  6E00               	movwf	btemp
+   408  0003B8  0101               	movlb	(_sys+72) shr (0+8)
+   409  0003BA  C000  F15A         	movff	btemp,_sys+72
+   410  0003BE  6B5B               	clrf	(_sys+73)& (0+255),b
+   411                           ;main.c: 94: sys.c3 = sys.c3<<8;
+   412  0003C0  515A               	movf	(_sys+72)& (0+255),w,b
+   413  0003C2  6E01               	movwf	btemp+1
+   414  0003C4  6A00               	clrf	btemp
+   415  0003C6  C000  F15A         	movff	btemp,_sys+72
+   416  0003CA  C001  F15B         	movff	btemp+1,_sys+73
+   417                           ;main.c: 95: sys.c3 = sys.c3 + read_data_from_ee
+      +                          prom(20);
+   418  0003CE  0E14               	movlw	20
+   419  0003D0  0100               	movlb	__Lparam shr (0+8)
+   420  0003D2  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   421  0003D4  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   422  0003D6  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   423  0003DA  6E00               	movwf	btemp
+   424  0003DC  C000  F002         	movff	btemp,btemp+2
+   425  0003E0  6A03               	clrf	btemp+3
+   426  0003E2  C15A  FFE8         	movff	_sys+72,wreg
+   427  0003E6  2402               	addwf	btemp+2,w
+   428  0003E8  CFE8 F15A          	movff	wreg,_sys+72
+   429  0003EC  C15B  FFE8         	movff	_sys+73,wreg
+   430  0003F0  2003               	addwfc	btemp+3,w
+   431  0003F2  CFE8 F15B          	movff	wreg,_sys+73
+   432                           ;main.c: 96: sys.cbf = (sys.c1/1000)%10;
+   433  0003F6  0EE8               	movlw	232
+   434  0003F8  6E02               	movwf	btemp+2
+   435  0003FA  0E03               	movlw	3
+   436  0003FC  6E03               	movwf	btemp+3
+   437  0003FE  EE01  F056         	lfsr	0,_sys+68
+   438  000402  CFEE F000          	movff	postinc0,btemp
+   439  000406  CFED F001          	movff	postdec0,btemp+1
+   440  00040A  ECF2  F050         	call	lwdiv
+   441  00040E  C004  F000         	movff	btemp+4,btemp
+   442  000412  C005  F001         	movff	btemp+5,btemp+1
+   443  000416  0E0A               	movlw	10
+   444  000418  6E02               	movwf	btemp+2
+   445  00041A  6A03               	clrf	btemp+3
+   446  00041C  ECF2  F050         	call	lwmod
+   447  000420  C000  F15C         	movff	btemp,_sys+74
+   448  000424  C001  F15D         	movff	btemp+1,_sys+75
+   449                           ;main.c: 99: sys.err_record_index = read_data_fr
+      +                          om_eeprom(23);
+   450  000428  0E17               	movlw	23
+   451  00042A  0100               	movlb	__Lparam shr (0+8)
+   452  00042C  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   453  00042E  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   454  000430  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   455  000434  6E00               	movwf	btemp
+   456  000436  0101               	movlb	(_sys+45) shr (0+8)
+   457  000438  C000  F13F         	movff	btemp,_sys+45
+   458  00043C  6B40               	clrf	(_sys+46)& (0+255),b
+   459                           ;main.c: 100: sys.err_total_number = read_data_f
+      +                          rom_eeprom(22);
+   460  00043E  0E16               	movlw	22
+   461  000440  0100               	movlb	__Lparam shr (0+8)
+   462  000442  6F2F               	movwf	?_read_data_from_eeprom^(__Lparam& (0+652
+      +                          80))
+   463  000444  6B30               	clrf	(?_read_data_from_eeprom+1)^(__Lparam& (0+
+      +                          65280))
+   464  000446  EC0A  F005         	call	_read_data_from_eeprom	;wreg free
+   465  00044A  CFE8 F13C          	movff	wreg,_sys+42
+   466                           ;main.c: 101: sys.err_read_index = 0;
+   467  00044E  0101               	movlb	(_sys+43) shr (0+8)
+   468  000450  6B3D               	clrf	(_sys+43)& (0+255),b
+   469  000452  6B3E               	clrf	(_sys+44)& (0+255),b
+   470                           ;main.c: 104: }
+   471  000454  0012               	return	
+   472                           ;main.c: 107: {
+   473  000456                     L3:
+   474  000456  CFE8 F122          	movff	wreg,_sys+16
+   475                           ;main.c: 109: sys.brg = 0x01;
+   476  00045A  0101               	movlb	(_sys+12) shr (0+8)
+   477  00045C  0E01               	movlw	1
+   478  00045E  6F1E               	movwf	(_sys+12)& (0+255),b
+   479  000460  6B1F               	clrf	(_sys+13)& (0+255),b
+   480                           ;main.c: 111: sys.password[0]=0;
+   481  000462  0101               	movlb	(_sys+23) shr (0+8)
+   482  000464  6B29               	clrf	(_sys+23)& (0+255),b
+   483                           ;main.c: 112: sys.password[1]=0;
+   484  000466  0101               	movlb	(_sys+24) shr (0+8)
+   485  000468  6B2A               	clrf	(_sys+24)& (0+255),b
+   486                           ;main.c: 113: sys.password[2]=0;
+   487  00046A  0101               	movlb	(_sys+25) shr (0+8)
+   488  00046C  6B2B               	clrf	(_sys+25)& (0+255),b
+   489                           ;main.c: 114: sys.password[3]=0;
+   490  00046E  0101               	movlb	(_sys+26) shr (0+8)
+   491  000470  6B2C               	clrf	(_sys+26)& (0+255),b
+   492                           ;main.c: 115: sys.password[4]=0;
+   493  000472  0101               	movlb	(_sys+27) shr (0+8)
+   494  000474  6B2D               	clrf	(_sys+27)& (0+255),b
+   495                           ;main.c: 116: sys.password[5]=0;
+   496  000476  0101               	movlb	(_sys+28) shr (0+8)
+   497  000478  6B2E               	clrf	(_sys+28)& (0+255),b
+   498                           ;main.c: 118: sys.err_record_index = 0;
+   499  00047A  0101               	movlb	(_sys+45) shr (0+8)
+   500  00047C  6B3F               	clrf	(_sys+45)& (0+255),b
+   501  00047E  6B40               	clrf	(_sys+46)& (0+255),b
+   502                           ;main.c: 119: sys.err_read_index = 0;
+   503  000480  0101               	movlb	(_sys+43) shr (0+8)
+   504  000482  6B3D               	clrf	(_sys+43)& (0+255),b
+   505  000484  6B3E               	clrf	(_sys+44)& (0+255),b
+   506                           ;main.c: 120: sys.err_total_number = 0;
+   507  000486  0101               	movlb	(_sys+42) shr (0+8)
+   508  000488  6B3C               	clrf	(_sys+42)& (0+255),b
+   509                           ;main.c: 122: sys.v1 = 10;
+   510  00048A  0101               	movlb	(_sys+58) shr (0+8)
+   511  00048C  0E0A               	movlw	10
+   512  00048E  6F4C               	movwf	(_sys+58)& (0+255),b
+   513  000490  6B4D               	clrf	(_sys+59)& (0+255),b
+   514                           ;main.c: 123: sys.v2 = 20;
+   515  000492  0101               	movlb	(_sys+60) shr (0+8)
+   516  000494  0E14               	movlw	20
+   517  000496  6F4E               	movwf	(_sys+60)& (0+255),b
+   518  000498  6B4F               	clrf	(_sys+61)& (0+255),b
+   519                           ;main.c: 124: sys.v3 = 30;
+   520  00049A  0101               	movlb	(_sys+62) shr (0+8)
+   521  00049C  0E1E               	movlw	30
+   522  00049E  6F50               	movwf	(_sys+62)& (0+255),b
+   523  0004A0  6B51               	clrf	(_sys+63)& (0+255),b
+   524                           ;main.c: 125: sys.vbf = 0;
+   525  0004A2  0101               	movlb	(_sys+64) shr (0+8)
+   526  0004A4  6B52               	clrf	(_sys+64)& (0+255),b
+   527  0004A6  6B53               	clrf	(_sys+65)& (0+255),b
+   528                           ;main.c: 127: sys.c1 = 10;
+   529  0004A8  0101               	movlb	(_sys+68) shr (0+8)
+   530  0004AA  0E0A               	movlw	10
+   531  0004AC  6F56               	movwf	(_sys+68)& (0+255),b
+   532  0004AE  6B57               	clrf	(_sys+69)& (0+255),b
+   533                           ;main.c: 128: sys.c2 = 20;
+   534  0004B0  0101               	movlb	(_sys+70) shr (0+8)
+   535  0004B2  0E14               	movlw	20
+   536  0004B4  6F58               	movwf	(_sys+70)& (0+255),b
+   537  0004B6  6B59               	clrf	(_sys+71)& (0+255),b
+   538                           ;main.c: 129: sys.c3 = 30;
+   539  0004B8  0101               	movlb	(_sys+72) shr (0+8)
+   540  0004BA  0E1E               	movlw	30
+   541  0004BC  6F5A               	movwf	(_sys+72)& (0+255),b
+   542  0004BE  6B5B               	clrf	(_sys+73)& (0+255),b
+   543                           ;main.c: 130: sys.cbf = 0;
+   544  0004C0  0101               	movlb	(_sys+74) shr (0+8)
+   545  0004C2  6B5C               	clrf	(_sys+74)& (0+255),b
+   546  0004C4  6B5D               	clrf	(_sys+75)& (0+255),b
+   547                           ;main.c: 132: write_data_to_eeprom(9,sys.v1>>8);
+   548  0004C6  0E09               	movlw	9
+   549  0004C8  0100               	movlb	__Lparam shr (0+8)
+   550  0004CA  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   551  0004CC  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   552  0004CE  C14D  F000         	movff	_sys+59,btemp
+   553  0004D2  6A01               	clrf	btemp+1
+   554  0004D4  5000               	movf	btemp,w
+   555  0004D6  6F2D               	movwf	(?_write_data_to_eeprom+2)^(__Lparam& (0+
+      +                          65280))
+   556  0004D8  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   557                           ;main.c: 133: write_data_to_eeprom(10,sys.v1&0xf
+      +                          f);
+   558  0004DC  0E0A               	movlw	10
+   559  0004DE  0100               	movlb	__Lparam shr (0+8)
+   560  0004E0  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   561  0004E2  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   562  0004E4  C14C  F02D         	movff	_sys+58,?_write_data_to_eeprom+2
+   563  0004E8  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   564                           ;main.c: 134: write_data_to_eeprom(11,sys.v2>>8)
+      +                          ;
+   565  0004EC  0E0B               	movlw	11
+   566  0004EE  0100               	movlb	__Lparam shr (0+8)
+   567  0004F0  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   568  0004F2  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   569  0004F4  C14F  F000         	movff	_sys+61,btemp
+   570  0004F8  6A01               	clrf	btemp+1
+   571  0004FA  5000               	movf	btemp,w
+   572  0004FC  6F2D               	movwf	(?_write_data_to_eeprom+2)^(__Lparam& (0+
+      +                          65280))
+   573  0004FE  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   574                           ;main.c: 135: write_data_to_eeprom(12,sys.v2&0xf
+      +                          f);
+   575  000502  0E0C               	movlw	12
+   576  000504  0100               	movlb	__Lparam shr (0+8)
+   577  000506  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   578  000508  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   579  00050A  C14E  F02D         	movff	_sys+60,?_write_data_to_eeprom+2
+   580  00050E  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   581                           ;main.c: 136: write_data_to_eeprom(13,sys.v3>>8)
+      +                          ;
+   582  000512  0E0D               	movlw	13
+   583  000514  0100               	movlb	__Lparam shr (0+8)
+   584  000516  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   585  000518  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   586  00051A  C151  F000         	movff	_sys+63,btemp
+   587  00051E  6A01               	clrf	btemp+1
+   588  000520  5000               	movf	btemp,w
+   589  000522  6F2D               	movwf	(?_write_data_to_eeprom+2)^(__Lparam& (0+
+      +                          65280))
+   590  000524  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   591                           ;main.c: 137: write_data_to_eeprom(14,sys.v3&0xf
+      +                          f);
+   592  000528  0E0E               	movlw	14
+   593  00052A  0100               	movlb	__Lparam shr (0+8)
+   594  00052C  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   595  00052E  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   596  000530  C150  F02D         	movff	_sys+62,?_write_data_to_eeprom+2
+   597  000534  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   598                           ;main.c: 139: write_data_to_eeprom(15,sys.c1>>8)
+      +                          ;
+   599  000538  0E0F               	movlw	15
+   600  00053A  0100               	movlb	__Lparam shr (0+8)
+   601  00053C  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   602  00053E  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   603  000540  C157  F000         	movff	_sys+69,btemp
+   604  000544  6A01               	clrf	btemp+1
+   605  000546  5000               	movf	btemp,w
+   606  000548  6F2D               	movwf	(?_write_data_to_eeprom+2)^(__Lparam& (0+
+      +                          65280))
+   607  00054A  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   608                           ;main.c: 140: write_data_to_eeprom(16,sys.c1&0xf
+      +                          f);
+   609  00054E  0E10               	movlw	16
+   610  000550  0100               	movlb	__Lparam shr (0+8)
+   611  000552  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   612  000554  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   613  000556  C156  F02D         	movff	_sys+68,?_write_data_to_eeprom+2
+   614  00055A  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   615                           ;main.c: 141: write_data_to_eeprom(17,sys.c2>>8)
+      +                          ;
+   616  00055E  0E11               	movlw	17
+   617  000560  0100               	movlb	__Lparam shr (0+8)
+   618  000562  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   619  000564  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   620  000566  C159  F000         	movff	_sys+71,btemp
+   621  00056A  6A01               	clrf	btemp+1
+   622  00056C  5000               	movf	btemp,w
+   623  00056E  6F2D               	movwf	(?_write_data_to_eeprom+2)^(__Lparam& (0+
+      +                          65280))
+   624  000570  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   625                           ;main.c: 142: write_data_to_eeprom(18,sys.c2&0xf
+      +                          f);
+   626  000574  0E12               	movlw	18
+   627  000576  0100               	movlb	__Lparam shr (0+8)
+   628  000578  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   629  00057A  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   630  00057C  C158  F02D         	movff	_sys+70,?_write_data_to_eeprom+2
+   631  000580  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   632                           ;main.c: 143: write_data_to_eeprom(19,sys.c3>>8)
+      +                          ;
+   633  000584  0E13               	movlw	19
+   634  000586  0100               	movlb	__Lparam shr (0+8)
+   635  000588  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   636  00058A  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   637  00058C  C15B  F000         	movff	_sys+73,btemp
+   638  000590  6A01               	clrf	btemp+1
+   639  000592  5000               	movf	btemp,w
+   640  000594  6F2D               	movwf	(?_write_data_to_eeprom+2)^(__Lparam& (0+
+      +                          65280))
+   641  000596  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   642                           ;main.c: 144: write_data_to_eeprom(20,sys.c3&0xf
+      +                          f);
+   643  00059A  0E14               	movlw	20
+   644  00059C  0100               	movlb	__Lparam shr (0+8)
+   645  00059E  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   646  0005A0  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   647  0005A2  C15A  F02D         	movff	_sys+72,?_write_data_to_eeprom+2
+   648  0005A6  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   649                           ;main.c: 147: write_data_to_eeprom(1,sys.addr);
+   650  0005AA  0E01               	movlw	1
+   651  0005AC  0100               	movlb	__Lparam shr (0+8)
+   652  0005AE  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   653  0005B0  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   654  0005B2  C122  F02D         	movff	_sys+16,?_write_data_to_eeprom+2
+   655  0005B6  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   656                           ;main.c: 148: write_data_to_eeprom(2,sys.brg);
+   657  0005BA  0E02               	movlw	2
+   658  0005BC  0100               	movlb	__Lparam shr (0+8)
+   659  0005BE  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   660  0005C0  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   661  0005C2  C11E  F02D         	movff	_sys+12,?_write_data_to_eeprom+2
+   662  0005C6  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   663                           ;main.c: 150: write_data_to_eeprom(3,sys.passwor
+      +                          d[0]);
+   664  0005CA  0E03               	movlw	3
+   665  0005CC  0100               	movlb	__Lparam shr (0+8)
+   666  0005CE  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   667  0005D0  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   668  0005D2  C129  F02D         	movff	_sys+23,?_write_data_to_eeprom+2
+   669  0005D6  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   670                           ;main.c: 151: write_data_to_eeprom(4,sys.passwor
+      +                          d[1]);
+   671  0005DA  0E04               	movlw	4
+   672  0005DC  0100               	movlb	__Lparam shr (0+8)
+   673  0005DE  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   674  0005E0  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   675  0005E2  C12A  F02D         	movff	_sys+24,?_write_data_to_eeprom+2
+   676  0005E6  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   677                           ;main.c: 152: write_data_to_eeprom(5,sys.passwor
+      +                          d[2]);
+   678  0005EA  0E05               	movlw	5
+   679  0005EC  0100               	movlb	__Lparam shr (0+8)
+   680  0005EE  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   681  0005F0  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   682  0005F2  C12B  F02D         	movff	_sys+25,?_write_data_to_eeprom+2
+   683  0005F6  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   684                           ;main.c: 153: write_data_to_eeprom(6,sys.passwor
+      +                          d[3]);
+   685  0005FA  0E06               	movlw	6
+   686  0005FC  0100               	movlb	__Lparam shr (0+8)
+   687  0005FE  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   688  000600  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   689  000602  C12C  F02D         	movff	_sys+26,?_write_data_to_eeprom+2
+   690  000606  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   691                           ;main.c: 154: write_data_to_eeprom(7,sys.passwor
+      +                          d[4]);
+   692  00060A  0E07               	movlw	7
+   693  00060C  0100               	movlb	__Lparam shr (0+8)
+   694  00060E  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   695  000610  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   696  000612  C12D  F02D         	movff	_sys+27,?_write_data_to_eeprom+2
+   697  000616  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   698                           ;main.c: 155: write_data_to_eeprom(8,sys.passwor
+      +                          d[5]);
+   699  00061A  0E08               	movlw	8
+   700  00061C  0100               	movlb	__Lparam shr (0+8)
+   701  00061E  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   702  000620  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   703  000622  C12E  F02D         	movff	_sys+28,?_write_data_to_eeprom+2
+   704  000626  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   705                           ;main.c: 157: write_data_to_eeprom(23,sys.err_re
+      +                          cord_index);
+   706  00062A  0E17               	movlw	23
+   707  00062C  0100               	movlb	__Lparam shr (0+8)
+   708  00062E  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   709  000630  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   710  000632  C13F  F02D         	movff	_sys+45,?_write_data_to_eeprom+2
+   711  000636  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   712                           ;main.c: 158: write_data_to_eeprom(22,sys.err_re
+      +                          ad_index);
+   713  00063A  0E16               	movlw	22
+   714  00063C  0100               	movlb	__Lparam shr (0+8)
+   715  00063E  6F2B               	movwf	?_write_data_to_eeprom^(__Lparam& (0+6528
+      +                          0))
+   716  000640  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   717  000642  C13D  F02D         	movff	_sys+43,?_write_data_to_eeprom+2
+   718  000646  ECF2  F004         	call	_write_data_to_eeprom	;wreg free
+   719                           ;main.c: 159: write_data_to_eeprom(0,0xbb);
+   720  00064A  0100               	movlb	__Lparam shr (0+8)
+   721  00064C  6B2B               	clrf	?_write_data_to_eeprom^(__Lparam& (0+65280
+      +                          ))
+   722  00064E  6B2C               	clrf	(?_write_data_to_eeprom+1)^(__Lparam& (0+6
+      +                          5280))
+   723  000650  0EBB               	movlw	187
+   724  000652  6F2D               	movwf	(?_write_data_to_eeprom+2)^(__Lparam& (0+
+      +                          65280))
+   725  000654  EFF2  F004         	goto	_write_data_to_eeprom	;wreg free
+   726                           ;main.c: 160: }
+   727                           ;main.c: 164: }
+   728                           ;main.c: 167: unsigned char ii,jj;
+   729                           ;main.c: 169: void main(void)
+   730                           ;main.c: 170: {
+   731  000658                     _main:
+   732  000000                     
+   733                           ;main.c: 171: adc_init();
+   734  000658  EC74  F036         	call	_adc_init	;wreg free
+   735                           ;main.c: 172: capture_init();
+   736  00065C  EC89  F036         	call	_capture_init	;wreg free
+   737                           ;main.c: 173: timer1_init();
+   738  000660  ECB2  F051         	call	_timer1_init	;wreg free
+   739                           ;main.c: 174: timer2_init();
+   740  000664  ECC0  F051         	call	_timer2_init	;wreg free
+   741                           ;main.c: 175: ds1302_pin_init();
+   742  000668  EC7E  F04D         	call	_ds1302_pin_init	;wreg free
+   743                           ;main.c: 176: ds1302_init();
+   744  00066C  EC67  F04E         	call	_ds1302_init	;wreg free
+   745                           ;main.c: 177: key_pin_init();
+   746  000670  EC42  F050         	call	_key_pin_init	;wreg free
+   747                           ;main.c: 179: lcd_pin_init();
+   748  000674  ECB1  F047         	call	_lcd_pin_init	;wreg free
+   749                           ;main.c: 180: led_pin_init();
+   750  000678  EC68  F04F         	call	_led_pin_init	;wreg free
+   751                           ;main.c: 181: set_mode_pin_init();
+   752  00067C  EC98  F050         	call	_set_mode_pin_init	;wreg free
+   753                           ;main.c: 182: lcd_clear();
+   754  000680  EC64  F048         	call	_lcd_clear	;wreg free
+   755                           ;main.c: 183: init_lcd();
+   756  000684  EC77  F048         	call	_init_lcd	;wreg free
+   757                           ;main.c: 184: TRISG2 = 0;
+   758  000688  9498               	bcf	3992,2,c	;volatile
+   759                           ;main.c: 185: parament_init();
+   760  00068A  DD46               	call	_parament_init	;wreg free
+   761                           ;main.c: 186: if((RD0==0)&&(RF0==0)&&(RC1==0))ad
+      +                          m.ch_num=6;
+   762  00068C  A083               	btfss	3971,0,c	;volatile
+   763  00068E  B085               	btfsc	3973,0,c	;volatile
+   764  000690  D004               	goto	l19
+   765  000692  B282               	btfsc	3970,1,c	;volatile
+   766  000694  D002               	goto	l19
+   767  000696  0E06               	movlw	6
+   768  000698  D001               	goto	L1
+   769                           ;main.c: 187: else adm.ch_num = 4;
+   770  00069A                     l19:
+   771  00069A  0E04               	movlw	4
+   772  00069C                     L1:
+   773  00069C  CFE8 F018          	movff	wreg,_adm+2
+   774                           ;main.c: 188: PEIE = 1;
+   775  0006A0  8CF2               	bsf	intcon,6,c
+   776                           ;main.c: 189: GIE = 1;
+   777  0006A2  8EF2               	bsf	intcon,7,c
+   778                           ;main.c: 190: RF2=0;RF3=0;RF1=0;RA2=1;
+   779  0006A4  9485               	bcf	3973,2,c	;volatile
+   780  0006A6  9685               	bcf	3973,3,c	;volatile
+   781  0006A8  9285               	bcf	3973,1,c	;volatile
+   782  0006AA  8480               	bsf	3968,2,c	;volatile
+   783                           ;main.c: 192: sys.v1 = 30;
+   784  0006AC  0101               	movlb	(_sys+58) shr (0+8)
+   785  0006AE  0E1E               	movlw	30
+   786  0006B0  6F4C               	movwf	(_sys+58)& (0+255),b
+   787  0006B2  6B4D               	clrf	(_sys+59)& (0+255),b
+   788                           ;main.c: 193: sys.v2 = 20;
+   789  0006B4  0101               	movlb	(_sys+60) shr (0+8)
+   790  0006B6  0E14               	movlw	20
+   791  0006B8  6F4E               	movwf	(_sys+60)& (0+255),b
+   792  0006BA  6B4F               	clrf	(_sys+61)& (0+255),b
+   793                           ;main.c: 194: sys.v3 = 10;
+   794  0006BC  0101               	movlb	(_sys+62) shr (0+8)
+   795  0006BE  0E0A               	movlw	10
+   796  0006C0  6F50               	movwf	(_sys+62)& (0+255),b
+   797  0006C2  6B51               	clrf	(_sys+63)& (0+255),b
+   798  0006C4                     l22:
+   799                           ;main.c: 198: while(1)
+   800                           ;main.c: 199: {
+   801  0006C4  C025  F000         	movff	_adm+15,btemp
+   802  0006C8  0400               	decf	btemp,w
+   803  0006CA  A4D8               	btfss	status,2,c
+   804  0006CC  D004               	goto	l24
+   805                           ;main.c: 201: {
+   806  0006CE  0100               	movlb	(_adm+15) shr (0+8)
+   807  0006D0  6B25               	clrf	(_adm+15)& (0+255),b
+   808                           ;main.c: 203: ad_sequence_sample();
+   809  0006D2  ECBE  F036         	call	_ad_sequence_sample	;wreg free
+   810  0006D6                     l24:
+   811                           ;main.c: 204: }
+   812  0006D6  C164  F000         	movff	_sys+82,btemp
+   813  0006DA  0400               	decf	btemp,w
+   814  0006DC  A4D8               	btfss	status,2,c
+   815  0006DE  D013               	goto	l25
+   816                           ;main.c: 207: {
+   817  0006E0  0101               	movlb	(_sys+82) shr (0+8)
+   818  0006E2  6B64               	clrf	(_sys+82)& (0+255),b
+   819                           ;main.c: 209: ds1302_get_time();
+   820  0006E4  EC33  F04E         	call	_ds1302_get_time	;wreg free
+   821                           ;main.c: 211: if((RD0==0)&&(RF0==0)&&(RC1==0))ad
+      +                          m.ch_num=6;
+   822  0006E8  A083               	btfss	3971,0,c	;volatile
+   823  0006EA  B085               	btfsc	3973,0,c	;volatile
+   824  0006EC  D004               	goto	l26
+   825  0006EE  B282               	btfsc	3970,1,c	;volatile
+   826  0006F0  D002               	goto	l26
+   827  0006F2  0E06               	movlw	6
+   828  0006F4  D001               	goto	L2
+   829                           ;main.c: 212: else adm.ch_num = 4;
+   830  0006F6                     l26:
+   831  0006F6  0E04               	movlw	4
+   832  0006F8                     L2:
+   833  0006F8  CFE8 F018          	movff	wreg,_adm+2
+   834                           ;main.c: 214: lcd_fresh();
+   835  0006FC  EC0F  F033         	call	_lcd_fresh	;wreg free
+   836                           ;main.c: 215: syswaring();
+   837  000700  EC77  F04F         	call	_syswaring	;wreg free
+   838                           ;main.c: 216: RG2^=1;
+   839  000704  7486               	btg	3974,2,c	;volatile
+   840  000706                     l25:
+   841                           ;main.c: 218: }
+   842  000706  C167  F000         	movff	_sys+85,btemp
+   843  00070A  0400               	decf	btemp,w
+   844  00070C  A4D8               	btfss	status,2,c
+   845  00070E  D00E               	goto	l28
+   846                           ;main.c: 221: {
+   847  000710  0101               	movlb	(_sys+85) shr (0+8)
+   848  000712  6B67               	clrf	(_sys+85)& (0+255),b
+   849                           ;main.c: 223: RG2^=1;
+   850  000714  7486               	btg	3974,2,c	;volatile
+   851                           ;main.c: 225: key_scan();
+   852  000716  EC4D  F050         	call	_key_scan	;wreg free
+   853                           ;main.c: 226: if(key.flag == 1)
+   854  00071A  C1A8  F000         	movff	_key+5,btemp
+   855  00071E  0400               	decf	btemp,w
+   856  000720  A4D8               	btfss	status,2,c
+   857  000722  D004               	goto	l28
+   858                           ;main.c: 227: {
+   859  000724  0101               	movlb	(_key+5) shr (0+8)
+   860  000726  6BA8               	clrf	(_key+5)& (0+255),b
+   861                           ;main.c: 230: display_menu();
+   862  000728  ECFB  F012         	call	_display_menu	;wreg free
+   863                           ;main.c: 231: }
+   864  00072C                     l28:
+   865                           ;main.c: 234: if(uart.flag == 2)
+   866  00072C  C196  FFE8         	movff	_uart+43,wreg
+   867  000730  0A02               	xorlw	2
+   868  000732  A4D8               	btfss	status,2,c
+   869  000734  D7C7               	goto	l22
+   870                           ;main.c: 235: {
+   871  000736  0101               	movlb	(_uart+43) shr (0+8)
+   872  000738  6B96               	clrf	(_uart+43)& (0+255),b
+   873                           ;main.c: 237: uart_receive_deal();
+   874  00073A  ECC5  F044         	call	_uart_receive_deal	;wreg free
+   875                           ;main.c: 239: }
+   876  00073E  D7C2               	goto	l22
+   877  000740                     save:
+   878  000740  CFE9 FEFF          	movff	fsr0l,saved_regsh+6
+   879  000744  CFEA FEFE          	movff	fsr0h,saved_regsh+5
+   880  000748  C004  FEFD         	movff	btemp+4,saved_regsh+4
+   881  00074C  C003  FEFC         	movff	btemp+3,saved_regsh+3
+   882  000750  C002  FEFB         	movff	btemp+2,saved_regsh+2
+   883  000754  C001  FEFA         	movff	btemp+1,saved_regsh+1
+   884  000758  C000  FEF9         	movff	btemp,saved_regsh
+   885                           ;main.c: 248: void interrupt isr(void)
+   886                           ;main.c: 249: {
+   887  00075C                     _isr:
+   888  00075C                     int_func:
+   889  000000                     
+   890                           ;main.c: 250: if(CCP5IF == 1)
+   891  00075C  A4A4               	btfss	4004,2,c	;volatile
+   892  00075E  D042               	goto	l32
+   893                           ;main.c: 251: {
+   894  000760  94A4               	bcf	4004,2,c	;volatile
+   895                           ;main.c: 253: if(adm.status == 1)
+   896  000762  C017  F000         	movff	_adm+1,btemp
+   897  000766  0400               	decf	btemp,w
+   898  000768  A4D8               	btfss	status,2,c
+   899  00076A  D03C               	goto	l32
+   900                           ;main.c: 254: {
+   901  00076C  C016  FFE8         	movff	_adm,wreg
+   902  000770  0A03               	xorlw	3
+   903  000772  B4D8               	btfsc	status,2,c
+   904  000774  D00A               	goto	u220
+   905  000776  C016  FFE8         	movff	_adm,wreg
+   906  00077A  0A04               	xorlw	4
+   907  00077C  B4D8               	btfsc	status,2,c
+   908  00077E  D005               	goto	u220
+   909  000780  C016  FFE8         	movff	_adm,wreg
+   910  000784  0A05               	xorlw	5
+   911  000786  A4D8               	btfss	status,2,c
+   912  000788  D02D               	goto	l32
+   913  00078A                     u220:
+   914                           ;main.c: 256: {
+   915  00078A  0EC3               	movlw	195
+   916  00078C  16C2               	andwf	4034,f,c	;volatile
+   917                           ;main.c: 258: ADCON0|=0X02;
+   918  00078E  82C2               	bsf	4034,1,c	;volatile
+   919                           ;main.c: 259: adm.idle_time = 0;
+   920  000790  0100               	movlb	(_adm+7) shr (0+8)
+   921  000792  6B1D               	clrf	(_adm+7)& (0+255),b
+   922                           ;main.c: 260: while(ADIF == 0);ADIF = 0;
+   923  000794                     l35:
+   924  000794  AC9E               	btfss	3998,6,c	;volatile
+   925  000796  D7FE               	goto	l35
+   926  000798  9C9E               	bcf	3998,6,c	;volatile
+   927                           ;main.c: 261: adm.ad1 = ADRESH&0X03;
+   928  00079A  CFC4 F000          	movff	4036,btemp	;volatile
+   929  00079E  0E03               	movlw	3
+   930  0007A0  1600               	andwf	btemp,f
+   931  0007A2  0100               	movlb	(_adm+3) shr (0+8)
+   932  0007A4  C000  F019         	movff	btemp,_adm+3
+   933  0007A8  6B1A               	clrf	(_adm+4)& (0+255),b
+   934                           ;main.c: 262: adm.ad1 = adm.ad1<<8;
+   935  0007AA  5119               	movf	(_adm+3)& (0+255),w,b
+   936  0007AC  6E01               	movwf	btemp+1
+   937  0007AE  6A00               	clrf	btemp
+   938  0007B0  C000  F019         	movff	btemp,_adm+3
+   939  0007B4  C001  F01A         	movff	btemp+1,_adm+4
+   940                           ;main.c: 263: adm.ad1 = adm.ad1+ADRESL;
+   941  0007B8  EE00  F019         	lfsr	0,_adm+3
+   942  0007BC  CFEE F000          	movff	postinc0,btemp
+   943  0007C0  CFED F001          	movff	postdec0,btemp+1
+   944  0007C4  5000               	movf	btemp,w
+   945  0007C6  24C3               	addwf	4035,w,c	;volatile
+   946  0007C8  CFE8 F019          	movff	wreg,_adm+3
+   947  0007CC  0E00               	movlw	0
+   948  0007CE  2001               	addwfc	btemp+1,w
+   949  0007D0  CFE8 F01A          	movff	wreg,_adm+4
+   950                           ;main.c: 264: TMR1H=0xf6;TMR1L=0x1b;TMR1ON=1;
+   951  0007D4  0EF6               	movlw	246
+   952  0007D6  6ECF               	movwf	4047,c	;volatile
+   953  0007D8  0E1B               	movlw	27
+   954  0007DA  6ECE               	movwf	4046,c	;volatile
+   955  0007DC  80CD               	bsf	4045,0,c
+   956                           ;main.c: 265: adm.status = 2;
+   957  0007DE  0E02               	movlw	2
+   958  0007E0  CFE8 F017          	movff	wreg,_adm+1
+   959                           ;main.c: 266: }
+   960                           ;main.c: 269: }
+   961  0007E4                     l32:
+   962                           ;main.c: 271: if(CCP4IF == 1)
+   963  0007E4  A2A4               	btfss	4004,1,c	;volatile
+   964  0007E6  D042               	goto	l38
+   965                           ;main.c: 272: {
+   966  0007E8  92A4               	bcf	4004,1,c	;volatile
+   967                           ;main.c: 274: if(adm.status == 1)
+   968  0007EA  C017  F000         	movff	_adm+1,btemp
+   969  0007EE  0400               	decf	btemp,w
+   970  0007F0  A4D8               	btfss	status,2,c
+   971  0007F2  D03C               	goto	l38
+   972                           ;main.c: 275: {
+   973  0007F4  0100               	movlb	_adm shr (0+8)
+   974  0007F6  5316               	movf	_adm& (0+255),f,b
+   975  0007F8  B4D8               	btfsc	status,2,c
+   976  0007FA  D00A               	goto	u300
+   977  0007FC  C016  F000         	movff	_adm,btemp
+   978  000800  0400               	decf	btemp,w
+   979  000802  B4D8               	btfsc	status,2,c
+   980  000804  D005               	goto	u300
+   981  000806  C016  FFE8         	movff	_adm,wreg
+   982  00080A  0A02               	xorlw	2
+   983  00080C  A4D8               	btfss	status,2,c
+   984  00080E  D02E               	goto	l38
+   985  000810                     u300:
+   986                           ;main.c: 277: {
+   987  000810  0EC3               	movlw	195
+   988  000812  16C2               	andwf	4034,f,c	;volatile
+   989                           ;main.c: 279: ADCON0|=0X06;
+   990  000814  0E06               	movlw	6
+   991  000816  12C2               	iorwf	4034,f,c	;volatile
+   992                           ;main.c: 280: adm.idle_time = 0;
+   993  000818  0100               	movlb	(_adm+7) shr (0+8)
+   994  00081A  6B1D               	clrf	(_adm+7)& (0+255),b
+   995                           ;main.c: 281: while(ADIF == 0);ADIF = 0;
+   996  00081C                     l41:
+   997  00081C  AC9E               	btfss	3998,6,c	;volatile
+   998  00081E  D7FE               	goto	l41
+   999  000820  9C9E               	bcf	3998,6,c	;volatile
+  1000                           ;main.c: 282: adm.ad1 = ADRESH&0X03;
+  1001  000822  CFC4 F000          	movff	4036,btemp	;volatile
+  1002  000826  0E03               	movlw	3
+  1003  000828  1600               	andwf	btemp,f
+  1004  00082A  0100               	movlb	(_adm+3) shr (0+8)
+  1005  00082C  C000  F019         	movff	btemp,_adm+3
+  1006  000830  6B1A               	clrf	(_adm+4)& (0+255),b
+  1007                           ;main.c: 283: adm.ad1 = adm.ad1<<8;
+  1008  000832  5119               	movf	(_adm+3)& (0+255),w,b
+  1009  000834  6E01               	movwf	btemp+1
+  1010  000836  6A00               	clrf	btemp
+  1011  000838  C000  F019         	movff	btemp,_adm+3
+  1012  00083C  C001  F01A         	movff	btemp+1,_adm+4
+  1013                           ;main.c: 284: adm.ad1 = adm.ad1+ADRESL;
+  1014  000840  EE00  F019         	lfsr	0,_adm+3
+  1015  000844  CFEE F000          	movff	postinc0,btemp
+  1016  000848  CFED F001          	movff	postdec0,btemp+1
+  1017  00084C  5000               	movf	btemp,w
+  1018  00084E  24C3               	addwf	4035,w,c	;volatile
+  1019  000850  CFE8 F019          	movff	wreg,_adm+3
+  1020  000854  0E00               	movlw	0
+  1021  000856  2001               	addwfc	btemp+1,w
+  1022  000858  CFE8 F01A          	movff	wreg,_adm+4
+  1023                           ;main.c: 285: TMR1H=0xf6;TMR1L=0x1b;TMR1ON=1;
+  1024  00085C  0EF6               	movlw	246
+  1025  00085E  6ECF               	movwf	4047,c	;volatile
+  1026  000860  0E1B               	movlw	27
+  1027  000862  6ECE               	movwf	4046,c	;volatile
+  1028  000864  80CD               	bsf	4045,0,c
+  1029                           ;main.c: 286: adm.status = 2;
+  1030  000866  0E02               	movlw	2
+  1031  000868  CFE8 F017          	movff	wreg,_adm+1
+  1032                           ;main.c: 287: }
+  1033                           ;main.c: 289: }
+  1034  00086C                     l38:
+  1035                           ;main.c: 291: if(TMR1IF == 1)
+  1036  00086C  A09E               	btfss	3998,0,c	;volatile
+  1037  00086E  D056               	goto	l44
+  1038                           ;main.c: 292: {
+  1039  000870  909E               	bcf	3998,0,c	;volatile
+  1040                           ;main.c: 294: TMR1ON = 0;
+  1041  000872  90CD               	bcf	4045,0,c
+  1042                           ;main.c: 295: if(adm.status == 2)
+  1043  000874  C017  FFE8         	movff	_adm+1,wreg
+  1044  000878  0A02               	xorlw	2
+  1045  00087A  A4D8               	btfss	status,2,c
+  1046  00087C  D04F               	goto	l44
+  1047                           ;main.c: 296: {
+  1048  00087E  0100               	movlb	_adm shr (0+8)
+  1049  000880  5316               	movf	_adm& (0+255),f,b
+  1050  000882  B4D8               	btfsc	status,2,c
+  1051  000884  D00A               	goto	u380
+  1052  000886  C016  F000         	movff	_adm,btemp
+  1053  00088A  0400               	decf	btemp,w
+  1054  00088C  B4D8               	btfsc	status,2,c
+  1055  00088E  D005               	goto	u380
+  1056  000890  C016  FFE8         	movff	_adm,wreg
+  1057  000894  0A02               	xorlw	2
+  1058  000896  A4D8               	btfss	status,2,c
+  1059  000898  D009               	goto	l46
+  1060  00089A                     u380:
+  1061                           ;main.c: 298: {
+  1062  00089A  0EC3               	movlw	195
+  1063  00089C  16C2               	andwf	4034,f,c	;volatile
+  1064                           ;main.c: 300: ADCON0|=0X06;
+  1065  00089E  0E06               	movlw	6
+  1066  0008A0  12C2               	iorwf	4034,f,c	;volatile
+  1067                           ;main.c: 301: adm.idle_time = 0;
+  1068  0008A2  0100               	movlb	(_adm+7) shr (0+8)
+  1069  0008A4  6B1D               	clrf	(_adm+7)& (0+255),b
+  1070                           ;main.c: 302: while(ADIF == 0);ADIF = 0;
+  1071  0008A6                     l47:
+  1072  0008A6  AC9E               	btfss	3998,6,c	;volatile
+  1073  0008A8  D7FE               	goto	l47
+  1074  0008AA  D016               	goto	u460
+  1075                           ;main.c: 303: adm.ad2 = ADRESH&0X03;
+  1076                           ;main.c: 304: adm.ad2 = adm.ad1<<8;
+  1077                           ;main.c: 305: adm.ad2 = adm.ad1+ADRESL;
+  1078                           ;main.c: 306: }
+  1079  0008AC                     l46:
+  1080  0008AC  C016  FFE8         	movff	_adm,wreg
+  1081  0008B0  0A03               	xorlw	3
+  1082  0008B2  B4D8               	btfsc	status,2,c
+  1083  0008B4  D00A               	goto	u440
+  1084  0008B6  C016  FFE8         	movff	_adm,wreg
+  1085  0008BA  0A04               	xorlw	4
+  1086  0008BC  B4D8               	btfsc	status,2,c
+  1087  0008BE  D005               	goto	u440
+  1088  0008C0  C016  FFE8         	movff	_adm,wreg
+  1089  0008C4  0A05               	xorlw	5
+  1090  0008C6  A4D8               	btfss	status,2,c
+  1091  0008C8  D026               	goto	l50
+  1092  0008CA                     u440:
+  1093                           ;main.c: 308: {
+  1094  0008CA  0EC3               	movlw	195
+  1095  0008CC  16C2               	andwf	4034,f,c	;volatile
+  1096                           ;main.c: 310: ADCON0|=0X02;
+  1097  0008CE  82C2               	bsf	4034,1,c	;volatile
+  1098                           ;main.c: 311: adm.idle_time = 0;
+  1099  0008D0  0100               	movlb	(_adm+7) shr (0+8)
+  1100  0008D2  6B1D               	clrf	(_adm+7)& (0+255),b
+  1101                           ;main.c: 312: while(ADIF == 0);ADIF = 0;
+  1102  0008D4                     l52:
+  1103  0008D4  AC9E               	btfss	3998,6,c	;volatile
+  1104  0008D6  D7FE               	goto	l52
+  1105  0008D8                     u460:
+  1106  0008D8  9C9E               	bcf	3998,6,c	;volatile
+  1107                           ;main.c: 313: adm.ad2 = ADRESH&0X03;
+  1108  0008DA  CFC4 F000          	movff	4036,btemp	;volatile
+  1109  0008DE  0E03               	movlw	3
+  1110  0008E0  1600               	andwf	btemp,f
+  1111  0008E2  0100               	movlb	(_adm+5) shr (0+8)
+  1112  0008E4  C000  F01B         	movff	btemp,_adm+5
+  1113  0008E8  6B1C               	clrf	(_adm+6)& (0+255),b
+  1114                           ;main.c: 314: adm.ad2 = adm.ad1<<8;
+  1115  0008EA  0100               	movlb	(_adm+3) shr (0+8)
+  1116  0008EC  5119               	movf	(_adm+3)& (0+255),w,b
+  1117  0008EE  6E01               	movwf	btemp+1
+  1118  0008F0  6A00               	clrf	btemp
+  1119  0008F2  C000  F01B         	movff	btemp,_adm+5
+  1120  0008F6  C001  F01C         	movff	btemp+1,_adm+6
+  1121                           ;main.c: 315: adm.ad2 = adm.ad1+ADRESL;
+  1122  0008FA  EE00  F019         	lfsr	0,_adm+3
+  1123  0008FE  CFEE F000          	movff	postinc0,btemp
+  1124  000902  CFED F001          	movff	postdec0,btemp+1
+  1125  000906  5000               	movf	btemp,w
+  1126  000908  24C3               	addwf	4035,w,c	;volatile
+  1127  00090A  CFE8 F01B          	movff	wreg,_adm+5
+  1128  00090E  0E00               	movlw	0
+  1129  000910  2001               	addwfc	btemp+1,w
+  1130  000912  CFE8 F01C          	movff	wreg,_adm+6
+  1131                           ;main.c: 316: }
+  1132  000916                     l50:
+  1133  000916  0E03               	movlw	3
+  1134  000918  CFE8 F017          	movff	wreg,_adm+1
+  1135                           ;main.c: 318: }
+  1136  00091C                     l44:
+  1137                           ;main.c: 323: if(RC1IF == 1)
+  1138  00091C  AA9E               	btfss	3998,5,c	;volatile
+  1139  00091E  D019               	goto	l55
+  1140                           ;main.c: 324: {
+  1141  000920  C193  FFE8         	movff	_uart+40,wreg
+  1142  000924  EE01  F06B         	lfsr	0,_uart
+  1143  000928  26E9               	addwf	fsr0l,f,c
+  1144  00092A  0E00               	movlw	0
+  1145  00092C  22EA               	addwfc	fsr0h,f,c
+  1146  00092E  CFAE FFEF          	movff	4014,indf0	;volatile
+  1147                           ;main.c: 326: uart.flag = 1;
+  1148  000932  0E01               	movlw	1
+  1149  000934  CFE8 F196          	movff	wreg,_uart+43
+  1150                           ;main.c: 327: uart.time = 0;
+  1151  000938  0101               	movlb	(_uart+41) shr (0+8)
+  1152  00093A  6B94               	clrf	(_uart+41)& (0+255),b
+  1153  00093C  6B95               	clrf	(_uart+42)& (0+255),b
+  1154                           ;main.c: 328: uart.count++;
+  1155  00093E  2B93               	incf	(_uart+40)& (0+255),f,b
+  1156                           ;main.c: 329: uart.count=uart.count%20;
+  1157  000940  0E14               	movlw	20
+  1158  000942  6E01               	movwf	btemp+1
+  1159  000944  C193  FFE8         	movff	_uart+40,wreg
+  1160  000948  EC25  F051         	call	lbmod
+  1161  00094C  5000               	movf	btemp,w
+  1162  00094E  CFE8 F193          	movff	wreg,_uart+40
+  1163  000952                     l55:
+  1164                           ;main.c: 330: }
+  1165  000952  A29E               	btfss	3998,1,c	;volatile
+  1166  000954  D037               	goto	restore
+  1167                           ;main.c: 335: {
+  1168  000956  929E               	bcf	3998,1,c	;volatile
+  1169                           ;main.c: 340: adm.time_count++;
+  1170  000958  0100               	movlb	(_adm+16) shr (0+8)
+  1171  00095A  2B26               	incf	(_adm+16)& (0+255),f,b
+  1172  00095C  0E00               	movlw	0
+  1173  00095E  2327               	addwfc	(_adm+17)& (0+255),f,b
+  1174                           ;main.c: 341: if(adm.time_count >= 10)
+  1175  000960  5D27               	subwf	(_adm+17)& (0+255),w,b
+  1176  000962  0E0A               	movlw	10
+  1177  000964  B4D8               	btfsc	status,2,c
+  1178  000966  5D26               	subwf	(_adm+16)& (0+255),w,b
+  1179  000968  A0D8               	btfss	status,0,c
+  1180  00096A  D006               	goto	l57
+  1181                           ;main.c: 342: {
+  1182  00096C  0100               	movlb	(_adm+16) shr (0+8)
+  1183  00096E  6B26               	clrf	(_adm+16)& (0+255),b
+  1184  000970  6B27               	clrf	(_adm+17)& (0+255),b
+  1185                           ;main.c: 344: adm.time_flag = 1;
+  1186  000972  0E01               	movlw	1
+  1187  000974  CFE8 F025          	movff	wreg,_adm+15
+  1188  000978                     l57:
+  1189                           ;main.c: 345: }
+  1190  000978  0101               	movlb	(_sys+80) shr (0+8)
+  1191  00097A  2B62               	incf	(_sys+80)& (0+255),f,b
+  1192  00097C  0E00               	movlw	0
+  1193  00097E  2363               	addwfc	(_sys+81)& (0+255),f,b
+  1194                           ;main.c: 349: if(sys.lcd_fresh_time == 30)
+  1195  000980  5162               	movf	(_sys+80)& (0+255),w,b
+  1196  000982  0A1E               	xorlw	30
+  1197  000984  1163               	iorwf	(_sys+81)& (0+255),w,b
+  1198  000986  A4D8               	btfss	status,2,c
+  1199  000988  D006               	goto	l58
+  1200                           ;main.c: 350: {
+  1201  00098A  0101               	movlb	(_sys+80) shr (0+8)
+  1202  00098C  6B62               	clrf	(_sys+80)& (0+255),b
+  1203  00098E  6B63               	clrf	(_sys+81)& (0+255),b
+  1204                           ;main.c: 352: sys.lcd_fresh_flag = 1;
+  1205  000990  0E01               	movlw	1
+  1206  000992  CFE8 F164          	movff	wreg,_sys+82
+  1207  000996                     l58:
+  1208                           ;main.c: 353: }
+  1209  000996  0E01               	movlw	1
+  1210  000998  CFE8 F167          	movff	wreg,_sys+85
+  1211                           ;main.c: 359: if(uart.flag==1)
+  1212  00099C  C196  F000         	movff	_uart+43,btemp
+  1213  0009A0  0400               	decf	btemp,w
+  1214  0009A2  A4D8               	btfss	status,2,c
+  1215  0009A4  D00F               	goto	restore
+  1216                           ;main.c: 360: {
+  1217  0009A6  0101               	movlb	(_uart+41) shr (0+8)
+  1218  0009A8  2B94               	incf	(_uart+41)& (0+255),f,b
+  1219  0009AA  0E00               	movlw	0
+  1220  0009AC  2395               	addwfc	(_uart+42)& (0+255),f,b
+  1221                           ;main.c: 362: if(uart.time == 6)
+  1222  0009AE  5194               	movf	(_uart+41)& (0+255),w,b
+  1223  0009B0  0A06               	xorlw	6
+  1224  0009B2  1195               	iorwf	(_uart+42)& (0+255),w,b
+  1225  0009B4  A4D8               	btfss	status,2,c
+  1226  0009B6  D006               	goto	restore
+  1227                           ;main.c: 363: {
+  1228  0009B8  0E02               	movlw	2
+  1229  0009BA  CFE8 F196          	movff	wreg,_uart+43
+  1230                           ;main.c: 365: uart.count = 0;
+  1231  0009BE  6B93               	clrf	(_uart+40)& (0+255),b
+  1232                           ;main.c: 366: uart.time = 0;
+  1233  0009C0  6B94               	clrf	(_uart+41)& (0+255),b
+  1234  0009C2  6B95               	clrf	(_uart+42)& (0+255),b
+  1235                           ;main.c: 367: }
+  1236                           ;main.c: 369: }
+  1237                           ;main.c: 370: }
+  1238  0009C4                     restore:
+  1239  0009C4  CEF9  F000         	movff	saved_regsh,btemp
+  1240  0009C8  CEFA  F001         	movff	saved_regsh+1,btemp+1
+  1241  0009CC  CEFB  F002         	movff	saved_regsh+2,btemp+2
+  1242  0009D0  CEFC  F003         	movff	saved_regsh+3,btemp+3
+  1243  0009D4  CEFD  F004         	movff	saved_regsh+4,btemp+4
+  1244  0009D8  CEFE  FFEA         	movff	saved_regsh+5,fsr0h
+  1245  0009DC  CEFF  FFE9         	movff	saved_regsh+6,fsr0l
+  1246  0009E0  0011               	retfie		f
+  1247                           
+  1248                           	psect	config
+  1249                           ;stdlib.h: 122: extern int atexit(void (*)(void)
+      +                          );
+  1250                           ;stdlib.h: 126: extern void qsort(void *, size_t
+      +                          , size_t, int (*)(const void *, const void *));
+  1251                           ;stdlib.h: 127: extern void * bsearch(const void
+      +                           *, void *, size_t, size_t, int(*)(const void *,
+      +                           const void *));
+ *, void *, size_t, size_t, int(*)(const void *,
+      +                           const void *));
+300000                     	org	0	;#
+  1253  300000                     config_word1:
+  1254                           ;#
+  1255  300000  F6FF               	dw	63231	;#
+  F6FF               	dw	63231	;#
+300002                     	org	2	;#
+  1257  300002                     config_word2:
+  1258                           ;#
+  1259  300002  FEFE               	dw	65278	;#
+  FEFE               	dw	65278	;#
+300004                     	org	4	;#
+  1261  300004                     config_word3:
+  1262                           ;#
+  1263  300004  FFFF               	dw	65535	;#
+  FFFF               	dw	65535	;#
+300006                     	org	6	;#
+  1265  300006                     config_word4:
+  1266                           ;#
+  1267  300006  FFBB               	dw	65467	;#
+  FFBB               	dw	65467	;#
+300008                     	org	8	;#
+  1269  300008                     config_word5:
+  1270                           ;#
+  1271  300008  FFFF               	dw	65535	;#
+  FFFF               	dw	65535	;#
+
+30000A                     	org	10	;#
+  1273  30000A                     config_word6:
+  1274                           ;#
+  1275  30000A  FFFF               	dw	65535	;#
+  FFFF               	dw	65535	;#
+30000C                     	org	12	;#
+  1277  30000C                     config_word7:
+  1278                           ;#
+  1279  30000C  FFFF               	dw	65535	;#
+  1280                           
+  1281                           	psect	intcode
+  1282  000008  EFA0  F003         	goto	save
+  1283                           
+  1284                           	psect	bigbss
+  1285  000E7E                     _ii:
+  1286  000E7E                     	ds	1
+  1287  000E7E                     _jj:
+  1288  000E7E                     	ds	1
+  1289  000E7E                     _judge_flag:
+  1290  000E7E                     	ds	1
+  1291  000E7E                     _key_scan_flag:
+  1292  000E7E                     	ds	1
+  1293  000E7E                     _lcd_refresh_flag:
+  1294  000E7E                     	ds	1
+  1295  000000                     
+  1296  000000                     
+  1297  000000                     
+  1298  000000                     
+  1299  000000                     
+  1300  000000                     
+  1301  000000                     
+  1302  000000                     
+  1303  000000                     
+  1304  000000                     
+  1305                           
+  1306                           	psect	bss
+  1307  000169                     _elcr:
+  1308  000169                     	ds	2
+  1309  000169                     _uart:
+  1310  000169                     	ds	44
+  1311                           
+  1312                           	psect	temp
+  1313  000000                     btemp:
+  1314  000000                     	ds	6
+  1315                           
+  1316                           	psect	intsave_regs
+  1317  000EF9                     saved_regsh:
+  1318  000EF9                     	ds	7
+  1319                           intcon	equ	0xFF2
+  1320                           indf0	equ	0xFEF
+  1321                           postinc0	equ	0xFEE
+  1322                           postdec0	equ	0xFED
+  1323                           fsr0h	equ	0xFEA
+  1324                           fsr0l	equ	0xFE9
+  1325                           wreg	equ	0xFE8
+  1326                           status	equ	0xFD8
+
+
+HI-TECH Software PICC-18 Macro Assembler V8.35PL3
+Symbol Table                                           Thu Jan  2 10:12:15 2014
+
+     _uart_receive_deal 898A                      l22 06C4  
+                    l32 07E4                      l24 06D6  
+                    l41 081C                      l25 0706  
+                    l50 0916                      l26 06F6  
+                    l35 0794                      l19 069A  
+                    l52 08D4                      l44 091C  
+                    l28 072C                      l46 08AC  
+                    l38 086C                      l55 0952  
+                    l47 08A6                      l57 0978  
+                    l58 0996                      _ii 0E7E  
+                    _jj 0E7F            _led_pin_init 9ED0  
+                   u300 0810                     u220 078A  
+                   u440 08CA                     u460 08D8  
+                   u380 089A                _adc_init 6CE8  
+                   _adm 0016                     _key 01A3  
+                   _isr 075C                     _sys 0112  
+                   save 0740                     wreg 000FE8  
+         _key_scan_flag 0E81                    _elcr 0169  
+                  _main 0658                    _uart 016B  
+                  fsr0h 000FEA                    indf0 000FEF  
+                  fsr0l 000FE9                    btemp 0000  
+                  lbmod A24A                    lwdiv A1E4  
+                  lwmod A1E4                _key_scan A09A  
+                  start 0018                _init_lcd 90EE  
+           _timer1_init A364             _timer2_init A380  
+              clear_big 0018                clear_bss 0024  
+  _write_data_to_eeprom 09E4   ?_write_data_to_eeprom 002B  
+             _lcd_clear 90C8               _lcd_fresh 661E  
+            used_btemp0 0001              used_btemp1 0001  
+            used_btemp2 0001              used_btemp3 0001  
+            used_btemp4 0001              used_btemp5 0001  
+          _capture_init 6D12       _set_mode_pin_init A130  
+                 status 000FD8                 __Lparam 0029  
+         _parament_init 0118   _read_data_from_eeprom 0A14  
+               __ramtop 0F00             config_word1 0000  
+           config_word2 0002             config_word3 0004  
+           config_word4 0006             config_word5 0008  
+           config_word6 000A             config_word7 000C  
+?_read_data_from_eeprom 002F            _key_pin_init A084  
+    _ad_sequence_sample 6D7C                 int_func 075C  
+       _ds1302_get_time 9C66               _syswaring 9EEE  
+               postdec0 000FED                 postinc0 000FEE  
+       _ds1302_pin_init 9AFC         ?a_parament_init 0029  
+                restore 09C4             _ds1302_init 9CCE  
+          _lcd_pin_init 8F62              _judge_flag 0E80  
+            saved_regsh 0EF9        _lcd_refresh_flag 0E82  
+             saved_bsrh 000D            _display_menu 25F6  

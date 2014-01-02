@@ -1,0 +1,8 @@
+---- RB2 Matches (7 in 5 files) ----
+Led.c:	RB2 = 1;
+Led.c:	RB2^=1;
+Led.h:#define BZ_ON RB2=0
+Led.h:#define BZ_OFF RB2=1
+Main.c:				RB2 ^=1;
+Pic18f6x2x.h:static volatile near bit	RB2		@ ((unsigned)&PORTB*8)+2;
+Pic18fxx22.h:static volatile near bit	RB2		@ ((unsigned)&PORTB*8)+2;
