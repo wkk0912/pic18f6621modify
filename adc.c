@@ -271,14 +271,7 @@ void cal_channle_val(void)
         case 0:
             temp = temp*10/33;
             sys.uav = temp;
-            
-			/*
-            if(sys.uav == 0)ua_err = 4;            
-            else if(sys.uav > sys.v1 + TH_CHANG_VAL)ua_err = 3;
-            else if((sys.uav <= sys.v1 - TH_CHANG_VAL)&&(sys.uav > sys.v2+ TH_CHANG_VAL))ua_err = 2;
-            else if((sys.uav <= sys.v2 - TH_CHANG_VAL)&&(sys.uav > sys.v3+ TH_CHANG_VAL))ua_err = 1;
-            else ua_err = 0;
-            */
+			
             if((ua_err== 4)||(ua_err == 0))
 			{
 				if(sys.uav > sys.v1)ua_err= 3;
@@ -321,13 +314,7 @@ void cal_channle_val(void)
         	
             temp = temp*10/33;            
             sys.ubv = temp; 
-            /*
-            if(sys.ubv == 0){ub_err = 4;}
-            else if(sys.ubv > sys.v1+ TH_CHANG_VAL){ub_err = 3;}
-            else if((sys.ubv <= sys.v1- TH_CHANG_VAL)&&(sys.ubv > sys.v2+ TH_CHANG_VAL)){ub_err=2;}
-            else if((sys.ubv <= sys.v2- TH_CHANG_VAL)&&(sys.ubv > sys.v3+ TH_CHANG_VAL)){ub_err=1;}
-            else {ub_err = 0;sys.err_code = 0;}
-            */
+            
 			if((ub_err== 4)||(ub_err == 0))
 			{
 				if(sys.ubv > sys.v1)ub_err= 3;
@@ -368,13 +355,7 @@ void cal_channle_val(void)
         case 2:
             temp = temp*10/33;
             sys.ucv = temp;
-            /*
-            if(sys.ucv == 0)uc_err = 4;
-            else if(sys.ucv > sys.v1+ TH_CHANG_VAL)uc_err = 3;
-            else if((sys.ucv <= sys.v1- TH_CHANG_VAL)&&(sys.ucv > sys.v2+ TH_CHANG_VAL))uc_err = 2;
-            else if((sys.ucv <= sys.v2- TH_CHANG_VAL)&&(sys.ucv > sys.v3+ TH_CHANG_VAL))uc_err=1;
-            else uc_err = 0;
-            */
+            
 
             if((uc_err== 4)||(uc_err == 0))
 			{
@@ -417,13 +398,6 @@ void cal_channle_val(void)
 			
             temp = temp *11;
             sys.iav = temp;
-
-            /*
-            if(sys.iav == 0)ia_err = 4;
-            else if(sys.iav > sys.c1+ TH_CHANG_VAL)ia_err = 3;
-            else if((sys.iav <= sys.c1- TH_CHANG_VAL)&&(sys.iav > sys.c2+ TH_CHANG_VAL))ia_err=2;
-            else if((sys.iav <= sys.c2- TH_CHANG_VAL)&&(sys.iav > sys.c3+ TH_CHANG_VAL))ia_err=1;
-            else ia_err = 0;      */
 
 			if((ia_err== 4)||(ia_err == 0))
 			{
@@ -474,13 +448,6 @@ void cal_channle_val(void)
         case 4:
             temp = temp *11;
             sys.ibv = temp;
-			/*
-            if(sys.ibv == 0)ib_err = 4;
-            else if(sys.ibv > sys.c1+ TH_CHANG_VAL)ib_err=3;
-            else if((sys.ibv <= sys.c1- TH_CHANG_VAL)&&(sys.ibv > sys.c2+ TH_CHANG_VAL))ib_err=2;
-            else if((sys.ibv <= sys.c2- TH_CHANG_VAL)&&(sys.ibv > sys.c3+ TH_CHANG_VAL))ib_err=1;
-            else ib_err =0;
-			*/
 			if((ib_err== 4)||(ib_err == 0))
 			{
 				if(sys.ibv > sys.c1)ib_err= 3;
@@ -520,14 +487,7 @@ void cal_channle_val(void)
             break;
         case 5:
             temp = temp *11;
-            sys.icv = temp;            
-            /*
-            if(sys.icv == 0)ic_err = 4;
-            else if(sys.icv > sys.c1+ TH_CHANG_VAL)ic_err=3;
-            else if((sys.icv <= sys.c1- TH_CHANG_VAL)&&(sys.icv > sys.c2+ TH_CHANG_VAL))ic_err=2;
-            else if((sys.icv <= sys.c2- TH_CHANG_VAL)&&(sys.icv > sys.c3+ TH_CHANG_VAL))ic_err=1;
-            else ic_err = 0; 
-            */
+            sys.icv = temp; 
 			if((ic_err== 4)||(ic_err == 0))
 			{
 				if(sys.icv > sys.c1)ic_err= 3;
