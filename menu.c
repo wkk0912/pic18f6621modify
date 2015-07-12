@@ -15,6 +15,12 @@
 extern AD_T adm;
 
 
+
+//×¢ÊÍ
+
+//
+
+
 SYS_T sys;
 extern unsigned char bufb[100];
 extern RTC_T rtc;
